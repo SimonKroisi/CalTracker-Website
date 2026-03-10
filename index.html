@@ -359,6 +359,11 @@
       background-position: 100% 50%;
     }
 
+    .nav-cta.waitlist-only { display: none; }
+    .nav-cta.released-only { display: flex; }
+    body.waitlist-mode .nav-cta.waitlist-only { display: flex; }
+    body.waitlist-mode .nav-cta.released-only { display: none; }
+
     /* Hero Section */
     .hero {
       min-height: 100vh;
@@ -554,6 +559,8 @@
     .floating-2 { top: 20%; right: 5%; animation: floatReverse 5.5s ease-in-out infinite; animation-delay: -1.2s; }
     .floating-3 { bottom: 25%; left: 8%; animation: float 6.2s ease-in-out infinite; animation-delay: -2.8s; }
     .floating-4 { bottom: 20%; right: 8%; animation: floatReverse 8s ease-in-out infinite; animation-delay: -0.5s; }
+    .floating-5 { top: 45%; left: 3%; animation: float 6.8s ease-in-out infinite; animation-delay: -3.5s; }
+    .floating-6 { top: 50%; right: 3%; animation: floatReverse 7.2s ease-in-out infinite; animation-delay: -2s; }
 
     .floating-icon {
       width: 44px;
@@ -573,6 +580,10 @@
     .floating-icon.blue svg { stroke: var(--blue); }
     .floating-icon.pink { background: rgba(236, 64, 122, 0.15); }
     .floating-icon.pink svg { stroke: var(--pink); }
+    .floating-icon.purple { background: rgba(171, 71, 188, 0.15); }
+    .floating-icon.purple svg { stroke: #AB47BC; }
+    .floating-icon.teal { background: rgba(38, 166, 154, 0.15); }
+    .floating-icon.teal svg { stroke: #26A69A; }
 
     .floating-text { font-size: 0.9rem; font-weight: 600; }
     .floating-subtext { font-size: 0.8rem; color: var(--text-secondary); }
@@ -849,6 +860,14 @@
     .pricing-features li.no::before { background: var(--card-border); }
     .pricing-features li.no { opacity: 0.45; }
 
+    .pricing-tax-note {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-top: 16px;
+      opacity: 0.7;
+    }
+
     /* How It Works */
     .how-section { background: var(--bg-gradient); overflow: hidden; }
 
@@ -1016,64 +1035,7 @@
     .testimonial-info span { font-size: 0.85rem; color: var(--text-secondary); }
 
     /* CTA Section */
-    .cta-section {
-      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 50%, var(--orange) 100%);
-      background-size: 200% 200%;
-      animation: gradient-shift 10s ease infinite;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
 
-    .cta-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .cta-section h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      color: white;
-      margin-bottom: 20px;
-    }
-
-    .cta-section p {
-      font-size: 1.2rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 40px;
-      line-height: 1.7;
-    }
-
-    .cta-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-white {
-      background: white;
-      color: var(--green-dark);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-white:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: white;
-    }
 
     /* Platforms */
     .platforms-section { background: var(--bg-secondary); text-align: center; }
@@ -1297,7 +1259,8 @@
           <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
         </div>
       </div>
-      <a href="#platforms" class="nav-cta">Get Started</a>
+      <a href="waitlist.html" class="nav-cta waitlist-only">Join Waitlist</a>
+      <a href="#platforms" class="nav-cta released-only">Get Started</a>
     </div>
   </nav>
 
@@ -1354,6 +1317,30 @@
         <div>
           <div class="floating-text">12 Day Streak</div>
           <div class="floating-subtext">keep going!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-floating floating-5">
+      <div class="floating-card">
+        <div class="floating-icon purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        </div>
+        <div>
+          <div class="floating-text">AI Score: 87</div>
+          <div class="floating-subtext">great day!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-floating floating-6">
+      <div class="floating-card">
+        <div class="floating-icon teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div>
+          <div class="floating-text">Goal Hit!</div>
+          <div class="floating-subtext">under budget</div>
         </div>
       </div>
     </div>
@@ -1689,55 +1676,56 @@
           <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
         </div>
         <h3>Simple Pricing</h3>
-        <p class="fdesc">Start free with generous daily AI scans. Upgrade for unlimited tracking, cloud sync, and advanced analytics.</p>
+        <p class="fdesc">Start free with 20 lifetime AI calls. Upgrade for daily AI power, cloud sync, and premium models.</p>
         <div class="feature-demo">
           <div class="pricing-toggle">
             <span class="pricing-toggle-lbl active" data-billing="monthly">Monthly</span>
             <div class="sync-toggle" role="switch" aria-checked="false" tabindex="0" id="billing-toggle"><div class="sync-toggle-knob"></div></div>
             <span class="pricing-toggle-lbl" data-billing="yearly">Yearly</span>
-            <span class="pricing-save">Save 33%</span>
+            <span class="pricing-save">Save up to 37%</span>
           </div>
           <div class="pricing-cols">
             <div class="pricing-col">
               <div class="pricing-tier">Free</div>
-              <div class="pricing-price">$0</div>
+              <div class="pricing-price">&euro;0</div>
               <div class="pricing-period">forever</div>
               <ul class="pricing-features">
-                <li>Manual food logging</li>
-                <li>3 AI scans per day</li>
+                <li>20 lifetime AI calls</li>
+                <li>2 basic AI models</li>
                 <li>Calorie &amp; macro tracking</li>
                 <li>Water tracking</li>
-                <li class="no">Cloud backup</li>
-                <li class="no">Advanced statistics</li>
+                <li>Weekly manual sync</li>
+                <li class="no">Web search</li>
+              </ul>
+            </div>
+            <div class="pricing-col">
+              <div class="pricing-tier">Plus</div>
+              <div class="pricing-price" data-monthly="&euro;2.49" data-yearly="&euro;19.99">&euro;2.49</div>
+              <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 33%)">/month</div>
+              <ul class="pricing-features">
+                <li>5 AI calls per day</li>
+                <li>2 basic AI models</li>
+                <li>Calorie &amp; macro tracking</li>
+                <li>Water tracking</li>
+                <li>Auto cloud sync</li>
+                <li class="no">Web search</li>
               </ul>
             </div>
             <div class="pricing-col highlight">
               <div class="pricing-tier">Pro</div>
-              <div class="pricing-price" data-monthly="$5.99" data-yearly="$3.99">$5.99</div>
-              <div class="pricing-period" data-monthly="/month" data-yearly="/month, billed yearly">/month</div>
+              <div class="pricing-price" data-monthly="&euro;7.99" data-yearly="&euro;59.99">&euro;7.99</div>
+              <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 37%)">/month</div>
               <ul class="pricing-features">
-                <li>Everything in Free</li>
-                <li>Unlimited AI scans</li>
-                <li>Cloud sync &amp; backup</li>
+                <li>25 AI calls per day</li>
+                <li>All 7 AI models</li>
+                <li>Auto cloud sync</li>
                 <li>AI Daily Score &amp; insights</li>
+                <li>Web search for brands</li>
                 <li>Advanced statistics</li>
-                <li>Priority support</li>
-              </ul>
-            </div>
-            <div class="pricing-col">
-              <div class="pricing-tier">Lifetime</div>
-              <div class="pricing-price" data-monthly="$49.99" data-yearly="$49.99">$49.99</div>
-              <div class="pricing-period" data-monthly="one-time" data-yearly="one-time">one-time</div>
-              <ul class="pricing-features">
-                <li>Everything in Pro</li>
-                <li>Unlimited forever</li>
-                <li>All future updates</li>
-                <li>Lifetime cloud sync</li>
-                <li>Export to CSV &amp; JSON</li>
-                <li>Early feature access</li>
               </ul>
             </div>
           </div>
+          <p class="pricing-tax-note">Prices exclude applicable taxes, which may vary by region.</p>
         </div>
       </div>
 
@@ -1891,23 +1879,6 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-content">
-      <h2>Start your health journey today</h2>
-      <p>Download CalTracker and use AI-powered tracking to build better habits, hit your nutrition goals, and transform daily actions into lasting results.</p>
-      <div class="cta-buttons">
-        <a href="https://play.google.com/store/apps/details?id=com.caltracker.app" class="btn btn-white" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Download Free
-        </a>
-        <a href="#features" class="btn btn-outline">
-          Learn More
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer>
     <div class="footer-content">
@@ -1957,6 +1928,10 @@
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
     }
+
+    // Waitlist Mode — set to true while app is in pre-release
+    const WAITLIST_MODE = true;
+    if (WAITLIST_MODE) document.body.classList.add('waitlist-mode');
 
     // Scroll Animations
     const observer = new IntersectionObserver((entries) => {
