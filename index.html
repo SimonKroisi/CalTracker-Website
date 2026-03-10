@@ -3,26 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CalTracker – AI-Powered Calorie & Macro Tracking</title>
+  <title>CalTracker - AI-Powered Calorie & Macro Tracking</title>
   <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="CalTracker – AI-Powered Calorie & Macro Tracking">
+  <meta property="og:title" content="CalTracker - AI-Powered Calorie & Macro Tracking">
   <meta property="og:description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://caltracker-app.eu">
-  <meta property="og:image" content="https://caltracker-app.eu/caltracker_icon.png">
+  <meta property="og:url" content="https://caltracker.eu">
+  <meta property="og:image" content="https://caltracker.eu/caltracker_icon.png">
   <meta property="og:image:alt" content="CalTracker App Icon">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CalTracker – AI-Powered Calorie & Macro Tracking">
+  <meta name="twitter:title" content="CalTracker - AI-Powered Calorie & Macro Tracking">
   <meta name="twitter:description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.">
-  <meta name="twitter:image" content="https://caltracker-app.eu/caltracker_icon.png">
+  <meta name="twitter:image" content="https://caltracker.eu/caltracker_icon.png">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/caltracker_icon.png">
-  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+  <link rel="icon" type="image/png" href="caltracker_icon.png">
+  <link rel="apple-touch-icon" href="caltracker_icon.png">
+
+  <script>
+    (function() {
+      const WAITLIST_MODE = true;
+      if (!WAITLIST_MODE) return;
+
+      const path = window.location.pathname.toLowerCase();
+      const isWaitlistPath = path.endsWith('/waitlist.html') || path.endsWith('/waitlist');
+      if (!isWaitlistPath) {
+        window.location.replace('waitlist.html');
+      }
+    })();
+  </script>
 
   <!-- Device Detection Script -->
   <script>
@@ -41,7 +54,7 @@
       }
       
       if (deviceType === 'mobile' && !window.location.href.includes('mobile.html')) {
-        window.location.href = '/mobile.html';
+        window.location.href = 'mobile.html';
         return;
       }
       
@@ -1554,7 +1567,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <div>
-          <div class="floating-text">🔥 12 Day Streak</div>
+          <div class="floating-text">12 Day Streak</div>
           <div class="floating-subtext">keep going!</div>
         </div>
       </div>
@@ -1568,7 +1581,7 @@
       
       <div class="hero-badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        AI-Powered · Free Daily AI · Smart Tracking
+        AI-Powered - Free Daily AI - Smart Tracking
       </div>
       
       <h1 class="hero-title">
@@ -1832,7 +1845,7 @@
             <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           </div>
           <h3>Download</h3>
-          <p>Get CalTracker on Android — it's free with daily AI usage included!</p>
+          <p>Get CalTracker on Android - it's free with daily AI usage included!</p>
         </div>
       </div>
 
@@ -1998,10 +2011,10 @@
       
       <div class="footer-links">
         <h4>Legal</h4>
-        <a href="/privacy-policy.html">Privacy</a>
-        <a href="/terms-of-service.html">Terms</a>
-        <a href="/delete-account.html">Delete Account</a>
-        <a href="/data-deletion.html">Delete Data</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-of-service.html">Terms</a>
+        <a href="delete-account.html">Delete Account</a>
+        <a href="data-deletion.html">Delete Data</a>
       </div>
     </div>
     
@@ -2217,3 +2230,4 @@
 
 </body>
 </html>
+

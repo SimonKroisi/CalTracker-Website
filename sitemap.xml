@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://caltracker-app.eu/</loc>
+    <loc>https://caltracker.eu/</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://caltracker-app.eu/privacy-policy.html</loc>
+    <loc>https://caltracker.eu/privacy-policy.html</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caltracker-app.eu/terms-of-service.html</loc>
+    <loc>https://caltracker.eu/terms-of-service.html</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://caltracker-app.eu/data-deletion.html</loc>
+    <loc>https://caltracker.eu/data-deletion.html</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://caltracker-app.eu/delete-account.html</loc>
+    <loc>https://caltracker.eu/delete-account.html</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://caltracker-app.eu/mobile.html</loc>
+    <loc>https://caltracker.eu/mobile.html</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://caltracker-app.eu/waitlist.html</loc>
+    <loc>https://caltracker.eu/waitlist.html</loc>
     <lastmod>2026-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

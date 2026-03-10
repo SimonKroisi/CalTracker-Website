@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
-  <title>CalTracker – AI-Powered Calorie & Macro Tracking</title>
+  <title>CalTracker - AI-Powered Calorie & Macro Tracking</title>
   <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights.">
   
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -11,8 +11,21 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="theme-color" content="#4CAF50">
   
-  <link rel="icon" type="image/png" href="/caltracker_icon.png">
-  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+  <link rel="icon" type="image/png" href="caltracker_icon.png">
+  <link rel="apple-touch-icon" href="caltracker_icon.png">
+
+  <script>
+    (function() {
+      const WAITLIST_MODE = true;
+      if (!WAITLIST_MODE) return;
+
+      const path = window.location.pathname.toLowerCase();
+      const isWaitlistPath = path.endsWith('/waitlist.html') || path.endsWith('/waitlist');
+      if (!isWaitlistPath) {
+        window.location.replace('waitlist.html');
+      }
+    })();
+  </script>
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -265,8 +278,8 @@
 <body>
 
   <nav class="navbar">
-    <a href="/" class="nav-logo">
-      <img src="/caltracker_icon.png" alt="CalTracker">
+    <a href="index.html" class="nav-logo">
+      <img src="caltracker_icon.png" alt="CalTracker">
       <span>CalTracker</span>
     </a>
     <div class="nav-right">
@@ -286,11 +299,11 @@
     </div>
     <div class="hero-content">
       <div class="hero-logo-mobile">
-        <img src="/caltracker_icon.png" alt="CalTracker">
+        <img src="caltracker_icon.png" alt="CalTracker">
         <span>CalTracker</span>
       </div>
       <div class="hero-badge-mobile">
-        ⚡ AI-Powered · Free Daily AI
+        AI-Powered - Free Daily AI
       </div>
       <h1 class="hero-title-mobile">
         Your <span class="highlight">AI-Powered</span> Nutrition Companion.
@@ -376,7 +389,7 @@
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       </div>
       <h3>AI Insights & Streaks</h3>
-      <p>Personalized AI insights, streak tracking, statistics, and deficit calculations — all in one place.</p>
+      <p>Personalized AI insights, streak tracking, statistics, and deficit calculations - all in one place.</p>
     </div>
 
     <div class="feature-card-mobile animate-on-scroll">
@@ -399,7 +412,7 @@
       <div class="journey-number-mobile">1</div>
       <div class="journey-card-mobile">
         <h3>Download</h3>
-        <p>Get CalTracker on Android — free with daily AI usage.</p>
+        <p>Get CalTracker on Android - free with daily AI usage.</p>
       </div>
     </div>
     <div class="journey-step-mobile animate-on-scroll">
@@ -458,16 +471,16 @@
   <footer>
     <div class="footer-brand-mobile">
       <div class="footer-logo">
-        <img src="/caltracker_icon.png" alt="CalTracker">
+        <img src="caltracker_icon.png" alt="CalTracker">
         <span>CalTracker</span>
       </div>
       <p>AI-powered nutrition tracking.</p>
     </div>
     <div class="footer-links-mobile">
-      <a href="/privacy-policy.html">Privacy</a>
-      <a href="/terms-of-service.html">Terms</a>
-      <a href="/delete-account.html">Delete Account</a>
-      <a href="/data-deletion.html">Delete Data</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="data-deletion.html">Delete Data</a>
     </div>
     <div class="footer-bottom-mobile">
       <p>&copy; 2026 CalTracker &middot; Made with <span>&hearts;</span></p>
@@ -491,3 +504,4 @@
 
 </body>
 </html>
+
