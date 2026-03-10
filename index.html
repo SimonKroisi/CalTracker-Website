@@ -24,19 +24,6 @@
   <link rel="icon" type="image/png" href="caltracker_icon.png">
   <link rel="apple-touch-icon" href="caltracker_icon.png">
 
-  <script>
-    (function() {
-      const WAITLIST_MODE = true;
-      if (!WAITLIST_MODE) return;
-
-      const path = window.location.pathname.toLowerCase();
-      const isWaitlistPath = path.endsWith('/waitlist.html') || path.endsWith('/waitlist');
-      if (!isWaitlistPath) {
-        window.location.replace('waitlist.html');
-      }
-    })();
-  </script>
-
   <!-- Device Detection Script -->
   <script>
     (function() {
