@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <title>CalTracker – AI-Powered Calorie & Macro Tracking</title>
+  <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights.">
+  
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#4CAF50">
+  
+  <link rel="icon" type="image/png" href="/caltracker_icon.png">
+  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --green: #4CAF50; --green-dark: #388E3C; --green-light: #81C784;
+      --green-glow: rgba(76, 175, 80, 0.4); --orange: #FF9800; --orange-light: #FFB74D;
+      --blue: #42A5F5; --pink: #EC407A;
+      --bg: #ffffff; --bg-secondary: #f8fafc;
+      --bg-gradient: linear-gradient(180deg, #f1f8e9 0%, #ffffff 100%);
+      --text: #1e293b; --text-secondary: #64748b;
+      --card-bg: #fff; --card-border: #e2e8f0;
+      --shadow: rgba(76, 175, 80, 0.1);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a; --bg-secondary: #1e293b;
+      --bg-gradient: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      --text: #f1f5f9; --text-secondary: #94a3b8;
+      --card-bg: #1e293b; --card-border: #334155;
+      --shadow: rgba(76, 175, 80, 0.2);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      overflow-x: hidden; transition: background 0.3s, color 0.3s;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
+      padding-left: var(--safe-left);
+      padding-right: var(--safe-right);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes slide-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 8px; left: 8px; right: 8px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      z-index: 1000; border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px; box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
+      margin-top: var(--safe-top);
+    }
+    [data-theme="dark"] .navbar { background: rgba(30, 41, 59, 0.85); border-color: rgba(255, 255, 255, 0.1); }
+
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-logo span { font-size: 1rem; font-weight: 700; background: linear-gradient(135deg, var(--green), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    .theme-toggle-mobile {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: var(--bg-secondary); border: 1px solid var(--card-border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .theme-toggle-mobile:active { transform: scale(0.9); }
+    .theme-toggle-mobile svg { width: 20px; height: 20px; fill: var(--text-secondary); }
+    .theme-toggle-mobile .sun { display: block; }
+    .theme-toggle-mobile .moon { display: none; }
+    [data-theme="dark"] .theme-toggle-mobile .sun { display: none; }
+    [data-theme="dark"] .theme-toggle-mobile .moon { display: block; }
+
+    .nav-cta-mobile {
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      color: white; padding: 10px 18px; border-radius: 12px;
+      text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      box-shadow: 0 4px 15px var(--green-glow);
+    }
+    .nav-cta-mobile:active { transform: scale(0.95); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 80px 20px 40px; background: var(--bg-gradient);
+      text-align: center; position: relative; overflow: hidden;
+    }
+
+    .hero-bg-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-shape {
+      position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4;
+    }
+    .hero-shape-1 { width: 300px; height: 300px; background: rgba(76, 175, 80, 0.3); top: -100px; right: -100px; animation: float 15s ease-in-out infinite; }
+    .hero-shape-2 { width: 200px; height: 200px; background: rgba(255, 152, 0, 0.2); bottom: -50px; left: -50px; animation: float 12s ease-in-out infinite reverse; }
+
+    .hero-content { position: relative; z-index: 1; width: 100%; }
+
+    .hero-logo-mobile {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-bottom: 20px; animation: slide-up 0.5s ease;
+    }
+    .hero-logo-mobile img { width: 44px; height: 44px; border-radius: 12px; }
+    .hero-logo-mobile span { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--green), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .hero-badge-mobile {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(76, 175, 80, 0.1); border: 1px solid rgba(76, 175, 80, 0.3);
+      padding: 6px 14px; border-radius: 50px; font-size: 0.8rem;
+      color: var(--green); font-weight: 500; margin-bottom: 24px;
+    }
+
+    .hero-title-mobile {
+      font-size: 2rem; font-weight: 800; line-height: 1.15; margin-bottom: 16px;
+      animation: slide-up 0.6s ease;
+    }
+    .hero-title-mobile .highlight {
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      background-size: 200% 200%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: gradient-shift 5s ease infinite;
+    }
+
+    .hero-subtitle-mobile {
+      font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 30px;
+      line-height: 1.6; padding: 0 10px; animation: slide-up 0.7s ease;
+    }
+
+    .hero-cta-mobile {
+      display: flex; flex-direction: column; gap: 12px; padding: 0 20px;
+      animation: slide-up 0.8s ease;
+    }
+
+    .btn-mobile {
+      padding: 16px 24px; border-radius: 14px; text-decoration: none;
+      font-weight: 600; font-size: 0.95rem; display: flex; align-items: center;
+      justify-content: center; gap: 10px; transition: all 0.2s; border: none;
+      -webkit-appearance: none;
+    }
+    .btn-mobile:active { transform: scale(0.97); }
+    .btn-mobile svg { width: 20px; height: 20px; }
+    .btn-mobile-primary { background: linear-gradient(135deg, var(--green), var(--green-dark)); color: #fff; box-shadow: 0 8px 25px var(--green-glow); }
+    .btn-mobile-secondary { background: var(--card-bg); color: var(--text); border: 2px solid var(--card-border); }
+
+    /* Stats */
+    .stats-mobile {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+      padding: 30px 20px; background: var(--bg-secondary);
+      border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);
+    }
+    .stat-mobile {
+      text-align: center; padding: 20px 12px; border-radius: 16px;
+      background: var(--card-bg); border: 1px solid var(--card-border);
+    }
+    .stat-mobile-number { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, var(--green), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .stat-mobile-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; font-weight: 500; }
+
+    /* Features */
+    .features-mobile { padding: 50px 20px; background: var(--bg-gradient); }
+    .section-header-mobile { text-align: center; margin-bottom: 30px; }
+    .section-tag-mobile { display: inline-flex; background: rgba(76, 175, 80, 0.1); padding: 6px 14px; border-radius: 50px; font-size: 0.75rem; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .section-title-mobile { font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
+    .section-subtitle-mobile { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+    .feature-card-mobile {
+      background: var(--card-bg); padding: 24px 20px; border-radius: 20px;
+      border: 1px solid var(--card-border); margin-bottom: 16px;
+      transition: all 0.3s;
+    }
+    .feature-card-mobile:active { transform: scale(0.98); }
+
+    .feature-icon-mobile {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .feature-icon-mobile svg { width: 26px; height: 26px; stroke: white; fill: none; stroke-width: 2; }
+    .feature-icon-mobile.green { background: linear-gradient(135deg, var(--green), var(--green-light)); }
+    .feature-icon-mobile.orange { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
+    .feature-icon-mobile.blue { background: linear-gradient(135deg, var(--blue), #90CAF9); }
+    .feature-icon-mobile.pink { background: linear-gradient(135deg, var(--pink), #F48FB1); }
+
+    .feature-card-mobile h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-card-mobile p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+    /* How It Works */
+    .how-mobile { padding: 50px 20px; }
+
+    .journey-step-mobile { display: flex; gap: 16px; margin-bottom: 20px; }
+    .journey-number-mobile {
+      width: 40px; height: 40px; min-width: 40px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 800; color: white;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+    .journey-card-mobile {
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 20px; flex: 1;
+    }
+    .journey-card-mobile h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+    .journey-card-mobile p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+
+    /* Reviews */
+    .reviews-mobile { padding: 50px 20px; background: var(--bg-gradient); }
+    .review-card-mobile {
+      background: var(--card-bg); padding: 24px; border-radius: 20px;
+      border: 1px solid var(--card-border); margin-bottom: 16px;
+    }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+    .review-stars svg { width: 18px; height: 18px; fill: #fbbf24; }
+    .review-text-mobile { font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+    .review-author-mobile { display: flex; align-items: center; gap: 12px; }
+    .review-avatar-mobile {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; font-weight: 700; color: white;
+    }
+    .review-info-mobile h4 { font-size: 0.9rem; font-weight: 600; }
+    .review-info-mobile span { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* CTA */
+    .cta-mobile {
+      background: linear-gradient(135deg, var(--green-dark), var(--green), var(--orange));
+      background-size: 200% 200%; animation: gradient-shift 10s ease infinite;
+      padding: 60px 20px; text-align: center;
+    }
+    .cta-mobile h2 { font-size: 1.6rem; font-weight: 800; color: white; margin-bottom: 12px; }
+    .cta-mobile p { font-size: 0.95rem; color: rgba(255,255,255,0.9); margin-bottom: 30px; line-height: 1.6; }
+    .btn-white-mobile { background: white; color: var(--green-dark); box-shadow: 0 8px 30px rgba(0,0,0,0.2); width: 100%; }
+
+    /* Footer */
+    footer { padding: 40px 20px 30px; background: var(--bg); border-top: 1px solid var(--card-border); }
+    .footer-brand-mobile { text-align: center; margin-bottom: 24px; }
+    .footer-brand-mobile .footer-logo { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px; }
+    .footer-brand-mobile .footer-logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .footer-brand-mobile .footer-logo span { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .footer-brand-mobile p { color: var(--text-secondary); font-size: 0.85rem; }
+    .footer-links-mobile { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 24px; }
+    .footer-links-mobile a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .footer-bottom-mobile { text-align: center; color: var(--text-secondary); font-size: 0.8rem; padding-bottom: var(--safe-bottom); }
+    .footer-bottom-mobile span { color: var(--green); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/caltracker_icon.png" alt="CalTracker">
+      <span>CalTracker</span>
+    </a>
+    <div class="nav-right">
+      <div class="theme-toggle-mobile" onclick="toggleTheme()">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </div>
+      <a href="#download" class="nav-cta-mobile">Download</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="hero-shape hero-shape-2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-logo-mobile">
+        <img src="/caltracker_icon.png" alt="CalTracker">
+        <span>CalTracker</span>
+      </div>
+      <div class="hero-badge-mobile">
+        ⚡ AI-Powered · Free Daily AI
+      </div>
+      <h1 class="hero-title-mobile">
+        Your <span class="highlight">AI-Powered</span> Nutrition Companion.
+      </h1>
+      <p class="hero-subtitle-mobile">
+        Track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.
+      </p>
+      <div class="hero-cta-mobile">
+        <a href="https://play.google.com/store/apps/details?id=com.caltracker.app" class="btn-mobile btn-mobile-primary" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Free
+        </a>
+        <a href="#features" class="btn-mobile btn-mobile-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          See Features
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-mobile">
+    <div class="stat-mobile animate-on-scroll">
+      <div class="stat-mobile-number">AI</div>
+      <div class="stat-mobile-label">Powered Insights</div>
+    </div>
+    <div class="stat-mobile animate-on-scroll">
+      <div class="stat-mobile-number">Free</div>
+      <div class="stat-mobile-label">Daily AI Usage</div>
+    </div>
+    <div class="stat-mobile animate-on-scroll">
+      <div class="stat-mobile-number">4</div>
+      <div class="stat-mobile-label">Macro Nutrients</div>
+    </div>
+    <div class="stat-mobile animate-on-scroll">
+      <div class="stat-mobile-number">24/7</div>
+      <div class="stat-mobile-label">Tracking</div>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="features-mobile" id="features">
+    <div class="section-header-mobile animate-on-scroll">
+      <div class="section-tag-mobile">Features</div>
+      <h2 class="section-title-mobile">Everything you need</h2>
+      <p class="section-subtitle-mobile">All the tools to build lasting healthy habits.</p>
+    </div>
+
+    <div class="feature-card-mobile animate-on-scroll">
+      <div class="feature-icon-mobile green">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      </div>
+      <h3>AI Food Scanner</h3>
+      <p>Snap a photo and let AI identify the food and estimate calories & macros instantly.</p>
+    </div>
+
+    <div class="feature-card-mobile animate-on-scroll">
+      <div class="feature-icon-mobile orange">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      </div>
+      <h3>Calorie & Macro Tracking</h3>
+      <p>Track calories, protein, carbs, and fats. Compare your intake against daily goals.</p>
+    </div>
+
+    <div class="feature-card-mobile animate-on-scroll">
+      <div class="feature-icon-mobile blue">
+        <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+      </div>
+      <h3>Water Tracking</h3>
+      <p>Track daily water intake with quick-add buttons and see hydration progress at a glance.</p>
+    </div>
+
+    <div class="feature-card-mobile animate-on-scroll">
+      <div class="feature-icon-mobile pink">
+        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+      </div>
+      <h3>Weight Tracking</h3>
+      <p>Beautiful trend charts to monitor weight changes and understand how habits affect results.</p>
+    </div>
+
+    <div class="feature-card-mobile animate-on-scroll">
+      <div class="feature-icon-mobile green">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      </div>
+      <h3>AI Insights & Streaks</h3>
+      <p>Personalized AI insights, streak tracking, statistics, and deficit calculations — all in one place.</p>
+    </div>
+
+    <div class="feature-card-mobile animate-on-scroll">
+      <div class="feature-icon-mobile orange">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </div>
+      <h3>Smart Reminders</h3>
+      <p>Never forget to log a meal or drink water with customizable smart notifications.</p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-mobile">
+    <div class="section-header-mobile animate-on-scroll">
+      <div class="section-tag-mobile">Get Started</div>
+      <h2 class="section-title-mobile">3 simple steps</h2>
+    </div>
+
+    <div class="journey-step-mobile animate-on-scroll">
+      <div class="journey-number-mobile">1</div>
+      <div class="journey-card-mobile">
+        <h3>Download</h3>
+        <p>Get CalTracker on Android — free with daily AI usage.</p>
+      </div>
+    </div>
+    <div class="journey-step-mobile animate-on-scroll">
+      <div class="journey-number-mobile">2</div>
+      <div class="journey-card-mobile">
+        <h3>Set Goals</h3>
+        <p>Define calorie and macro targets for your goals.</p>
+      </div>
+    </div>
+    <div class="journey-step-mobile animate-on-scroll">
+      <div class="journey-number-mobile">3</div>
+      <div class="journey-card-mobile">
+        <h3>Track!</h3>
+        <p>Log meals with AI, scan barcodes, track water, and grow!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="reviews-mobile">
+    <div class="section-header-mobile animate-on-scroll">
+      <div class="section-tag-mobile">Reviews</div>
+      <h2 class="section-title-mobile">Loved by users</h2>
+    </div>
+
+    <div class="review-card-mobile animate-on-scroll">
+      <div class="review-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <p class="review-text-mobile">"The AI food scanner is incredibly accurate! I just take a photo and it logs everything automatically."</p>
+      <div class="review-author-mobile">
+        <div class="review-avatar-mobile">MK</div>
+        <div class="review-info-mobile"><h4>Maria K.</h4><span>Fitness Enthusiast</span></div>
+      </div>
+    </div>
+
+    <div class="review-card-mobile animate-on-scroll">
+      <div class="review-stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <p class="review-text-mobile">"The streak system keeps me consistent every single day. Best calorie tracker I've used."</p>
+      <div class="review-author-mobile">
+        <div class="review-avatar-mobile">TL</div>
+        <div class="review-info-mobile"><h4>Thomas L.</h4><span>Weight Loss Journey</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-mobile" id="download">
+    <h2>Start your health journey</h2>
+    <p>Download CalTracker and build better habits with AI-powered tracking.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.caltracker.app" class="btn-mobile btn-white-mobile" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Download Free
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand-mobile">
+      <div class="footer-logo">
+        <img src="/caltracker_icon.png" alt="CalTracker">
+        <span>CalTracker</span>
+      </div>
+      <p>AI-powered nutrition tracking.</p>
+    </div>
+    <div class="footer-links-mobile">
+      <a href="/privacy-policy.html">Privacy</a>
+      <a href="/terms-of-service.html">Terms</a>
+      <a href="/delete-account.html">Delete Account</a>
+      <a href="/data-deletion.html">Delete Data</a>
+    </div>
+    <div class="footer-bottom-mobile">
+      <p>&copy; 2026 CalTracker &middot; Made with <span>&hearts;</span></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

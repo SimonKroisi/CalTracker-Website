@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://caltracker-app.eu/sitemap.xml

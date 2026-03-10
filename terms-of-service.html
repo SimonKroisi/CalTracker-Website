@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service – CalTracker</title>
+  <meta name="description" content="CalTracker Terms of Service. Read our terms and conditions for using the app.">
+  <link rel="icon" type="image/png" href="/caltracker_icon.png">
+  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #4CAF50;
+      --green-dark: #388E3C;
+      --green-light: #81C784;
+      --green-glow: rgba(76, 175, 80, 0.4);
+      --orange: #FF9800;
+      --bg: #ffffff;
+      --bg-secondary: #f8fafc;
+      --text: #1e293b;
+      --text-secondary: #64748b;
+      --card-bg: #fff;
+      --card-border: #e2e8f0;
+      --shadow: rgba(76, 175, 80, 0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --bg-secondary: #1e293b;
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --shadow: rgba(76, 175, 80, 0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .navbar {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 48px); max-width: 1200px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(76, 175, 80, 0.1);
+      transition: all 0.3s;
+    }
+
+    [data-theme="dark"] .navbar {
+      background: rgba(30, 41, 59, 0.8);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+
+    .nav-logo img { width: 40px; height: 40px; border-radius: 10px; }
+
+    .nav-logo span {
+      font-size: 1.25rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+
+    .theme-toggle {
+      display: flex; align-items: center; cursor: pointer; padding: 6px;
+      border-radius: 50px; background: var(--bg-secondary);
+      border: 1px solid var(--card-border); transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .theme-toggle:hover { border-color: var(--green); }
+    .theme-toggle-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; position: relative; z-index: 1;
+    }
+    .theme-toggle-btn svg { width: 18px; height: 18px; fill: var(--text-secondary); }
+    .theme-toggle-btn.sun svg { fill: white; }
+    [data-theme="dark"] .theme-toggle-btn.sun svg { fill: var(--text-secondary); }
+    [data-theme="dark"] .theme-toggle-btn.moon svg { fill: white; }
+    .theme-toggle-slider {
+      position: absolute; top: 6px; left: 6px; width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      border-radius: 50%;
+      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      box-shadow: 0 2px 10px var(--green-glow);
+    }
+    [data-theme="dark"] .theme-toggle-slider {
+      transform: translateX(36px);
+      background: linear-gradient(135deg, var(--orange), #FFB74D);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      color: white; padding: 12px 24px; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: all 0.3s; box-shadow: 0 4px 20px var(--green-glow);
+    }
+    .nav-cta:hover { transform: translateY(-2px); }
+
+    .policy-container {
+      max-width: 800px; margin: 0 auto; padding: 120px 24px 60px;
+    }
+
+    .policy-header { text-align: center; margin-bottom: 60px; }
+
+    .policy-header h1 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--green), var(--orange));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .policy-header .effective-date { color: var(--text-secondary); font-size: 0.95rem; }
+
+    .policy-section { margin-bottom: 40px; }
+
+    .policy-section h2 {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    .policy-section h2 .icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(76, 175, 80, 0.15); flex-shrink: 0;
+    }
+
+    .policy-section h2 .icon svg {
+      width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 2;
+    }
+
+    .policy-section p, .policy-section li {
+      color: var(--text-secondary); font-size: 1rem; line-height: 1.8; margin-bottom: 12px;
+    }
+
+    .policy-section ul { list-style: none; padding-left: 0; }
+    .policy-section ul li { position: relative; padding-left: 24px; }
+    .policy-section ul li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-weight: bold; }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(76,175,80,0.08), rgba(255,152,0,0.05));
+      border: 2px solid rgba(76, 175, 80, 0.2);
+      border-radius: 16px; padding: 30px; text-align: center; margin-top: 40px;
+    }
+    .contact-box h3 { font-size: 1.3rem; margin-bottom: 12px; }
+    .contact-box p { color: var(--text-secondary); margin-bottom: 16px; }
+    .contact-box a { color: var(--green); text-decoration: none; font-weight: 600; }
+
+    footer {
+      background: var(--bg); padding: 30px 40px;
+      border-top: 1px solid var(--card-border); text-align: center;
+    }
+    .footer-bottom { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-bottom span { color: var(--green); }
+    .footer-links-row {
+      display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .footer-links-row a {
+      color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;
+    }
+    .footer-links-row a:hover { color: var(--green); }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 10px 16px; width: calc(100% - 24px); top: 8px; border-radius: 14px; left: 12px; right: 12px; transform: none; }
+      .policy-container { padding: 100px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/caltracker_icon.png" alt="CalTracker">
+      <span>CalTracker</span>
+    </a>
+    <div class="nav-right">
+      <div class="theme-toggle" onclick="toggleTheme()">
+        <div class="theme-toggle-slider"></div>
+        <div class="theme-toggle-btn sun">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="theme-toggle-btn moon">
+          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </div>
+      </div>
+      <a href="/" class="nav-cta">← Back</a>
+    </div>
+  </nav>
+
+  <div class="policy-container">
+    <div class="policy-header">
+      <h1>Terms of Service</h1>
+      <p class="effective-date">Effective Date: January 25, 2026</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+        Acceptance of Terms
+      </h2>
+      <p>By downloading, installing, or using CalTracker ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+      <p>CalTracker is developed and maintained by Simon Kroismayr. These terms may be updated from time to time, and continued use of the App constitutes acceptance of any changes.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        Intellectual Property
+      </h2>
+      <p>All content, design, code, graphics, and features within CalTracker are the intellectual property of Simon Kroismayr unless otherwise stated. You may not copy, modify, distribute, sell, or lease any part of the App or its content without explicit written permission.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        Modifications & Fees
+      </h2>
+      <p>CalTracker reserves the right to modify, update, or discontinue the App (or parts of it) at any time without prior notice. Some features may require a paid subscription via in-app purchases. Subscription terms and pricing are displayed within the App and managed through the respective app store (Google Play) and RevenueCat.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        Account Security
+      </h2>
+      <p>You are responsible for maintaining the security of your account. CalTracker uses Google Sign-In and Apple Sign-In for authentication. You should protect your linked accounts and not share your credentials. We are not liable for unauthorized access resulting from your failure to secure your account.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+        Third-Party Services
+      </h2>
+      <p>CalTracker uses the following third-party services. By using the App, you also agree to the terms of these services:</p>
+      <ul>
+        <li><a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style="color: var(--green);">Google Play Services</a></li>
+        <li><a href="https://firebase.google.com/terms" target="_blank" rel="noopener noreferrer" style="color: var(--green);">Firebase (Analytics, Crashlytics)</a></li>
+        <li><a href="https://www.revenuecat.com/terms" target="_blank" rel="noopener noreferrer" style="color: var(--green);">RevenueCat</a></li>
+        <li><a href="https://world.openfoodfacts.org/terms-of-use" target="_blank" rel="noopener noreferrer" style="color: var(--green);">Open Food Facts</a></li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        Internet Connection
+      </h2>
+      <p>CalTracker requires an active internet connection for certain features including AI food scanning, account syncing, and data backup. Some features may work in offline mode with data synced when connectivity is restored. We are not responsible for limited functionality due to lack of internet access.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        Mobile Data & Battery
+      </h2>
+      <p>Using CalTracker may consume mobile data and battery. Features such as AI scanning, barcode scanning, and background sync may use data and processing power. You are responsible for monitoring your data usage and battery consumption. We recommend using Wi-Fi where possible for data-intensive features.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        Accuracy & Liability
+      </h2>
+      <p>CalTracker provides nutritional estimates based on AI analysis, barcode databases, and user input. While we strive for accuracy, we cannot guarantee that all nutritional data is 100% accurate. The App is not a medical device and should not be used as a substitute for professional medical or dietary advice.</p>
+      <p>CalTracker is provided "as is" without warranties of any kind. To the maximum extent permitted by law, we are not liable for any indirect, incidental, or consequential damages arising from the use of the App.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+        Updates
+      </h2>
+      <p>We may release updates to add features, fix bugs, or improve performance. While we aim to support the App, we do not guarantee that all updates will maintain backward compatibility. It is your responsibility to keep the App updated to the latest version.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+        Termination
+      </h2>
+      <p>We reserve the right to terminate or suspend your access to CalTracker at any time, with or without cause, and with or without notice. You may also terminate your account at any time by deleting it through the app's Settings or by contacting us via email.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        Changes to Terms
+      </h2>
+      <p>We may update these Terms of Service from time to time. When we do, the updated terms will be posted on this page with the new effective date. Continued use of the App after changes constitutes your acceptance of the new Terms.</p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Questions about these terms?</h3>
+      <p>We're happy to help clarify anything.</p>
+      <a href="mailto:caltracker.app@gmail.com">caltracker.app@gmail.com</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links-row">
+      <a href="/">Home</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <a href="/terms-of-service.html">Terms of Service</a>
+      <a href="/data-deletion.html">Data Deletion</a>
+      <a href="/delete-account.html">Delete Account</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 CalTracker &middot; Made with <span>&hearts;</span></p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+
+</body>
+</html>
