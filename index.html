@@ -820,6 +820,242 @@
       text-align: right;
     }
 
+    .feature-interactive {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      background: var(--bg-secondary);
+    }
+
+    .interactive-title {
+      font-size: 0.76rem;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .mini-btn {
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: white;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 8px 11px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .mini-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px var(--shadow);
+      filter: brightness(1.03);
+    }
+
+    .mini-btn:active {
+      transform: translateY(0);
+    }
+
+    .mini-btn.alt {
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+    }
+
+    .mini-btn.soft {
+      background: var(--card-bg);
+      border-color: var(--card-border);
+      color: var(--text);
+    }
+
+    .interactive-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .mini-status {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .mini-meter {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--card-border);
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .mini-meter-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      transition: width 0.35s ease;
+    }
+
+    .segment-group {
+      display: inline-flex;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .segment-btn {
+      border: none;
+      border-right: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      padding: 7px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .segment-btn:last-child {
+      border-right: none;
+    }
+
+    .segment-btn.active {
+      color: white;
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+    }
+
+    .water-value,
+    .weight-value,
+    .streak-value,
+    .export-status {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .tiny-muted {
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+    }
+
+    .glass-controls {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .weight-slider {
+      width: 100%;
+      accent-color: var(--green);
+      margin: 10px 0;
+    }
+
+    .insight-box {
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px dashed var(--card-border);
+      color: var(--text-secondary);
+      min-height: 54px;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .day-dots {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .day-dot {
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      border-radius: 8px;
+      padding: 6px 0;
+      cursor: pointer;
+      font-size: 0.72rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .day-dot.active {
+      background: linear-gradient(135deg, var(--green), var(--green-light));
+      color: white;
+      border-color: transparent;
+    }
+
+    .stats-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stats-mini-item {
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 8px;
+      text-align: center;
+      background: var(--card-bg);
+    }
+
+    .stats-mini-number {
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .stats-mini-label {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 3px;
+    }
+
+    .reminder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .reminder-chip {
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      font-size: 0.72rem;
+      text-align: center;
+      padding: 5px 0;
+    }
+
+    .reminder-chip.on {
+      background: rgba(76, 175, 80, 0.13);
+      color: var(--green-dark);
+      border-color: rgba(76, 175, 80, 0.4);
+    }
+
+    .export-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .export-row select {
+      flex: 1;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text);
+      padding: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
     /* How It Works */
     .how-section { background: var(--bg-gradient); overflow: hidden; }
 
@@ -1206,6 +1442,10 @@
       .features-grid { grid-template-columns: 1fr; gap: 20px; }
       .testimonials-grid { grid-template-columns: 1fr; }
 
+      .stats-mini-grid {
+        grid-template-columns: 1fr;
+      }
+
       .stats-container { gap: 20px; flex-direction: column; }
 
       .footer-content { grid-template-columns: 1fr; gap: 30px; }
@@ -1392,6 +1632,15 @@
         </div>
         <h3>AI Food Scanner</h3>
         <p>Snap a photo of your meal and let AI identify the food and estimate calories and macros instantly. Free daily AI usage included.</p>
+        <div class="feature-interactive scanner-demo" data-score="82">
+          <div class="interactive-title">Scan Confidence Preview</div>
+          <div class="interactive-row">
+            <span class="mini-status">Detected: Chicken bowl</span>
+            <span class="weight-value">82%</span>
+          </div>
+          <div class="mini-meter"><div class="mini-meter-fill" style="width: 82%;"></div></div>
+          <button class="mini-btn scan-preview-btn" type="button">Try Another Meal</button>
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1400,6 +1649,11 @@
         </div>
         <h3>Calorie & Macro Tracking</h3>
         <p>Track calories, protein, carbs, and fats in seconds. Compare your intake against daily personalized goals.</p>
+        <div class="segment-group macro-periods" role="tablist" aria-label="Macro Period">
+          <button class="segment-btn active" type="button" data-period="today">Today</button>
+          <button class="segment-btn" type="button" data-period="week">Week Avg</button>
+          <button class="segment-btn" type="button" data-period="goal">Goal</button>
+        </div>
         <div class="macro-demo">
           <div class="macro-bars">
             <div class="macro-bar-item">
@@ -1427,6 +1681,17 @@
         </div>
         <h3>Water Tracking</h3>
         <p>Track your daily water intake with quick-add buttons. Set custom goals and see your hydration progress at a glance.</p>
+        <div class="feature-interactive water-demo" data-water="1500" data-goal="2500">
+          <div class="interactive-row">
+            <span class="water-value">1500 / 2500 ml</span>
+            <span class="tiny-muted">Goal</span>
+          </div>
+          <div class="mini-meter"><div class="mini-meter-fill" style="width: 60%;"></div></div>
+          <div class="glass-controls">
+            <button class="mini-btn" type="button" data-water-action="add">+250 ml</button>
+            <button class="mini-btn soft" type="button" data-water-action="reset">Reset</button>
+          </div>
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1435,6 +1700,13 @@
         </div>
         <h3>Weight Tracking</h3>
         <p>Monitor weight changes over time with beautiful trend charts. Understand how habits affect your results and adjust early.</p>
+        <div class="feature-interactive weight-demo">
+          <div class="interactive-row">
+            <span class="weight-value">78.4 kg</span>
+            <span class="tiny-muted">4-week trend: -1.6 kg</span>
+          </div>
+          <input class="weight-slider" type="range" min="72" max="90" value="78.4" step="0.1">
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1443,6 +1715,11 @@
         </div>
         <h3>AI Insights</h3>
         <p>Get personalized AI-powered insights that highlight what matters most. Spot patterns and make smarter decisions meal by meal.</p>
+        <div class="feature-interactive insights-demo" data-index="0">
+          <div class="interactive-title">Today&rsquo;s Insight</div>
+          <div class="insight-box">Your protein target is strongest at lunch. Add 20g in dinner to finish your day balanced.</div>
+          <button class="mini-btn alt insight-next-btn" type="button">Show Another Insight</button>
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1451,6 +1728,21 @@
         </div>
         <h3>Streak Tracker</h3>
         <p>Build consistency with daily logging streaks. Track your current and longest streaks to stay motivated every day.</p>
+        <div class="feature-interactive streak-demo">
+          <div class="interactive-row">
+            <span class="streak-value">Current Streak: 4 days</span>
+            <span class="tiny-muted">Tap days</span>
+          </div>
+          <div class="day-dots">
+            <button class="day-dot active" type="button">M</button>
+            <button class="day-dot active" type="button">T</button>
+            <button class="day-dot active" type="button">W</button>
+            <button class="day-dot active" type="button">T</button>
+            <button class="day-dot" type="button">F</button>
+            <button class="day-dot" type="button">S</button>
+            <button class="day-dot" type="button">S</button>
+          </div>
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1459,6 +1751,27 @@
         </div>
         <h3>Statistics & Deficits</h3>
         <p>Weekly, monthly, and yearly stats with calorie deficit calculations. See estimated weight loss based on your data.</p>
+        <div class="feature-interactive stats-demo" data-period="week">
+          <div class="segment-group stats-periods" role="tablist" aria-label="Stats Period">
+            <button class="segment-btn active" type="button" data-period="week">Week</button>
+            <button class="segment-btn" type="button" data-period="month">Month</button>
+            <button class="segment-btn" type="button" data-period="year">Year</button>
+          </div>
+          <div class="stats-mini-grid">
+            <div class="stats-mini-item">
+              <div class="stats-mini-number" data-stat="cal">-2800</div>
+              <div class="stats-mini-label">Deficit</div>
+            </div>
+            <div class="stats-mini-item">
+              <div class="stats-mini-number" data-stat="loss">0.36kg</div>
+              <div class="stats-mini-label">Est. Loss</div>
+            </div>
+            <div class="stats-mini-item">
+              <div class="stats-mini-number" data-stat="adherence">87%</div>
+              <div class="stats-mini-label">Adherence</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1467,6 +1780,17 @@
         </div>
         <h3>Smart Reminders</h3>
         <p>Customizable meal and water reminders. Never forget to log breakfast, lunch, or dinner with intelligent notifications.</p>
+        <div class="feature-interactive reminders-demo" data-on="1">
+          <div class="interactive-row">
+            <span class="mini-status">Reminders are ON</span>
+            <button class="mini-btn soft reminder-toggle-btn" type="button">Turn Off</button>
+          </div>
+          <div class="reminder-grid">
+            <div class="reminder-chip on">Breakfast</div>
+            <div class="reminder-chip on">Lunch</div>
+            <div class="reminder-chip on">Dinner</div>
+          </div>
+        </div>
       </div>
 
       <div class="feature-card animate-on-scroll">
@@ -1475,6 +1799,17 @@
         </div>
         <h3>CSV Export</h3>
         <p>Export all your data as CSV files. Share your progress with nutritionists or keep personal records of your journey.</p>
+        <div class="feature-interactive export-demo">
+          <div class="export-row">
+            <select class="export-format" aria-label="Export format">
+              <option value="csv">CSV</option>
+              <option value="xlsx">Excel (.xlsx)</option>
+              <option value="json">JSON</option>
+            </select>
+            <button class="mini-btn" type="button">Export</button>
+          </div>
+          <div class="export-status tiny-muted">Last export: 2 days ago</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1709,6 +2044,175 @@
       const navbar = document.querySelector('.navbar');
       navbar.style.boxShadow = window.pageYOffset > 100 ? '0 4px 30px rgba(0,0,0,0.1)' : 'none';
     });
+
+    // Feature mini interactions
+    (() => {
+      const scannerMeals = [
+        { name: 'Chicken bowl', score: 82 },
+        { name: 'Greek salad', score: 91 },
+        { name: 'Overnight oats', score: 87 },
+        { name: 'Sushi set', score: 79 }
+      ];
+
+      const scanner = document.querySelector('.scanner-demo');
+      if (scanner) {
+        const label = scanner.querySelector('.mini-status');
+        const scoreText = scanner.querySelector('.weight-value');
+        const fill = scanner.querySelector('.mini-meter-fill');
+        scanner.querySelector('.scan-preview-btn').addEventListener('click', () => {
+          const next = scannerMeals[Math.floor(Math.random() * scannerMeals.length)];
+          label.textContent = 'Detected: ' + next.name;
+          scoreText.textContent = next.score + '%';
+          fill.style.width = next.score + '%';
+        });
+      }
+
+      const macroProfiles = {
+        today: [
+          { width: '78%', value: '142g' },
+          { width: '62%', value: '186g' },
+          { width: '55%', value: '58g' }
+        ],
+        week: [
+          { width: '71%', value: '131g' },
+          { width: '67%', value: '201g' },
+          { width: '61%', value: '64g' }
+        ],
+        goal: [
+          { width: '85%', value: '155g' },
+          { width: '70%', value: '210g' },
+          { width: '65%', value: '68g' }
+        ]
+      };
+
+      const macroPeriods = document.querySelectorAll('.macro-periods .segment-btn');
+      const macroFills = document.querySelectorAll('.macro-demo .macro-bar-fill');
+      const macroValues = document.querySelectorAll('.macro-demo .macro-value');
+      macroPeriods.forEach(btn => {
+        btn.addEventListener('click', () => {
+          macroPeriods.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const profile = macroProfiles[btn.dataset.period];
+          macroFills.forEach((fill, i) => {
+            fill.style.width = profile[i].width;
+            macroValues[i].textContent = profile[i].value;
+          });
+        });
+      });
+
+      const waterDemo = document.querySelector('.water-demo');
+      if (waterDemo) {
+        const goal = Number(waterDemo.dataset.goal);
+        const valueLabel = waterDemo.querySelector('.water-value');
+        const fill = waterDemo.querySelector('.mini-meter-fill');
+        let current = Number(waterDemo.dataset.water);
+        const renderWater = () => {
+          const ratio = Math.min(100, Math.round((current / goal) * 100));
+          valueLabel.textContent = current + ' / ' + goal + ' ml';
+          fill.style.width = ratio + '%';
+        };
+        waterDemo.querySelectorAll('[data-water-action]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.dataset.waterAction === 'add') current = Math.min(goal, current + 250);
+            if (btn.dataset.waterAction === 'reset') current = 0;
+            renderWater();
+          });
+        });
+      }
+
+      const weightDemo = document.querySelector('.weight-demo');
+      if (weightDemo) {
+        const slider = weightDemo.querySelector('.weight-slider');
+        const value = weightDemo.querySelector('.weight-value');
+        slider.addEventListener('input', () => {
+          value.textContent = Number(slider.value).toFixed(1) + ' kg';
+        });
+      }
+
+      const insights = [
+        'Your protein target is strongest at lunch. Add 20g in dinner to finish your day balanced.',
+        'Hydration dipped after 4 PM this week. One extra glass in the evening can fix your trend.',
+        'You are most consistent on weekdays. Scheduling one Sunday check-in can improve weekly adherence.',
+        'Calories are well controlled, but carbs spike at night. Try swapping one evening snack for fruit + yogurt.'
+      ];
+
+      const insightDemo = document.querySelector('.insights-demo');
+      if (insightDemo) {
+        const box = insightDemo.querySelector('.insight-box');
+        const button = insightDemo.querySelector('.insight-next-btn');
+        let index = 0;
+        button.addEventListener('click', () => {
+          index = (index + 1) % insights.length;
+          box.textContent = insights[index];
+        });
+      }
+
+      const streakDemo = document.querySelector('.streak-demo');
+      if (streakDemo) {
+        const dots = streakDemo.querySelectorAll('.day-dot');
+        const label = streakDemo.querySelector('.streak-value');
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => {
+            dot.classList.toggle('active');
+            let current = 0;
+            dots.forEach(day => {
+              if (day.classList.contains('active')) current += 1;
+            });
+            label.textContent = 'Current Streak: ' + current + ' day' + (current === 1 ? '' : 's');
+          });
+        });
+      }
+
+      const statsProfiles = {
+        week: { cal: '-2800', loss: '0.36kg', adherence: '87%' },
+        month: { cal: '-11200', loss: '1.45kg', adherence: '84%' },
+        year: { cal: '-128000', loss: '16.6kg', adherence: '81%' }
+      };
+
+      const statsDemo = document.querySelector('.stats-demo');
+      if (statsDemo) {
+        const tabs = statsDemo.querySelectorAll('.segment-btn');
+        const cal = statsDemo.querySelector('[data-stat="cal"]');
+        const loss = statsDemo.querySelector('[data-stat="loss"]');
+        const adherence = statsDemo.querySelector('[data-stat="adherence"]');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const profile = statsProfiles[tab.dataset.period];
+            cal.textContent = profile.cal;
+            loss.textContent = profile.loss;
+            adherence.textContent = profile.adherence;
+          });
+        });
+      }
+
+      const reminderDemo = document.querySelector('.reminders-demo');
+      if (reminderDemo) {
+        const status = reminderDemo.querySelector('.mini-status');
+        const toggle = reminderDemo.querySelector('.reminder-toggle-btn');
+        const chips = reminderDemo.querySelectorAll('.reminder-chip');
+        let enabled = true;
+        toggle.addEventListener('click', () => {
+          enabled = !enabled;
+          status.textContent = enabled ? 'Reminders are ON' : 'Reminders are OFF';
+          toggle.textContent = enabled ? 'Turn Off' : 'Turn On';
+          chips.forEach(chip => chip.classList.toggle('on', enabled));
+        });
+      }
+
+      const exportDemo = document.querySelector('.export-demo');
+      if (exportDemo) {
+        const select = exportDemo.querySelector('.export-format');
+        const button = exportDemo.querySelector('.mini-btn');
+        const status = exportDemo.querySelector('.export-status');
+        button.addEventListener('click', () => {
+          const type = select.value.toUpperCase();
+          status.textContent = 'Export prepared in ' + type + ' format';
+        });
+      }
+    })();
   </script>
 
 </body>
