@@ -4,177 +4,112 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CalTracker - AI-Powered Calorie & Macro Tracking</title>
-  <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.">
+  <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Snap a photo, get instant nutrition data. Free on Android & iOS.">
   
   <!-- Open Graph -->
   <meta property="og:title" content="CalTracker - AI-Powered Calorie & Macro Tracking">
-  <meta property="og:description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.">
+  <meta property="og:description" content="Track calories, macros, weight, and activity. AI scans your food, rates your meals, and helps you hit your goals.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://caltracker.eu">
   <meta property="og:image" content="https://caltracker.eu/caltracker_icon.png">
-  <meta property="og:image:alt" content="CalTracker App Icon">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CalTracker - AI-Powered Calorie & Macro Tracking">
-  <meta name="twitter:description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick.">
+  <meta name="twitter:description" content="Track calories, macros, weight, and activity. AI scans your food, rates your meals, and helps you hit your goals.">
   <meta name="twitter:image" content="https://caltracker.eu/caltracker_icon.png">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="caltracker_icon.png">
   <link rel="apple-touch-icon" href="caltracker_icon.png">
 
-  <!-- Device Detection Script -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Device Detection -->
   <script>
     (function() {
       const ua = navigator.userAgent.toLowerCase();
-      const isMobileUA = /android|webos|iphone|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua);
-      const isTabletUA = /ipad|tablet|playbook|silk/i.test(ua) || (ua.includes('android') && !ua.includes('mobile'));
-      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      const screenWidth = window.innerWidth;
-      
-      let deviceType = 'desktop';
-      if (isMobileUA || (isTouch && screenWidth <= 480)) {
-        deviceType = 'mobile';
-      } else if (isTabletUA || (isTouch && screenWidth <= 1024)) {
-        deviceType = 'tablet';
-      }
-      
-      if (deviceType === 'mobile' && !window.location.href.includes('mobile.html')) {
+      const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua);
+      if (isMobile && !window.location.href.includes('mobile.html')) {
         window.location.href = 'mobile.html';
-        return;
       }
-      
-      const html = document.documentElement;
-      html.classList.add('is-' + deviceType);
-      if (isTouch) html.classList.add('is-touch');
-      if (!isTouch) html.classList.add('is-pointer');
-      
-      window.deviceInfo = {
-        type: deviceType,
-        isMobile: deviceType === 'mobile',
-        isTablet: deviceType === 'tablet',
-        isDesktop: deviceType === 'desktop',
-        isTouch: isTouch,
-        screenWidth: screenWidth
-      };
-      
-      window.addEventListener('resize', function() {
-        const newWidth = window.innerWidth;
-        window.deviceInfo.screenWidth = newWidth;
-        if (newWidth <= 480 && !html.classList.contains('screen-small')) {
-          html.classList.remove('screen-medium', 'screen-large');
-          html.classList.add('screen-small');
-        } else if (newWidth <= 1024 && !html.classList.contains('screen-medium')) {
-          html.classList.remove('screen-small', 'screen-large');
-          html.classList.add('screen-medium');
-        } else if (newWidth > 1024 && !html.classList.contains('screen-large')) {
-          html.classList.remove('screen-small', 'screen-medium');
-          html.classList.add('screen-large');
-        }
-      });
-      
-      if (screenWidth <= 480) html.classList.add('screen-small');
-      else if (screenWidth <= 1024) html.classList.add('screen-medium');
-      else html.classList.add('screen-large');
     })();
   </script>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      --white: #ffffff;
+      --bg: #ffffff;
+      --bg-soft: #f7f8fa;
+      --bg-muted: #f0f1f3;
+      --text: #1a1a1a;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --border: #e5e7eb;
+      --border-light: #f3f4f6;
       --green: #4CAF50;
-      --green-dark: #388E3C;
       --green-light: #81C784;
-      --green-glow: rgba(76, 175, 80, 0.4);
       --orange: #FF9800;
       --orange-light: #FFB74D;
+      --red: #ef4444;
       --blue: #42A5F5;
       --pink: #EC407A;
-      --bg: #ffffff;
-      --bg-secondary: #f8fafc;
-      --bg-gradient: linear-gradient(180deg, #f1f8e9 0%, #ffffff 100%);
-      --text: #1e293b;
-      --text-secondary: #64748b;
-      --card-bg: #fff;
-      --card-border: #e2e8f0;
-      --shadow: rgba(76, 175, 80, 0.1);
+      --purple: #7c3aed;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,0.1);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
     }
 
     [data-theme="dark"] {
-      --bg: #0f172a;
-      --bg-secondary: #1e293b;
-      --bg-gradient: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-      --text: #f1f5f9;
-      --text-secondary: #94a3b8;
-      --card-bg: #1e293b;
-      --card-border: #334155;
-      --shadow: rgba(76, 175, 80, 0.2);
+      --bg: #111111;
+      --bg-soft: #1a1a1a;
+      --bg-muted: #222222;
+      --text: #f5f5f5;
+      --text-secondary: #a0a0a0;
+      --text-muted: #666666;
+      --border: #2a2a2a;
+      --border-light: #1f1f1f;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.3);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,0.35);
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      transition: background 0.3s, color 0.3s;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Animations */
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(2deg); }
-    }
-
-    @keyframes floatReverse {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(-2deg); }
-    }
-
-    @keyframes gradient-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes slide-up {
-      from { opacity: 0; transform: translateY(60px); }
+    /* ==================== ANIMATIONS ==================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes scale-in {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes shimmer {
-      0% { left: -100%; }
-      100% { left: 100%; }
-    }
-
-    @keyframes stat-fade-in {
-      from { opacity: 0; transform: translateY(20px) scale(0.9); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes bar-breathe {
-      0%, 100% { transform: scaleY(1); filter: brightness(1); }
-      50% { transform: scaleY(1.06); filter: brightness(1.1); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
     }
 
     .animate-on-scroll {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .animate-on-scroll.visible {
@@ -182,35 +117,31 @@
       transform: translateY(0);
     }
 
-    /* Navbar */
+    /* ==================== NAVBAR ==================== */
     .navbar {
       position: fixed;
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 48px);
-      max-width: 1200px;
+      max-width: 1100px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
-      background: rgba(255, 255, 255, 0.75);
+      padding: 10px 24px;
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       z-index: 1000;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(76, 175, 80, 0.1);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .navbar:hover {
-      box-shadow: 0 12px 40px rgba(76, 175, 80, 0.15);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s;
     }
 
     [data-theme="dark"] .navbar {
-      background: rgba(30, 41, 59, 0.8);
-      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(17, 17, 17, 0.85);
+      border-color: var(--border);
     }
 
     .nav-logo {
@@ -219,1017 +150,635 @@
       gap: 10px;
       text-decoration: none;
       color: var(--text);
-      transition: transform 0.3s;
     }
 
-    .nav-logo:hover { transform: scale(1.03); }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 10px; }
+    .nav-logo span { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
 
-    .nav-logo img {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
 
-    .nav-logo:hover img { transform: rotate(-5deg) scale(1.1); }
-
-    .nav-logo span {
-      font-size: 1.25rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--green), var(--orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--green); }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
 
     .theme-toggle {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      padding: 6px;
-      border-radius: 50px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--card-border);
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
+      width: 40px; height: 40px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--bg-soft);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s;
     }
-
-    .theme-toggle:hover {
-      border-color: var(--green);
-      box-shadow: 0 0 20px var(--green-glow);
-    }
-
-    .theme-toggle-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      position: relative;
-      z-index: 1;
-    }
-
-    .theme-toggle-btn svg {
-      width: 18px;
-      height: 18px;
-      transition: all 0.3s;
-    }
-
-    .theme-toggle-btn.sun svg { fill: var(--text-secondary); }
-    .theme-toggle-btn.moon svg { fill: var(--text-secondary); }
-
-    .theme-toggle-slider {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--green), var(--green-light));
-      border-radius: 50%;
-      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      box-shadow: 0 2px 10px var(--green-glow);
-    }
-
-    [data-theme="dark"] .theme-toggle-slider {
-      transform: translateX(36px);
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
-    }
-
-    .theme-toggle-btn.sun { color: white; }
-    [data-theme="dark"] .theme-toggle-btn.sun svg { fill: var(--text-secondary); }
-    [data-theme="dark"] .theme-toggle-btn.moon svg { fill: white; }
+    .theme-toggle:hover { border-color: var(--text-muted); }
+    .theme-toggle svg { width: 18px; height: 18px; stroke: var(--text-secondary); fill: none; stroke-width: 2; }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
 
     .nav-cta {
-      background: linear-gradient(135deg, var(--green), var(--orange));
-      background-size: 200% 200%;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 20px var(--green-glow);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      position: relative;
-      overflow: hidden;
+      background: var(--text); color: var(--bg);
+      padding: 10px 22px; border-radius: 12px;
+      text-decoration: none; font-weight: 600; font-size: 0.875rem;
+      transition: all 0.2s;
     }
-
-    .nav-cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 2.5s infinite;
-    }
-
-    .nav-cta:hover {
-      transform: translateY(-3px) scale(1.08);
-      box-shadow: 0 12px 40px var(--green-glow);
-      background-position: 100% 50%;
-    }
-
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
     .nav-cta.waitlist-only { display: none; }
-    .nav-cta.released-only { display: flex; }
-    body.waitlist-mode .nav-cta.waitlist-only { display: flex; }
+    .nav-cta.released-only { display: inline-flex; }
+    body.waitlist-mode .nav-cta.waitlist-only { display: inline-flex; }
     body.waitlist-mode .nav-cta.released-only { display: none; }
 
-    /* Hero Section */
+    /* ==================== HERO ==================== */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 40px 80px;
-      background: var(--bg-gradient);
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center;
+      justify-content: center; padding: 120px 40px 60px;
+      position: relative; overflow: hidden;
     }
 
-    .hero-bg-shapes {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
     }
 
-    .hero-shape {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
-    }
-
-    .hero-shape-1 {
-      width: 600px;
-      height: 600px;
-      background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(129, 199, 132, 0.2));
-      top: -200px;
-      right: -200px;
-      animation: float 20s ease-in-out infinite;
-    }
-
-    .hero-shape-2 {
-      width: 400px;
-      height: 400px;
-      background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 183, 77, 0.15));
-      bottom: -100px;
-      left: -100px;
-      animation: floatReverse 15s ease-in-out infinite;
-    }
-
-    .hero-shape-3 {
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(135deg, rgba(66, 165, 245, 0.2), rgba(144, 202, 249, 0.15));
-      top: 40%;
-      left: 10%;
-      animation: float 18s ease-in-out infinite;
-    }
-
-    .hero-content {
-      max-width: 900px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
+    .hero-text { animation: fadeUp 0.8s ease-out; }
 
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(76, 175, 80, 0.1);
-      border: 1px solid rgba(76, 175, 80, 0.3);
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      color: var(--green);
-      font-weight: 500;
-      margin-bottom: 30px;
-      animation: scale-in 0.6s ease-out;
-    }
-
-    .hero-badge svg { width: 18px; height: 18px; }
-
-    .hero-logo-big {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 50px;
+      font-size: 0.8rem; color: var(--text-secondary); font-weight: 500;
       margin-bottom: 24px;
-      animation: scale-in 0.5s ease-out;
     }
-
-    .hero-logo-big img {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .hero-logo-big:hover img { transform: rotate(-10deg) scale(1.15); }
-
-    .hero-logo-big span {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--green), var(--orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
 
     .hero-title {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      animation: slide-up 0.8s ease-out;
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900;
+      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px;
     }
-
-    .hero-title .highlight {
-      background: linear-gradient(135deg, var(--green), var(--orange));
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradient-shift 5s ease infinite;
+    .hero-title .accent {
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
     .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-      animation: slide-up 0.8s ease-out 0.1s both;
+      font-size: 1.125rem; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 36px; max-width: 480px;
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: slide-up 0.8s ease-out 0.2s both;
-    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
     .btn {
-      padding: 16px 32px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
+      padding: 14px 28px; border-radius: var(--radius-sm);
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-outline:hover { border-color: var(--text); transform: translateY(-2px); }
+
+    /* Phone frames — NO border */
+    .hero-phone { display: flex; justify-content: center; animation: fadeUp 0.8s ease-out 0.2s both; }
+
+    .phone-frame {
+      position: relative; width: 280px;
+      border-radius: 32px; overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      background: var(--bg-soft);
     }
 
-    .btn svg { width: 20px; height: 20px; }
+    .phone-frame img { width: 100%; display: block; border-radius: 32px; }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      color: #fff;
-      box-shadow: 0 8px 30px var(--green-glow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 40px var(--green-glow);
-    }
-
-    .btn-secondary {
-      background: var(--card-bg);
-      color: var(--text);
-      border: 2px solid var(--card-border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--green);
-      color: var(--green);
-      transform: translateY(-2px);
-    }
-
-    /* Floating Elements */
-    .hero-floating { position: absolute; z-index: 2; }
-
-    .floating-card {
-      background: var(--card-bg);
-      padding: 16px 20px;
-      border-radius: 16px;
-      box-shadow: 0 20px 50px var(--shadow);
-      border: 1px solid var(--card-border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .floating-1 { top: 15%; left: 5%; animation: float 7s ease-in-out infinite; }
-    .floating-2 { top: 20%; right: 5%; animation: floatReverse 5.5s ease-in-out infinite; animation-delay: -1.2s; }
-    .floating-3 { bottom: 25%; left: 8%; animation: float 6.2s ease-in-out infinite; animation-delay: -2.8s; }
-    .floating-4 { bottom: 20%; right: 8%; animation: floatReverse 8s ease-in-out infinite; animation-delay: -0.5s; }
-    .floating-5 { top: 45%; left: 3%; animation: float 6.8s ease-in-out infinite; animation-delay: -3.5s; }
-    .floating-6 { top: 50%; right: 3%; animation: floatReverse 7.2s ease-in-out infinite; animation-delay: -2s; }
-
-    .floating-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .floating-icon svg { width: 24px; height: 24px; stroke-width: 2; }
-    .floating-icon.green { background: rgba(76, 175, 80, 0.15); }
-    .floating-icon.green svg { stroke: var(--green); }
-    .floating-icon.orange { background: rgba(255, 152, 0, 0.15); }
-    .floating-icon.orange svg { stroke: var(--orange); }
-    .floating-icon.blue { background: rgba(66, 165, 245, 0.15); }
-    .floating-icon.blue svg { stroke: var(--blue); }
-    .floating-icon.pink { background: rgba(236, 64, 122, 0.15); }
-    .floating-icon.pink svg { stroke: var(--pink); }
-    .floating-icon.purple { background: rgba(171, 71, 188, 0.15); }
-    .floating-icon.purple svg { stroke: #AB47BC; }
-    .floating-icon.teal { background: rgba(38, 166, 154, 0.15); }
-    .floating-icon.teal svg { stroke: #26A69A; }
-
-    .floating-text { font-size: 0.9rem; font-weight: 600; }
-    .floating-subtext { font-size: 0.8rem; color: var(--text-secondary); }
-
-    .floating-card:hover {
-      transform: scale(1.05) translateY(-5px);
-      box-shadow: 0 25px 60px var(--shadow);
-    }
-
-    /* Stats Bar */
+    /* ==================== STATS BAR ==================== */
     .stats-bar {
-      background: var(--bg-secondary);
-      padding: 50px 40px;
-      border-top: 1px solid var(--card-border);
-      border-bottom: 1px solid var(--card-border);
+      padding: 40px; background: var(--bg-soft);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
     }
 
     .stats-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
     }
 
-    .stat-item {
-      text-align: center;
-      padding: 20px 30px;
-      border-radius: 16px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: default;
-      animation: stat-fade-in 0.8s ease-out forwards;
-      opacity: 0;
-    }
+    .stat-item { text-align: center; padding: 16px; }
+    .stat-number { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .stat-label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
 
-    .stat-item:nth-child(1) { animation-delay: 0.1s; }
-    .stat-item:nth-child(2) { animation-delay: 0.25s; }
-    .stat-item:nth-child(3) { animation-delay: 0.4s; }
-    .stat-item:nth-child(4) { animation-delay: 0.55s; }
+    /* ==================== SECTIONS ==================== */
+    section { padding: 100px 40px; }
 
-    .stat-item:hover {
-      background: var(--card-bg);
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 20px 40px var(--shadow);
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--green), var(--orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      transition: transform 0.3s;
-    }
-
-    .stat-item:hover .stat-number { transform: scale(1.1); }
-
-    .stat-label {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      margin-top: 6px;
-      font-weight: 500;
-    }
-
-    /* Sections */
-    section {
-      padding: 120px 40px;
-      position: relative;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 80px;
-    }
-
+    .section-header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
     .section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(76, 175, 80, 0.1);
-      padding: 8px 16px;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      color: var(--green);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--text-muted); margin-bottom: 16px;
     }
-
     .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      margin-bottom: 20px;
-      line-height: 1.2;
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 800;
+      letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.15;
+    }
+    .section-subtitle { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ==================== APP SHOWCASE ==================== */
+    .showcase-section { background: var(--bg-soft); overflow: hidden; }
+
+    .showcase-scroll {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; gap: 48px; justify-content: center; flex-wrap: wrap;
     }
 
-    .section-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
+    .showcase-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 20px; transition: transform 0.4s ease;
+    }
+    .showcase-item:hover { transform: translateY(-8px); }
+
+    .showcase-label { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+
+    .showcase-phone {
+      width: 220px; border-radius: 28px; overflow: hidden;
+      box-shadow: var(--shadow-lg); background: var(--bg-soft);
+    }
+    .showcase-phone img { width: 100%; display: block; border-radius: 28px; }
+
+    /* ==================== FEATURES (RICH CARDS) ==================== */
+    .features-section { background: var(--bg); }
+
+    .features-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     }
 
-    /* ============ FEATURES ============ */
-    .features-section { background: var(--bg-gradient); }
-    .features-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .feature-card { background: var(--card-bg); padding: 28px 24px; border-radius: 24px; border: 1px solid var(--card-border); transition: all 0.4s cubic-bezier(0.16,1,0.3,1); position: relative; overflow: hidden; }
-    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--green), var(--orange)); opacity: 0; transition: opacity 0.3s; }
-    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px var(--shadow); }
-    .feature-card:hover::before { opacity: 1; }
-    .feature-card.span-full { grid-column: 1 / -1; }
-    .feature-card.span-2 { grid-column: span 2; }
-    .feature-icon { width: 52px; height: 52px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; position: relative; }
-    .feature-icon::after { content: ''; position: absolute; inset: -4px; border-radius: 19px; background: inherit; opacity: 0.25; filter: blur(10px); }
-    .feature-icon svg { width: 26px; height: 26px; stroke: white; fill: none; stroke-width: 2; position: relative; z-index: 1; }
-    .feature-icon.green { background: linear-gradient(135deg, var(--green), var(--green-light)); }
-    .feature-icon.orange { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
-    .feature-icon.blue { background: linear-gradient(135deg, var(--blue), #90CAF9); }
-    .feature-icon.pink { background: linear-gradient(135deg, var(--pink), #F48FB1); }
-    .feature-icon.purple { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
-    .feature-card h3 { font-size: 1.25rem; margin-bottom: 8px; font-weight: 700; }
-    .feature-card .fdesc { color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; margin-bottom: 14px; }
-    .feature-demo { margin-top: 10px; padding: 14px; border-radius: 14px; background: var(--bg-secondary); border: 1px solid var(--card-border); }
-    .demo-label { font-size: 0.7rem; letter-spacing: 0.6px; text-transform: uppercase; color: var(--text-secondary); font-weight: 700; margin-bottom: 8px; }
-    .mini-btn { border: none; background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; font-weight: 700; font-size: 0.76rem; padding: 7px 13px; border-radius: 10px; cursor: pointer; transition: all 0.2s; }
-    .mini-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-    .mini-btn.alt { background: linear-gradient(135deg, var(--orange), var(--orange-light)); }
-    .mini-btn.soft { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text); }
-    .segment-group { display: inline-flex; border: 1px solid var(--card-border); border-radius: 10px; overflow: hidden; }
-    .segment-btn { border: none; border-right: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-secondary); padding: 7px 10px; font-size: 0.73rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-    .segment-btn:last-child { border-right: none; }
-    .segment-btn.active { color: white; background: linear-gradient(135deg, var(--green), var(--green-light)); }
-    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes flameGlow { 0%,100% { filter: brightness(1); transform: scale(1); } 50% { filter: brightness(1.3); transform: scale(1.08); } }
+    .fcard {
+      background: var(--bg-soft); border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light); overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
 
-    /* Method Tabs */
-    .method-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-    .method-tab { padding: 8px 14px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; gap: 6px; }
-    .method-tab:hover { border-color: var(--green); color: var(--green); }
-    .method-tab.active { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; border-color: transparent; }
-    .method-tab svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .method-preview { display: none; padding: 16px; border-radius: 12px; background: var(--card-bg); border: 1px solid var(--card-border); }
-    .method-preview.active { display: flex; gap: 16px; align-items: center; animation: fadeSlideIn 0.3s ease; }
-    .method-preview .mp-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .method-preview .mp-icon svg { width: 24px; height: 24px; stroke: white; fill: none; stroke-width: 2; }
-    .method-preview h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-    .method-preview p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.45; margin: 0; }
+    .fcard:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border);
+    }
 
-    /* Calorie Ring */
-    .cal-ring-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .cal-ring-wrap { position: relative; width: 120px; height: 120px; flex-shrink: 0; }
+    .fcard.span-2 { grid-column: span 2; }
+    .fcard.span-full { grid-column: 1 / -1; }
+
+    .fcard-body { padding: 28px 24px; }
+    .fcard-body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .fcard-body p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; }
+
+    .fcard-demo {
+      padding: 20px 24px 24px;
+      background: var(--bg);
+      border-top: 1px solid var(--border-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* --- Calorie Ring Demo --- */
+    .cal-demo { display: flex; align-items: center; gap: 20px; }
+    .cal-ring-wrap { position: relative; width: 110px; height: 110px; flex-shrink: 0; }
     .cal-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .cal-ring-bg { fill: none; stroke: var(--card-border); stroke-width: 10; }
-    .cal-ring-fill { fill: none; stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1s ease, stroke 0.5s ease; }
-    .cal-ring-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
-    .cal-ring-num { font-size: 1.5rem; font-weight: 800; line-height: 1; }
-    .cal-ring-lbl { font-size: 0.68rem; color: var(--text-secondary); margin-top: 2px; }
-    .cal-ring-info { flex: 1; min-width: 130px; }
-    .cal-ring-stat { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--card-border); font-size: 0.82rem; }
-    .cal-ring-stat:last-child { border-bottom: none; }
-    .cal-ring-stat span:last-child { font-weight: 700; }
-    .cal-btns { display: flex; gap: 6px; margin-top: 10px; }
-    .cal-btn { border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text); padding: 5px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-    .cal-btn:hover { border-color: var(--green); color: var(--green); }
-    .cal-btn.active { background: var(--green); color: white; border-color: var(--green); }
+    .cal-ring-bg { fill: none; stroke: var(--border); stroke-width: 10; }
+    .cal-ring-fill {
+      fill: none; stroke-width: 10; stroke-linecap: round;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.16,1,0.3,1), stroke 0.5s;
+      stroke-dasharray: 282.74;
+      stroke-dashoffset: 282.74;
+    }
+    .visible .cal-ring-fill { stroke-dashoffset: 84.82; }
+    .cal-ring-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); text-align: center;
+    }
+    .cal-ring-num { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+    .cal-ring-lbl { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
+    .cal-stats { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .cal-stat-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-secondary); padding: 4px 0; border-bottom: 1px solid var(--border-light); }
+    .cal-stat-row:last-child { border-bottom: none; }
+    .cal-stat-row span:last-child { font-weight: 700; color: var(--text); }
 
-    /* Macro bars */
-    .macro-bars { display: flex; flex-direction: column; gap: 10px; }
-    .macro-bar-item { display: flex; align-items: center; gap: 10px; }
-    .macro-label { font-size: 0.78rem; font-weight: 600; width: 55px; color: var(--text-secondary); }
-    .macro-bar-bg { flex: 1; height: 10px; background: var(--card-border); border-radius: 5px; overflow: hidden; }
-    .macro-bar-fill { height: 100%; border-radius: 5px; transition: width 0.8s ease; }
-    .macro-bar-fill.protein { background: linear-gradient(90deg, #42A5F5, #90CAF9); }
-    .macro-bar-fill.carbs { background: linear-gradient(90deg, #FF9800, #FFB74D); }
-    .macro-bar-fill.fat { background: linear-gradient(90deg, #EC407A, #F48FB1); }
-    .macro-value { font-size: 0.78rem; font-weight: 700; width: 45px; text-align: right; }
-    .meal-cats { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-    .meal-cat { font-size: 0.7rem; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--card-border); color: var(--text-secondary); display: flex; align-items: center; gap: 4px; }
-    .meal-cat .cdot { width: 7px; height: 7px; border-radius: 50%; }
+    /* --- Macro Bars Demo --- */
+    .macro-demo { display: flex; flex-direction: column; gap: 12px; }
+    .macro-row { display: flex; align-items: center; gap: 10px; }
+    .macro-label { font-size: 0.78rem; font-weight: 600; width: 52px; color: var(--text-secondary); }
+    .macro-track { flex: 1; height: 10px; background: var(--border-light); border-radius: 5px; overflow: hidden; }
+    .macro-fill {
+      height: 100%; border-radius: 5px;
+      transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+      width: 0;
+    }
+    .visible .macro-fill.protein { width: 78%; }
+    .visible .macro-fill.carbs { width: 46%; }
+    .visible .macro-fill.fat { width: 55%; }
+    .macro-fill.protein { background: linear-gradient(90deg, var(--blue), #90CAF9); }
+    .macro-fill.carbs { background: linear-gradient(90deg, var(--orange), var(--orange-light)); }
+    .macro-fill.fat { background: linear-gradient(90deg, var(--pink), #F48FB1); }
+    .macro-val { font-size: 0.78rem; font-weight: 700; width: 55px; text-align: right; }
+    .macro-cats { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+    .macro-cat {
+      font-size: 0.68rem; padding: 3px 8px; border-radius: 6px;
+      background: var(--bg-soft); border: 1px solid var(--border-light);
+      color: var(--text-muted); display: flex; align-items: center; gap: 4px;
+    }
+    .macro-cat .cdot { width: 6px; height: 6px; border-radius: 50%; }
 
-    /* Water */
-    .water-row { display: flex; align-items: flex-end; gap: 18px; }
-    .water-glass { width: 52px; height: 78px; border-radius: 0 0 12px 12px; border: 3px solid var(--blue); border-top: none; position: relative; overflow: hidden; background: var(--bg-secondary); flex-shrink: 0; }
-    .water-glass-fill { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(180deg, rgba(66,165,245,0.35), rgba(66,165,245,0.7)); transition: height 0.5s ease; border-radius: 0 0 9px 9px; }
+    /* --- AI Score Demo --- */
+    .score-demo { display: flex; align-items: center; gap: 18px; }
+    .score-ring { position: relative; width: 90px; height: 90px; flex-shrink: 0; }
+    .score-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .score-bg { fill: none; stroke: var(--border); stroke-width: 8; }
+    .score-fill {
+      fill: none; stroke-width: 8; stroke-linecap: round;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.16,1,0.3,1);
+      stroke-dasharray: 226.19;
+      stroke-dashoffset: 226.19;
+    }
+    .visible .score-fill { stroke-dashoffset: 117.62; }
+    .score-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); text-align: center;
+    }
+    .score-center strong { font-size: 1.4rem; font-weight: 800; display: block; line-height: 1; }
+    .score-center small { font-size: 0.62rem; color: var(--orange); font-weight: 700; text-transform: uppercase; }
+    .score-insights { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+    .score-insight {
+      font-size: 0.78rem; padding: 6px 10px; border-radius: 8px;
+      background: var(--bg-soft); border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+    }
+    .score-insight.good { border-left: 3px solid var(--green); }
+    .score-insight.warn { border-left: 3px solid var(--orange); }
+
+    /* --- Weekly Chart Demo --- */
+    .week-demo { display: flex; flex-direction: column; gap: 8px; }
+    .week-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; }
+    .week-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; }
+    .week-bar-outer { flex: 1; width: 100%; display: flex; align-items: flex-end; }
+    .week-bar-inner {
+      width: 100%; border-radius: 4px 4px 0 0;
+      transition: height 1.2s cubic-bezier(0.16,1,0.3,1);
+      height: 0;
+    }
+    .visible .wb-1 { height: 75%; }
+    .visible .wb-2 { height: 55%; }
+    .visible .wb-3 { height: 88%; }
+    .visible .wb-4 { height: 95%; }
+    .visible .wb-5 { height: 68%; }
+    .visible .wb-6 { height: 42%; }
+    .visible .wb-7 { height: 82%; }
+    .week-bar-inner.ok { background: linear-gradient(180deg, var(--green), var(--green-light)); }
+    .week-bar-inner.under { background: linear-gradient(180deg, var(--blue), #90CAF9); }
+    .week-bar-inner.over { background: linear-gradient(180deg, var(--orange), var(--orange-light)); }
+    .week-day { font-size: 0.62rem; color: var(--text-muted); font-weight: 600; }
+    .week-legend { display: flex; gap: 14px; font-size: 0.68rem; color: var(--text-muted); }
+    .week-legend span { display: flex; align-items: center; gap: 4px; }
+    .week-legend .ldot { width: 6px; height: 6px; border-radius: 50%; }
+
+    /* --- Water Demo --- */
+    .water-demo { display: flex; align-items: flex-end; gap: 16px; }
+    .water-bottle {
+      width: 50px; height: 80px; border-radius: 0 0 12px 12px;
+      border: 2.5px solid var(--blue); border-top: none;
+      position: relative; overflow: hidden; background: var(--bg-soft);
+      flex-shrink: 0;
+    }
+    .water-level {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(180deg, rgba(66,165,245,0.3), rgba(66,165,245,0.65));
+      border-radius: 0 0 9px 9px;
+      transition: height 1.5s cubic-bezier(0.16,1,0.3,1);
+      height: 0;
+    }
+    .visible .water-level { height: 62%; }
     .water-info { flex: 1; }
-    .water-amt { font-size: 1.3rem; font-weight: 800; }
-    .water-goal-txt { font-size: 0.78rem; color: var(--text-secondary); }
-    .water-meter { width: 100%; height: 8px; border-radius: 999px; background: var(--card-border); overflow: hidden; margin: 8px 0; }
-    .water-meter-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), #90CAF9); transition: width 0.5s ease; }
-    .water-btns { display: flex; gap: 6px; flex-wrap: wrap; }
-    .water-btn { border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text); padding: 5px 11px; border-radius: 10px; font-size: 0.73rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .water-val { font-size: 1.2rem; font-weight: 800; }
+    .water-val span { font-size: 0.75rem; font-weight: 400; color: var(--text-muted); }
+    .water-pct { font-size: 0.75rem; color: var(--text-muted); margin: 2px 0 6px; }
+    .water-track { width: 100%; height: 8px; background: var(--border-light); border-radius: 4px; overflow: hidden; }
+    .water-track-fill {
+      height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--blue), #90CAF9);
+      transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+      width: 0;
+    }
+    .visible .water-track-fill { width: 62%; }
+    .water-btns { display: flex; gap: 4px; margin-top: 8px; }
+    .water-btn {
+      font-size: 0.68rem; font-weight: 600; padding: 4px 8px;
+      border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.2s;
+    }
     .water-btn:hover { border-color: var(--blue); color: var(--blue); }
 
-    /* Weight + BMI */
-    .weight-num { font-size: 1.8rem; font-weight: 800; }
-    .weight-unit { font-size: 0.85rem; color: var(--text-secondary); }
-    .weight-trend-txt { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-bottom: 8px; }
-    .bmi-gauge { width: 100%; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #42A5F5 0%, #4CAF50 30%, #FF9800 65%, #f44336 100%); position: relative; margin: 6px 0; }
-    .bmi-needle { position: absolute; top: -3px; width: 4px; height: 16px; background: var(--text); border-radius: 2px; transition: left 0.5s ease; transform: translateX(-50%); }
-    .bmi-labels { display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--text-secondary); }
-    .goal-prob { display: flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 10px; background: rgba(76,175,80,0.1); border: 1px solid rgba(76,175,80,0.2); font-size: 0.8rem; font-weight: 600; color: var(--green); margin-top: 8px; }
-    .weight-range { width: 100%; accent-color: var(--green); margin-top: 6px; }
+    /* --- Weight Chart Demo --- */
+    .weight-demo {}
+    .weight-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .weight-val { font-size: 1.5rem; font-weight: 800; }
+    .weight-val span { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
+    .weight-trend { font-size: 0.78rem; font-weight: 600; color: var(--green); }
+    .weight-chart-svg {
+      width: 100%; height: 60px; display: block;
+    }
+    .weight-line {
+      fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      transition: stroke-dashoffset 2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .visible .weight-line { stroke-dashoffset: 0; }
+    .weight-area {
+      opacity: 0;
+      transition: opacity 1.5s ease 0.5s;
+    }
+    .visible .weight-area { opacity: 0.08; }
+    .weight-bmi { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .bmi-bar {
+      flex: 1; height: 6px; border-radius: 3px;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--green) 30%, var(--orange) 65%, var(--red) 100%);
+      position: relative;
+    }
+    .bmi-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--text); border: 2px solid var(--bg);
+      position: absolute; top: -2px;
+      transition: left 1.5s cubic-bezier(0.16,1,0.3,1);
+      left: 0;
+    }
+    .visible .bmi-dot { left: 38%; }
+    .bmi-label { font-size: 0.68rem; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
 
-    /* AI Score */
-    .ai-score-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-    .score-circle { width: 90px; height: 90px; position: relative; flex-shrink: 0; }
-    .score-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .score-bg { fill: none; stroke: var(--card-border); stroke-width: 8; }
-    .score-fill { fill: none; stroke: var(--green); stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1.2s ease; }
-    .score-num { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
-    .score-num strong { font-size: 1.5rem; font-weight: 800; display: block; line-height: 1; }
-    .score-num small { font-size: 0.65rem; color: var(--green); text-transform: uppercase; font-weight: 700; }
-    .insight-cards { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 150px; }
-    .insight-item { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.35; padding: 6px 9px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--card-bg); }
-    .insight-item.strength { border-left: 3px solid var(--green); }
-    .insight-item.improve { border-left: 3px solid var(--orange); }
-
-    /* Weekly chart */
-    .week-chart { display: flex; align-items: flex-end; gap: 5px; height: 70px; margin: 10px 0; }
-    .week-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; height: 100%; }
-    .week-bar { flex: 1; width: 100%; position: relative; display: flex; align-items: flex-end; }
-    .week-bar-fill { width: 100%; border-radius: 5px 5px 0 0; transition: height 0.6s ease; position: absolute; bottom: 0; }
-    .week-bar-fill.ok { background: linear-gradient(180deg, var(--green), var(--green-light)); }
-    .week-bar-fill.under { background: linear-gradient(180deg, var(--blue), #90CAF9); }
-    .week-bar-fill.over { background: linear-gradient(180deg, var(--orange), var(--orange-light)); }
-    .week-day-lbl { font-size: 0.62rem; color: var(--text-secondary); font-weight: 600; }
-
-    /* Streak */
-    .streak-row { display: flex; align-items: center; gap: 14px; }
-    .streak-fire { font-size: 2.2rem; line-height: 1; animation: flameGlow 2s ease-in-out infinite; }
+    /* --- Streak Demo --- */
+    .streak-demo { text-align: center; }
+    .streak-fire { font-size: 2rem; line-height: 1; margin-bottom: 2px; }
     .streak-num { font-size: 1.8rem; font-weight: 800; }
-    .streak-lbl { font-size: 0.78rem; color: var(--text-secondary); }
-    .streak-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-top: 10px; }
-    .streak-day { border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text-secondary); border-radius: 8px; padding: 5px 0; cursor: pointer; font-size: 0.7rem; font-weight: 700; transition: all 0.2s; text-align: center; }
-    .streak-day.active { background: linear-gradient(135deg, var(--orange), var(--orange-light)); color: white; border-color: transparent; }
+    .streak-lbl { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px; }
+    .streak-dots { display: flex; gap: 4px; justify-content: center; }
+    .streak-dot {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; font-weight: 700;
+      border: 1px solid var(--border-light); background: var(--bg-soft);
+      color: var(--text-muted); transition: all 0.3s;
+    }
+    .streak-dot.done {
+      background: var(--text); color: var(--bg); border-color: transparent;
+    }
 
-    /* Cloud sync */
-    .sync-visual { text-align: center; }
-    .sync-icon-big { font-size: 2rem; margin-bottom: 6px; transition: all 0.4s; }
-    .sync-status-txt { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
-    .sync-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4; }
-    .sync-toggle-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 10px; }
-    .sync-toggle-lbl { font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); }
-    .sync-toggle { width: 44px; height: 24px; border-radius: 12px; background: var(--card-border); position: relative; cursor: pointer; transition: background 0.3s; }
-    .sync-toggle.on { background: var(--green); }
-    .sync-toggle-knob { width: 20px; height: 20px; border-radius: 50%; background: white; position: absolute; top: 2px; left: 2px; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.15); }
-    .sync-toggle.on .sync-toggle-knob { transform: translateX(20px); }
+    @keyframes fireGlow {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.1); filter: brightness(1.2); }
+    }
+    .streak-fire { animation: fireGlow 2s ease-in-out infinite; }
 
-    /* Dashboard preview */
-    .dash-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
-    .dash-widget { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 9px; text-align: center; font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; cursor: pointer; transition: all 0.2s; user-select: none; }
-    .dash-widget:hover { border-color: var(--green); }
-    .dash-widget.active { border-color: var(--green); background: rgba(76,175,80,0.08); color: var(--green); }
-    .dash-widget .dico { font-size: 1.1rem; margin-bottom: 2px; }
+    /* --- Sync Demo --- */
+    .sync-demo { text-align: center; }
+    .sync-icon { font-size: 2rem; margin-bottom: 4px; }
+    .sync-status { font-size: 0.88rem; font-weight: 700; margin-bottom: 2px; }
+    .sync-sub { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px; }
+    .sync-badges { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+    .sync-badge {
+      font-size: 0.65rem; font-weight: 600; padding: 3px 8px;
+      border-radius: 6px; background: var(--bg-soft); border: 1px solid var(--border-light);
+      color: var(--text-muted);
+    }
+    .sync-badge.on { background: rgba(76,175,80,0.1); color: var(--green); border-color: rgba(76,175,80,0.2); }
 
-    /* Pricing */
-    .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
-    .pricing-toggle-lbl { font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); }
-    .pricing-toggle-lbl.active { color: var(--text); }
-    .pricing-save { font-size: 0.68rem; padding: 2px 8px; background: rgba(76,175,80,0.12); color: var(--green); border-radius: 999px; font-weight: 700; }
-    .pricing-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .pricing-col { border: 2px solid var(--card-border); border-radius: 16px; padding: 20px 14px; text-align: center; background: var(--card-bg); position: relative; transition: all 0.3s; }
-    .pricing-col.highlight { border-color: var(--green); }
-    .pricing-col.highlight::after { content: 'Popular'; position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; font-size: 0.65rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
-    .pricing-tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 6px; }
-    .pricing-price { font-size: 1.6rem; font-weight: 800; margin-bottom: 3px; }
-    .pricing-period { font-size: 0.72rem; color: var(--text-secondary); margin-bottom: 12px; }
+    /* --- Steps Demo --- */
+    .steps-demo { display: flex; align-items: center; gap: 16px; }
+    .step-circle-wrap { position: relative; width: 70px; height: 70px; flex-shrink: 0; }
+    .step-circle-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .step-circle-bg { fill: none; stroke: var(--border); stroke-width: 6; }
+    .step-circle-fill {
+      fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round;
+      stroke-dasharray: 175.93;
+      stroke-dashoffset: 175.93;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .visible .step-circle-fill { stroke-dashoffset: 145.95; }
+    .step-center {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); text-align: center;
+    }
+    .step-center strong { font-size: 0.9rem; font-weight: 800; display: block; }
+    .step-center small { font-size: 0.55rem; color: var(--text-muted); }
+    .steps-info { flex: 1; }
+    .steps-info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 5px 0; border-bottom: 1px solid var(--border-light);
+      font-size: 0.78rem;
+    }
+    .steps-info-row:last-child { border-bottom: none; }
+    .steps-info-row .label { color: var(--text-secondary); }
+    .steps-info-row .value { font-weight: 700; }
+    .steps-info-row .value.cal { color: var(--orange); }
+
+    /* --- AI Scanner Demo --- */
+    .scanner-demo {}
+    .scanner-results { display: flex; flex-direction: column; gap: 6px; }
+    .scanner-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 10px; border-radius: 10px;
+      background: var(--bg-soft); border: 1px solid var(--border-light);
+      opacity: 0; transform: translateX(-10px);
+      transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .visible .scanner-item:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.2s; }
+    .visible .scanner-item:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.4s; }
+    .visible .scanner-item:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.6s; }
+    .scanner-check {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: var(--green); display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .scanner-check svg { width: 12px; height: 12px; stroke: white; fill: none; stroke-width: 3; }
+    .scanner-name { flex: 1; font-size: 0.8rem; font-weight: 600; }
+    .scanner-conf {
+      font-size: 0.65rem; font-weight: 700; padding: 2px 6px;
+      border-radius: 4px; background: rgba(76,175,80,0.1); color: var(--green);
+    }
+    .scanner-kcal { font-size: 0.8rem; font-weight: 700; }
+    .scanner-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 10px; margin-top: 6px;
+      border-radius: 10px; background: var(--text); color: var(--bg);
+      font-size: 0.8rem; font-weight: 700;
+      opacity: 0; transform: translateY(8px);
+      transition: all 0.5s cubic-bezier(0.16,1,0.3,1) 0.8s;
+    }
+    .visible .scanner-total { opacity: 1; transform: translateY(0); }
+
+    /* ==================== FEATURE SHOWCASE (alternating) ==================== */
+    .feature-showcase { background: var(--bg); }
+
+    .showcase-row {
+      max-width: 1100px; margin: 0 auto 100px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .showcase-row:last-child { margin-bottom: 0; }
+    .showcase-row.reverse { direction: rtl; }
+    .showcase-row.reverse > * { direction: ltr; }
+
+    .showcase-row-text h3 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+    .showcase-row-text p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 20px; }
+    .showcase-row-text ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .showcase-row-text ul li { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: var(--text-secondary); }
+    .showcase-row-text ul li .check {
+      width: 20px; height: 20px; border-radius: 6px;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .showcase-row-text ul li .check svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 3; }
+
+    .showcase-row-img { display: flex; justify-content: center; }
+    .showcase-row-img .phone-frame { width: 260px; }
+
+    /* ==================== PRICING ==================== */
+    .pricing-section { background: var(--bg-soft); }
+
+    .pricing-toggle-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; margin-bottom: 48px;
+    }
+    .pricing-toggle-label { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
+    .pricing-toggle-label.active { color: var(--text); }
+
+    .toggle-switch {
+      width: 48px; height: 28px; border-radius: 14px;
+      background: var(--border); position: relative; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .toggle-switch.on { background: var(--text); }
+    .toggle-knob {
+      width: 22px; height: 22px; border-radius: 50%; background: white;
+      position: absolute; top: 3px; left: 3px;
+      transition: transform 0.3s; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .toggle-switch.on .toggle-knob { transform: translateX(20px); }
+    .save-badge { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(76,175,80,0.1); color: var(--green); }
+
+    .pricing-cards {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .pricing-card {
+      background: var(--bg); border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      text-align: center; transition: all 0.3s; position: relative;
+    }
+    .pricing-card.featured { border-color: var(--text); box-shadow: var(--shadow-md); }
+    .pricing-card.featured::before {
+      content: 'Popular'; position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%); background: var(--text); color: var(--bg);
+      font-size: 0.7rem; font-weight: 700; padding: 4px 14px; border-radius: 8px;
+    }
+    .pricing-tier { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 8px; }
+    .pricing-price { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .pricing-period { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 28px; }
     .pricing-features { list-style: none; text-align: left; }
-    .pricing-features li { font-size: 0.75rem; padding: 4px 0; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
-    .pricing-features li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-    .pricing-features li.no::before { background: var(--card-border); }
-    .pricing-features li.no { opacity: 0.45; }
+    .pricing-features li { font-size: 0.85rem; padding: 8px 0; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-light); }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .pricing-features li.disabled { opacity: 0.4; }
+    .pricing-features li.disabled .dot { background: var(--border); }
+    .pricing-tax { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 24px; }
 
-    .pricing-tax-note {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      text-align: center;
-      margin-top: 16px;
-      opacity: 0.7;
-    }
+    /* ==================== HOW IT WORKS ==================== */
+    .how-section { background: var(--bg); }
+    .steps-container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .step-card { text-align: center; padding: 40px 24px; background: var(--bg-soft); border-radius: var(--radius-lg); border: 1px solid var(--border-light); transition: all 0.3s; }
+    .step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .step-num { width: 48px; height: 48px; border-radius: 14px; background: var(--text); color: var(--bg); display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; }
+    .step-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .step-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
 
-    /* How It Works */
-    .how-section { background: var(--bg-gradient); overflow: hidden; }
+    /* ==================== TESTIMONIALS ==================== */
+    .testimonials-section { background: var(--bg-soft); }
+    .testimonials-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .testimonial-card { background: var(--bg); padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--border-light); transition: all 0.3s; }
+    .testimonial-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .testimonial-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+    .testimonial-stars svg { width: 16px; height: 16px; fill: #fbbf24; }
+    .testimonial-text { font-size: 0.95rem; line-height: 1.7; color: var(--text); margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 12px; background: var(--bg-muted); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; color: var(--text-secondary); }
+    .testimonial-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; }
+    .testimonial-info span { font-size: 0.78rem; color: var(--text-muted); }
 
-    .journey-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      gap: 40px;
-      position: relative;
-    }
+    /* ==================== PLATFORMS ==================== */
+    .platforms-section { background: var(--bg); text-align: center; }
+    .platform-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .platform-btn { display: flex; align-items: center; gap: 14px; padding: 16px 32px; border-radius: var(--radius-md); border: 1.5px solid var(--border); background: var(--bg); text-decoration: none; color: var(--text); transition: all 0.2s; }
+    .platform-btn:hover { border-color: var(--text); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .platform-btn.disabled { opacity: 0.5; pointer-events: none; }
+    .platform-btn svg { width: 28px; height: 28px; fill: currentColor; }
+    .platform-btn-text { text-align: left; }
+    .platform-btn-text small { font-size: 0.7rem; color: var(--text-muted); display: block; }
+    .platform-btn-text strong { font-size: 1rem; font-weight: 700; }
 
-    .journey-step {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      min-height: 400px;
-    }
+    /* ==================== FOOTER ==================== */
+    footer { background: var(--bg-soft); padding: 60px 40px 30px; border-top: 1px solid var(--border-light); }
+    .footer-content { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .footer-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .footer-logo span { font-size: 1rem; font-weight: 700; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+    .footer-links h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+    .footer-links a { display: block; color: var(--text-secondary); text-decoration: none; margin-bottom: 12px; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.8rem; }
 
-    .journey-number {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, var(--green), var(--green-light));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: white;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 30px rgba(76, 175, 80, 0.3);
-      z-index: 2;
-    }
-
-    .journey-card {
-      background: var(--card-bg);
-      border: 2px solid var(--card-border);
-      border-radius: 20px;
-      padding: 36px 28px;
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .journey-card:hover {
-      transform: translateY(-12px);
-      border-color: var(--green);
-      box-shadow: 0 30px 70px rgba(76, 175, 80, 0.15);
-    }
-
-    .journey-icon {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 24px;
-      background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(255, 152, 0, 0.1));
-      border-radius: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid rgba(76, 175, 80, 0.2);
-    }
-
-    .journey-icon svg {
-      width: 36px;
-      height: 36px;
-      stroke: var(--green);
-      fill: none;
-      stroke-width: 2;
-    }
-
-    .journey-card h3 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
-    .journey-card p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    /* Testimonials */
-    .testimonials-section { background: var(--bg-gradient); }
-
-    .testimonials-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-    }
-
-    .testimonial-card {
-      background: var(--card-bg);
-      padding: 35px;
-      border-radius: 24px;
-      border: 1px solid var(--card-border);
-      transition: all 0.4s ease;
-      position: relative;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 25px 60px var(--shadow);
-    }
-
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 5rem;
-      font-family: Georgia, serif;
-      color: var(--green);
-      opacity: 0.15;
-      line-height: 1;
-    }
-
-    .testimonial-stars {
-      display: flex;
-      gap: 4px;
-      margin-bottom: 20px;
-    }
-
-    .testimonial-stars svg { width: 20px; height: 20px; fill: #fbbf24; }
-
-    .testimonial-text {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--text);
-      margin-bottom: 25px;
-    }
-
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .testimonial-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--green), var(--orange));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: white;
-    }
-
-    .testimonial-info h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
-    .testimonial-info span { font-size: 0.85rem; color: var(--text-secondary); }
-
-    /* CTA Section */
-
-
-    /* Platforms */
-    .platforms-section { background: var(--bg-secondary); text-align: center; }
-
-    .platform-icons {
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
-    }
-
-    .platform {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      color: var(--text-secondary);
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-
-    .platform:hover { color: var(--green); transform: translateY(-5px); }
-
-    .platform-icon-wrapper {
-      width: 70px;
-      height: 70px;
-      background: var(--card-bg);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--card-border);
-      transition: all 0.3s;
-    }
-
-    .platform:hover .platform-icon-wrapper {
-      border-color: var(--green);
-      box-shadow: 0 10px 30px var(--shadow);
-    }
-
-    .platform svg { width: 32px; height: 32px; fill: currentColor; }
-    .platform span { font-weight: 600; font-size: 0.95rem; }
-
-    .platform-badge {
-      font-size: 0.65rem;
-      padding: 3px 8px;
-      border-radius: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .platform-badge.available { background: rgba(76, 175, 80, 0.15); color: var(--green); }
-    .platform-badge.soon { background: rgba(148, 163, 184, 0.15); color: var(--text-secondary); }
-
-    .platform.coming-soon { opacity: 0.6; }
-    .platform.coming-soon:hover { opacity: 1; }
-
-    /* Footer */
-    footer {
-      background: var(--bg);
-      padding: 60px 40px 30px;
-      border-top: 1px solid var(--card-border);
-    }
-
-    .footer-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .footer-logo img {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-    }
-
-    .footer-logo span { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-
-    .footer-brand p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-
-    .footer-links h4 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 24px;
-      color: var(--text);
-    }
-
-    .footer-links a {
-      display: block;
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin-bottom: 14px;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover { color: var(--green); }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 40px;
-      border-top: 1px solid var(--card-border);
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .footer-bottom span { color: var(--green); }
-
-    /* Responsive */
+    /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
-      .features-layout { grid-template-columns: repeat(2, 1fr); }
-      .feature-card.span-full { grid-column: 1 / -1; }
-      .feature-card.span-2 { grid-column: span 2; }
-      .pricing-cols { grid-template-columns: repeat(3, 1fr); }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .fcard.span-2 { grid-column: span 2; }
+      .fcard.span-full { grid-column: 1 / -1; }
+      .showcase-row { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .showcase-row.reverse { direction: ltr; }
+      .showcase-row-text ul { align-items: center; }
       .testimonials-grid { grid-template-columns: 1fr 1fr; }
       .footer-content { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 768px) {
-      .navbar {
-        padding: 10px 16px;
-        width: calc(100% - 24px);
-        top: 8px;
-        left: 12px;
-        right: 12px;
-        transform: none;
-        max-width: none;
-        border-radius: 14px;
-      }
-
+      .navbar { padding: 8px 16px; width: calc(100% - 24px); }
       .nav-links { display: none; }
-
-      .journey-container { flex-direction: column; gap: 24px; }
-      .journey-step { min-height: auto; }
-
       section { padding: 60px 20px; }
-
-      .hero {
-        padding: 80px 20px 40px;
-      }
-
-      .hero-title { font-size: 2rem; line-height: 1.2; }
-      .hero-subtitle { font-size: 1rem; margin-bottom: 30px; }
-      .hero-floating { display: none; }
-
-      .features-layout { grid-template-columns: 1fr; gap: 20px; }
-      .feature-card.span-full, .feature-card.span-2 { grid-column: 1; }
-      .pricing-cols { grid-template-columns: 1fr; }
-      .cal-ring-row, .ai-score-row { flex-direction: column; align-items: stretch; }
-      .method-preview.active { flex-direction: column; }
+      .hero { padding: 100px 20px 40px; min-height: auto; }
+      .features-grid { grid-template-columns: 1fr; }
+      .fcard.span-2, .fcard.span-full { grid-column: 1; }
+      .pricing-cards { grid-template-columns: 1fr; max-width: 400px; }
+      .steps-container { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
       .testimonials-grid { grid-template-columns: 1fr; }
-
-      .stats-container { gap: 20px; flex-direction: column; }
-
+      .stats-container { grid-template-columns: repeat(2, 1fr); }
+      .showcase-scroll { gap: 24px; }
+      .showcase-phone { width: 180px; }
       .footer-content { grid-template-columns: 1fr; gap: 30px; }
+      .phone-frame { width: 240px; }
     }
 
     @media (max-width: 480px) {
-      .navbar {
-        padding: 8px 12px !important;
-        width: calc(100% - 16px) !important;
-        top: 6px !important;
-        left: 8px !important;
-      }
-
-      .nav-logo img { width: 26px !important; height: 26px !important; }
-      .nav-logo span { font-size: 0.85rem !important; }
-
-      section { padding: 32px 16px !important; }
-      .hero { padding: 60px 16px 32px !important; min-height: auto !important; }
-      .hero-title { font-size: 1.5rem !important; }
-      .hero-subtitle { font-size: 0.85rem !important; }
-
-      .btn { padding: 10px 16px !important; font-size: 0.8rem !important; }
-      .features-layout { gap: 12px !important; }
-      .pricing-cols { gap: 10px !important; }
-      .pricing-price { font-size: 1.3rem !important; }
-      .feature-card { padding: 20px !important; }
+      .navbar { width: calc(100% - 16px); top: 8px; padding: 6px 12px; }
+      .nav-logo img { width: 28px; height: 28px; }
+      .nav-logo span { font-size: 0.95rem; }
+      .hero { padding: 80px 16px 32px; }
+      .hero-title { font-size: 2rem; }
+      section { padding: 48px 16px; }
+      .showcase-phone { width: 150px; border-radius: 20px; }
+      .showcase-phone img { border-radius: 20px; }
+      .phone-frame { width: 200px; border-radius: 26px; }
+      .phone-frame img { border-radius: 26px; }
+      .cal-demo { flex-direction: column; }
+      .score-demo { flex-direction: column; }
+      .steps-demo { flex-direction: column; }
+      .water-demo { flex-direction: column; align-items: stretch; }
     }
   </style>
 </head>
@@ -1239,141 +788,43 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <a href="#" class="nav-logo">
-      <img src="caltracker_icon.png" alt="CalTracker Logo">
+      <img src="caltracker_icon.png" alt="CalTracker">
       <span>CalTracker</span>
     </a>
-    
     <div class="nav-links">
       <a href="#features">Features</a>
-      <a href="#how">How it Works</a>
-      <a href="#reviews">Reviews</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#pricing">Pricing</a>
     </div>
-
     <div class="nav-right">
-      <div class="theme-toggle" onclick="toggleTheme()">
-        <div class="theme-toggle-slider"></div>
-        <div class="theme-toggle-btn sun">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
-        </div>
-        <div class="theme-toggle-btn moon">
-          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-        </div>
+      <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/></svg>
       </div>
       <a href="waitlist.html" class="nav-cta waitlist-only">Join Waitlist</a>
-      <a href="#platforms" class="nav-cta released-only">Get Started</a>
+      <a href="#download" class="nav-cta released-only">Download</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg-shapes">
-      <div class="hero-shape hero-shape-1"></div>
-      <div class="hero-shape hero-shape-2"></div>
-      <div class="hero-shape hero-shape-3"></div>
-    </div>
-
-    <!-- Floating Elements -->
-    <div class="hero-floating floating-1">
-      <div class="floating-card">
-        <div class="floating-icon green">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-        </div>
-        <div>
-          <div class="floating-text">1,850 kcal</div>
-          <div class="floating-subtext">logged today</div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge"><span class="dot"></span>Available on Android &amp; iOS</div>
+        <h1 class="hero-title">Track calories<br>with <span class="accent">AI power.</span></h1>
+        <p class="hero-subtitle">Snap a photo of your meal and let AI do the rest. Track calories, macros, weight, steps, and get daily AI evaluations — all in one clean app.</p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Free
+          </a>
+          <a href="#features" class="btn btn-outline">See Features</a>
         </div>
       </div>
-    </div>
-
-    <div class="hero-floating floating-2">
-      <div class="floating-card">
-        <div class="floating-icon orange">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="hero-phone">
+        <div class="phone-frame">
+          <img src="1_Homescreen.png" alt="CalTracker Home Screen" loading="eager">
         </div>
-        <div>
-          <div class="floating-text">142g Protein</div>
-          <div class="floating-subtext">goal reached!</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-floating floating-3">
-      <div class="floating-card">
-        <div class="floating-icon blue">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-        </div>
-        <div>
-          <div class="floating-text">2.1L Water</div>
-          <div class="floating-subtext">stay hydrated</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-floating floating-4">
-      <div class="floating-card">
-        <div class="floating-icon pink">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <div>
-          <div class="floating-text">12 Day Streak</div>
-          <div class="floating-subtext">keep going!</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-floating floating-5">
-      <div class="floating-card">
-        <div class="floating-icon purple">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
-        </div>
-        <div>
-          <div class="floating-text">AI Score: 87</div>
-          <div class="floating-subtext">great day!</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-floating floating-6">
-      <div class="floating-card">
-        <div class="floating-icon teal">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
-        <div>
-          <div class="floating-text">Goal Hit!</div>
-          <div class="floating-subtext">under budget</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-content">
-      <div class="hero-logo-big">
-        <img src="caltracker_icon.png" alt="CalTracker">
-        <span>CalTracker</span>
-      </div>
-      
-      <div class="hero-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        AI-Powered - Free Daily AI - Smart Tracking
-      </div>
-      
-      <h1 class="hero-title">
-        Your <span class="highlight">AI-Powered</span><br>
-        Nutrition Companion.
-      </h1>
-      
-      <p class="hero-subtitle">
-        Track calories, macros, and weight with AI-powered insights. Build healthier habits that actually stick. Use AI for free every day.
-      </p>
-
-      <div class="hero-cta">
-        <a href="#platforms" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          Download Free
-        </a>
-        <a href="#features" class="btn btn-secondary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-          See Features
-        </a>
       </div>
     </div>
   </section>
@@ -1381,354 +832,399 @@
   <!-- STATS BAR -->
   <div class="stats-bar">
     <div class="stats-container animate-on-scroll">
-      <div class="stat-item">
-        <div class="stat-number">AI</div>
-        <div class="stat-label">Powered Insights</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">Free</div>
-        <div class="stat-label">Daily AI Usage</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">4</div>
-        <div class="stat-label">Macro Nutrients</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">Tracking</div>
-      </div>
+      <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Ways to log food</div></div>
+      <div class="stat-item"><div class="stat-number">AI</div><div class="stat-label">Photo scanning</div></div>
+      <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Offline capable</div></div>
+      <div class="stat-item"><div class="stat-number">Free</div><div class="stat-label">Daily AI usage</div></div>
     </div>
   </div>
 
-  <!-- FEATURES -->
+  <!-- APP SCREENSHOTS -->
+  <section class="showcase-section" id="screenshots">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">App Preview</div>
+      <h2 class="section-title">See CalTracker in action</h2>
+      <p class="section-subtitle">A clean, intuitive interface that makes nutrition tracking feel effortless.</p>
+    </div>
+    <div class="showcase-scroll animate-on-scroll">
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="1_Homescreen.png" alt="CalTracker Home Screen" loading="lazy"></div>
+        <div class="showcase-label">Home Dashboard</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="2_AI-Food-Tracker.png" alt="AI Food Scanner" loading="lazy"></div>
+        <div class="showcase-label">AI Food Scanner</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="3_Statistics.png" alt="Statistics & Progress" loading="lazy"></div>
+        <div class="showcase-label">Statistics</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="4_AI-Food-Rater.png" alt="AI Meal Evaluation" loading="lazy"></div>
+        <div class="showcase-label">AI Meal Rating</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="5_Meal_History.png" alt="Meal History" loading="lazy"></div>
+        <div class="showcase-label">Meal History</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (RICH INTERACTIVE CARDS) -->
   <section class="features-section" id="features">
     <div class="section-header animate-on-scroll">
       <div class="section-tag">Features</div>
       <h2 class="section-title">Everything you need to reach your goals</h2>
-      <p class="section-subtitle">
-        From AI-powered meal scanning to smart insights, CalTracker gives you every tool to build lasting healthy habits.
-      </p>
+      <p class="section-subtitle">Powerful AI, clean tracking, and smart insights — all in one app.</p>
     </div>
 
-    <div class="features-layout">
+    <div class="features-grid">
 
-      <!-- ====== 5 WAYS TO TRACK (full-width) ====== -->
-      <div class="feature-card span-full animate-on-scroll" id="fc-methods">
-        <div class="feature-icon green">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12l3 3 5-5" stroke="white" stroke-width="2" fill="none"/></svg>
+      <!-- AI Food Scanner -->
+      <div class="fcard span-2 animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#128248; AI Food Scanner</h3>
+          <p>Snap a photo of your meal — AI detects every item with calorie and macro estimates.</p>
         </div>
-        <h3>5 Ways to Track Food</h3>
-        <p class="fdesc">Search a database of 1.4 million+ foods, snap a photo with AI, scan a barcode, quick-add calories, or pick from favourites.</p>
-        <div class="feature-demo">
-          <div class="demo-label">Choose a Method</div>
-          <div class="method-tabs" role="tablist" aria-label="Tracking methods">
-            <button class="method-tab active" type="button" data-method="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>Search</button>
-            <button class="method-tab" type="button" data-method="ai"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>AI Photo</button>
-            <button class="method-tab" type="button" data-method="barcode"><svg viewBox="0 0 24 24"><path d="M3 5v14"/><path d="M6 5v14"/><path d="M10 5v14"/><path d="M14 5v14"/><path d="M18 5v14"/><path d="M21 5v14"/></svg>Barcode</button>
-            <button class="method-tab" type="button" data-method="quick"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Quick Add</button>
-            <button class="method-tab" type="button" data-method="favs"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>Favourites</button>
-          </div>
-          <div class="method-preview active" data-method="search">
-            <div class="mp-icon" style="background:linear-gradient(135deg,var(--green),var(--green-light))"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-            <div><h4>Database Search</h4><p>Search over 1.4 million verified foods. Type a food name and get instant calorie and macro data with serving-size options.</p></div>
-          </div>
-          <div class="method-preview" data-method="ai">
-            <div class="mp-icon" style="background:linear-gradient(135deg,var(--orange),var(--orange-light))"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-            <div><h4>AI Photo Scanner</h4><p>Snap a photo of your meal and AI identifies every item, estimates portions, and logs calories and macros automatically. Free daily scans included.</p></div>
-          </div>
-          <div class="method-preview" data-method="barcode">
-            <div class="mp-icon" style="background:linear-gradient(135deg,var(--blue),#90CAF9)"><svg viewBox="0 0 24 24"><path d="M3 5v14"/><path d="M6 5v14"/><path d="M10 5v14"/><path d="M14 5v14"/><path d="M18 5v14"/><path d="M21 5v14"/></svg></div>
-            <div><h4>Barcode Scanner</h4><p>Point your camera at any packaged food. CalTracker reads the barcode and auto-fills exact nutrition info from its verified database.</p></div>
-          </div>
-          <div class="method-preview" data-method="quick">
-            <div class="mp-icon" style="background:linear-gradient(135deg,var(--pink),#F48FB1)"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <div><h4>Quick Add</h4><p>Know the calories already? Tap quick-add and enter the number directly. Perfect for restaurant meals or recipes you know by heart.</p></div>
-          </div>
-          <div class="method-preview" data-method="favs">
-            <div class="mp-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-            <div><h4>Favourites &amp; History</h4><p>One-tap logging for foods you eat regularly. CalTracker learns your habits and surfaces frequently used items at the top.</p></div>
+        <div class="fcard-demo">
+          <div class="scanner-demo">
+            <div class="scanner-results">
+              <div class="scanner-item">
+                <div class="scanner-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="scanner-name">Cheeseburger</div>
+                <div class="scanner-conf">85%</div>
+                <div class="scanner-kcal">520 kcal</div>
+              </div>
+              <div class="scanner-item">
+                <div class="scanner-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="scanner-name">French Fries</div>
+                <div class="scanner-conf">80%</div>
+                <div class="scanner-kcal">365 kcal</div>
+              </div>
+              <div class="scanner-item">
+                <div class="scanner-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div class="scanner-name">Dr Pepper (can)</div>
+                <div class="scanner-conf">100%</div>
+                <div class="scanner-kcal">150 kcal</div>
+              </div>
+            </div>
+            <div class="scanner-total">
+              <span>+ Add to Lunch</span>
+              <span>3 items &middot; 1035 kcal</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- ====== CALORIE RING ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-ring">
-        <div class="feature-icon orange">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M12 6v6l4 2"/></svg>
+      <!-- Calorie Ring -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#127793; Calorie Tracking</h3>
+          <p>See calories remaining with a color-coded progress ring.</p>
         </div>
-        <h3>Calorie Ring</h3>
-        <p class="fdesc">A colour-coded ring turns from green to orange to red as you approach or pass your daily goal.</p>
-        <div class="feature-demo">
-          <div class="cal-ring-row">
+        <div class="fcard-demo">
+          <div class="cal-demo">
             <div class="cal-ring-wrap">
               <svg class="cal-ring-svg" viewBox="0 0 120 120">
-                <circle class="cal-ring-bg" cx="60" cy="60" r="50"/>
-                <circle class="cal-ring-fill" cx="60" cy="60" r="50" stroke="var(--green)" stroke-dasharray="314.16" stroke-dashoffset="94.25"/>
+                <circle class="cal-ring-bg" cx="60" cy="60" r="45"/>
+                <circle class="cal-ring-fill" cx="60" cy="60" r="45" stroke="var(--green)"/>
               </svg>
-              <div class="cal-ring-center"><div class="cal-ring-num">1480</div><div class="cal-ring-lbl">/ 2100 kcal</div></div>
-            </div>
-            <div class="cal-ring-info">
-              <div class="cal-ring-stat"><span>Goal</span><span>2100 kcal</span></div>
-              <div class="cal-ring-stat"><span>Eaten</span><span>1480 kcal</span></div>
-              <div class="cal-ring-stat"><span>Remaining</span><span>620 kcal</span></div>
-              <div class="cal-btns">
-                <button class="cal-btn active" type="button" data-cal="1480">70%</button>
-                <button class="cal-btn" type="button" data-cal="1890">90%</button>
-                <button class="cal-btn" type="button" data-cal="2310">110%</button>
+              <div class="cal-ring-center">
+                <div class="cal-ring-num">1080</div>
+                <div class="cal-ring-lbl">left</div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ====== MACRO TRACKING ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-macros">
-        <div class="feature-icon pink">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        </div>
-        <h3>Macro Tracking</h3>
-        <p class="fdesc">Track protein, carbs, and fat against personalised targets. See breakdowns per meal category.</p>
-        <div class="feature-demo">
-          <div class="segment-group macro-periods" role="tablist" aria-label="Macro period">
-            <button class="segment-btn active" type="button" data-period="today">Today</button>
-            <button class="segment-btn" type="button" data-period="week">Week Avg</button>
-            <button class="segment-btn" type="button" data-period="goal">Goal</button>
-          </div>
-          <div class="macro-bars">
-            <div class="macro-bar-item"><div class="macro-label">Protein</div><div class="macro-bar-bg"><div class="macro-bar-fill protein" style="width:78%"></div></div><div class="macro-value" style="color:#42A5F5">142g</div></div>
-            <div class="macro-bar-item"><div class="macro-label">Carbs</div><div class="macro-bar-bg"><div class="macro-bar-fill carbs" style="width:62%"></div></div><div class="macro-value" style="color:#FF9800">186g</div></div>
-            <div class="macro-bar-item"><div class="macro-label">Fat</div><div class="macro-bar-bg"><div class="macro-bar-fill fat" style="width:55%"></div></div><div class="macro-value" style="color:#EC407A">58g</div></div>
-          </div>
-          <div class="meal-cats">
-            <span class="meal-cat"><span class="cdot" style="background:#4CAF50"></span>Breakfast</span>
-            <span class="meal-cat"><span class="cdot" style="background:#42A5F5"></span>Lunch</span>
-            <span class="meal-cat"><span class="cdot" style="background:#FF9800"></span>Dinner</span>
-            <span class="meal-cat"><span class="cdot" style="background:#EC407A"></span>Snacks</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ====== WATER TRACKING ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-water">
-        <div class="feature-icon blue">
-          <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
-        </div>
-        <h3>Water Tracking</h3>
-        <p class="fdesc">Quick-add glasses, set daily goals, and watch your hydration level rise.</p>
-        <div class="feature-demo">
-          <div class="water-row">
-            <div>
-              <div class="water-glass"><div class="water-glass-fill" style="height:60%"></div></div>
-            </div>
-            <div class="water-info">
-              <div class="water-amt">1500 <span style="font-size:.75rem;font-weight:400;color:var(--text-secondary)">/ 2500 ml</span></div>
-              <div class="water-goal-txt">60% of daily goal</div>
-              <div class="water-meter"><div class="water-meter-fill" style="width:60%"></div></div>
-              <div class="water-btns">
-                <button class="water-btn" type="button" data-ml="250">+250 ml</button>
-                <button class="water-btn" type="button" data-ml="500">+500 ml</button>
-                <button class="water-btn" type="button" data-ml="0">Reset</button>
-              </div>
+            <div class="cal-stats">
+              <div class="cal-stat-row"><span>Goal</span><span>1272 kcal</span></div>
+              <div class="cal-stat-row"><span>Eaten</span><span>192 kcal</span></div>
+              <div class="cal-stat-row"><span>Burned</span><span>+72 kcal</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ====== WEIGHT & GOALS ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-weight">
-        <div class="feature-icon green">
-          <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+      <!-- Macro Tracking -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#129385; Protein, Carbs &amp; Fat</h3>
+          <p>Track all three macros with animated progress bars against your targets.</p>
         </div>
-        <h3>Weight &amp; Goals</h3>
-        <p class="fdesc">Track weight, see BMI, and let CalTracker calculate your goal probability based on your trends.</p>
-        <div class="feature-demo">
-          <div class="weight-visual">
-            <div class="weight-current"><span class="weight-num">78.4</span><span class="weight-unit"> kg</span></div>
-            <div class="weight-trend-txt">&#8595; 1.6 kg in 4 weeks</div>
-            <div class="bmi-gauge"><div class="bmi-needle" style="left:38%"></div></div>
-            <div class="bmi-labels"><span>Under</span><span>Normal</span><span>Over</span><span>Obese</span></div>
-            <input class="weight-range" type="range" min="55" max="120" value="78.4" step="0.1" aria-label="Weight slider">
-            <div class="goal-prob">&#127919; 82% goal probability based on current trend</div>
+        <div class="fcard-demo">
+          <div class="macro-demo">
+            <div class="macro-row">
+              <div class="macro-label">Protein</div>
+              <div class="macro-track"><div class="macro-fill protein"></div></div>
+              <div class="macro-val" style="color:var(--blue)">14 / 166g</div>
+            </div>
+            <div class="macro-row">
+              <div class="macro-label">Carbs</div>
+              <div class="macro-track"><div class="macro-fill carbs"></div></div>
+              <div class="macro-val" style="color:var(--orange)">23 / 50g</div>
+            </div>
+            <div class="macro-row">
+              <div class="macro-label">Fat</div>
+              <div class="macro-track"><div class="macro-fill fat"></div></div>
+              <div class="macro-val" style="color:var(--pink)">4 / 31g</div>
+            </div>
+            <div class="macro-cats">
+              <span class="macro-cat"><span class="cdot" style="background:#42A5F5"></span>Breakfast</span>
+              <span class="macro-cat"><span class="cdot" style="background:#FF9800"></span>Lunch</span>
+              <span class="macro-cat"><span class="cdot" style="background:#7c3aed"></span>Dinner</span>
+              <span class="macro-cat"><span class="cdot" style="background:#EC407A"></span>Snacks</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- ====== AI DAILY SCORE ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-score">
-        <div class="feature-icon orange">
-          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <!-- AI Daily Evaluation -->
+      <div class="fcard span-2 animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#9889; AI Daily Evaluation</h3>
+          <p>Get a daily nutrition score from 0–100 with detailed AI feedback on what you nailed and what to improve.</p>
         </div>
-        <h3>AI Daily Score</h3>
-        <p class="fdesc">Get a 0-100 score each day with personalised tips on what to improve and what you nailed.</p>
-        <div class="feature-demo">
-          <div class="ai-score-row">
-            <div class="score-circle">
+        <div class="fcard-demo">
+          <div class="score-demo">
+            <div class="score-ring">
               <svg class="score-svg" viewBox="0 0 100 100">
-                <circle class="score-bg" cx="50" cy="50" r="42"/>
-                <circle class="score-fill" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="42.22"/>
+                <circle class="score-bg" cx="50" cy="50" r="36"/>
+                <circle class="score-fill" cx="50" cy="50" r="36" stroke="var(--orange)"/>
               </svg>
-              <div class="score-num"><strong>84</strong><small>Great</small></div>
+              <div class="score-center">
+                <strong>48</strong>
+                <small>Average</small>
+              </div>
             </div>
-            <div class="insight-cards">
-              <div class="insight-item strength">&#9989; Protein target exceeded by 12g</div>
-              <div class="insight-item strength">&#9989; Water goal completed</div>
-              <div class="insight-item improve">&#128161; Add 15g fibre to reach optimum</div>
+            <div class="score-insights">
+              <div class="score-insight good">&#9989; Strong calorie deficit (net 671 kcal)</div>
+              <div class="score-insight warn">&#128161; Protein only 36% of target (59g vs 166g)</div>
+              <div class="score-insight warn">&#128161; Carbs over 2.5x goal (134g vs 50g)</div>
             </div>
           </div>
-          <button class="mini-btn alt ai-rescore-btn" type="button" style="margin-top:10px">Recalculate Score</button>
         </div>
       </div>
 
-      <!-- ====== STREAK ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-streak">
-        <div class="feature-icon orange">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <!-- Steps & Activity -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#128694; Steps &amp; Activity</h3>
+          <p>Track calories burned from steps and workouts with health app sync.</p>
         </div>
-        <h3>Streak Tracker</h3>
-        <p class="fdesc">Stay consistent with daily logging streaks, achievements, and progress milestones.</p>
-        <div class="feature-demo">
-          <div class="streak-row">
+        <div class="fcard-demo">
+          <div class="steps-demo">
+            <div class="step-circle-wrap">
+              <svg class="step-circle-svg" viewBox="0 0 80 80">
+                <circle class="step-circle-bg" cx="40" cy="40" r="28"/>
+                <circle class="step-circle-fill" cx="40" cy="40" r="28"/>
+              </svg>
+              <div class="step-center">
+                <strong>1.7k</strong>
+                <small>steps</small>
+              </div>
+            </div>
+            <div class="steps-info">
+              <div class="steps-info-row"><span class="label">Burned</span><span class="value cal">72 kcal</span></div>
+              <div class="steps-info-row"><span class="label">Steps</span><span class="value">1,700</span></div>
+              <div class="steps-info-row"><span class="label">Goal</span><span class="value">10,000</span></div>
+              <div class="steps-info-row"><span class="label">Workouts</span><span class="value">0 today</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weight Chart -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#9878;&#65039; Weight &amp; Body Metrics</h3>
+          <p>Log weight, see trends over time, and track BMI with goal probability.</p>
+        </div>
+        <div class="fcard-demo">
+          <div class="weight-demo">
+            <div class="weight-header">
+              <div class="weight-val">82.8 <span>kg</span></div>
+              <div class="weight-trend">&#8595; 1.2 kg</div>
+            </div>
+            <svg class="weight-chart-svg" viewBox="0 0 300 60" preserveAspectRatio="none">
+              <path class="weight-area" d="M0,20 C30,22 60,18 90,24 C120,30 150,25 180,28 C210,22 240,26 270,24 C280,23 290,22 300,22 L300,60 L0,60 Z" fill="currentColor"/>
+              <path class="weight-line" d="M0,20 C30,22 60,18 90,24 C120,30 150,25 180,28 C210,22 240,26 270,24 C280,23 290,22 300,22"/>
+            </svg>
+            <div class="weight-bmi">
+              <div class="bmi-label">BMI</div>
+              <div class="bmi-bar"><div class="bmi-dot"></div></div>
+              <div class="bmi-label">27.1</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Weekly Statistics -->
+      <div class="fcard span-full animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#128202; Weekly Statistics</h3>
+          <p>See your week at a glance. Compare daily intake vs. your calorie goal with color-coded bars.</p>
+        </div>
+        <div class="fcard-demo">
+          <div class="week-demo">
+            <div class="week-bars">
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner ok wb-1"></div></div><div class="week-day">Mon</div></div>
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner under wb-2"></div></div><div class="week-day">Tue</div></div>
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner ok wb-3"></div></div><div class="week-day">Wed</div></div>
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner over wb-4"></div></div><div class="week-day">Thu</div></div>
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner ok wb-5"></div></div><div class="week-day">Fri</div></div>
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner under wb-6"></div></div><div class="week-day">Sat</div></div>
+              <div class="week-col"><div class="week-bar-outer"><div class="week-bar-inner ok wb-7"></div></div><div class="week-day">Sun</div></div>
+            </div>
+            <div class="week-legend">
+              <span><span class="ldot" style="background:var(--green)"></span>On Target</span>
+              <span><span class="ldot" style="background:var(--blue)"></span>Under</span>
+              <span><span class="ldot" style="background:var(--orange)"></span>Over</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Water Tracking -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#128167; Water Tracking</h3>
+          <p>Track daily hydration with quick-add buttons and visual progress.</p>
+        </div>
+        <div class="fcard-demo">
+          <div class="water-demo">
+            <div class="water-bottle"><div class="water-level"></div></div>
+            <div class="water-info">
+              <div class="water-val">1550 <span>/ 2500 ml</span></div>
+              <div class="water-pct">62% of daily goal</div>
+              <div class="water-track"><div class="water-track-fill"></div></div>
+              <div class="water-btns">
+                <button class="water-btn" type="button">+250ml</button>
+                <button class="water-btn" type="button">+500ml</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Streak -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#128293; Streaks &amp; AI Credits</h3>
+          <p>Build daily logging streaks. Track your AI scan credits.</p>
+        </div>
+        <div class="fcard-demo">
+          <div class="streak-demo">
             <div class="streak-fire">&#128293;</div>
-            <div><div class="streak-num">14</div><div class="streak-lbl">day streak</div></div>
-          </div>
-          <div class="streak-days">
-            <button class="streak-day active" type="button">M</button>
-            <button class="streak-day active" type="button">T</button>
-            <button class="streak-day active" type="button">W</button>
-            <button class="streak-day active" type="button">T</button>
-            <button class="streak-day active" type="button">F</button>
-            <button class="streak-day" type="button">S</button>
-            <button class="streak-day" type="button">S</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ====== STATISTICS ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-stats">
-        <div class="feature-icon blue">
-          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3>Statistics &amp; History</h3>
-        <p class="fdesc">Weekly, monthly, and yearly overviews with calorie deficit calculations and estimated weight loss.</p>
-        <div class="feature-demo">
-          <div class="demo-label">This Week</div>
-          <div class="week-chart">
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill ok" style="height:82%"></div></div><div class="week-day-lbl">M</div></div>
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill under" style="height:58%"></div></div><div class="week-day-lbl">T</div></div>
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill ok" style="height:91%"></div></div><div class="week-day-lbl">W</div></div>
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill over" style="height:105%"></div></div><div class="week-day-lbl">T</div></div>
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill ok" style="height:74%"></div></div><div class="week-day-lbl">F</div></div>
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill under" style="height:45%"></div></div><div class="week-day-lbl">S</div></div>
-            <div class="week-bar-wrap"><div class="week-bar"><div class="week-bar-fill ok" style="height:88%"></div></div><div class="week-day-lbl">S</div></div>
-          </div>
-          <div style="display:flex;gap:12px;font-size:.72rem;color:var(--text-secondary)">
-            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:3px;vertical-align:middle"></span>On Target</span>
-            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-right:3px;vertical-align:middle"></span>Under</span>
-            <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:3px;vertical-align:middle"></span>Over</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- ====== CLOUD SYNC ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-sync">
-        <div class="feature-icon purple">
-          <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
-        </div>
-        <h3>Cloud Sync &amp; Offline</h3>
-        <p class="fdesc">Your data syncs to the cloud and works offline. Switch devices without losing a single entry.</p>
-        <div class="feature-demo">
-          <div class="sync-visual">
-            <div class="sync-icon-big">&#9729;&#65039;</div>
-            <div class="sync-status-txt">All Data Synced</div>
-            <div class="sync-desc">Last sync: just now</div>
-            <div class="sync-toggle-row">
-              <span class="sync-toggle-lbl">Offline</span>
-              <div class="sync-toggle on" role="switch" aria-checked="true" tabindex="0"><div class="sync-toggle-knob"></div></div>
-              <span class="sync-toggle-lbl">Online</span>
+            <div class="streak-num">4</div>
+            <div class="streak-lbl">day streak</div>
+            <div class="streak-dots">
+              <div class="streak-dot done">M</div>
+              <div class="streak-dot done">T</div>
+              <div class="streak-dot done">W</div>
+              <div class="streak-dot done">T</div>
+              <div class="streak-dot">F</div>
+              <div class="streak-dot">S</div>
+              <div class="streak-dot">S</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ====== DASHBOARD ====== -->
-      <div class="feature-card animate-on-scroll" id="fc-dash">
-        <div class="feature-icon pink">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <!-- Cloud Sync -->
+      <div class="fcard animate-on-scroll">
+        <div class="fcard-body">
+          <h3>&#9729;&#65039; Cloud Sync &amp; Offline</h3>
+          <p>Works 100% offline. Syncs when you're online.</p>
         </div>
-        <h3>Custom Dashboard</h3>
-        <p class="fdesc">Rearrange widgets to build the dashboard that fits how you track. Show only what matters to you.</p>
-        <div class="feature-demo">
-          <div class="demo-label">Toggle Widgets</div>
-          <div class="dash-grid">
-            <div class="dash-widget active"><div class="dico">&#127950;</div>Calories</div>
-            <div class="dash-widget active"><div class="dico">&#128167;</div>Water</div>
-            <div class="dash-widget active"><div class="dico">&#9878;&#65039;</div>Weight</div>
-            <div class="dash-widget"><div class="dico">&#128293;</div>Streak</div>
-            <div class="dash-widget"><div class="dico">&#128202;</div>Stats</div>
-            <div class="dash-widget"><div class="dico">&#127775;</div>Score</div>
+        <div class="fcard-demo">
+          <div class="sync-demo">
+            <div class="sync-icon">&#9729;&#65039;</div>
+            <div class="sync-status">All Data Synced</div>
+            <div class="sync-sub">Last sync: just now</div>
+            <div class="sync-badges">
+              <span class="sync-badge on">&#10003; Meals</span>
+              <span class="sync-badge on">&#10003; Weight</span>
+              <span class="sync-badge on">&#10003; Favorites</span>
+              <span class="sync-badge on">&#10003; Profile</span>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- ====== PRICING (full-width) ====== -->
-      <div class="feature-card span-full animate-on-scroll" id="fc-pricing">
-        <div class="feature-icon green">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        </div>
-        <h3>Simple Pricing</h3>
-        <p class="fdesc">Start free with 20 lifetime AI calls. Upgrade for daily AI power, cloud sync, and premium models.</p>
-        <div class="feature-demo">
-          <div class="pricing-toggle">
-            <span class="pricing-toggle-lbl active" data-billing="monthly">Monthly</span>
-            <div class="sync-toggle" role="switch" aria-checked="false" tabindex="0" id="billing-toggle"><div class="sync-toggle-knob"></div></div>
-            <span class="pricing-toggle-lbl" data-billing="yearly">Yearly</span>
-            <span class="pricing-save">Save up to 37%</span>
-          </div>
-          <div class="pricing-cols">
-            <div class="pricing-col">
-              <div class="pricing-tier">Free</div>
-              <div class="pricing-price">&euro;0</div>
-              <div class="pricing-period">forever</div>
-              <ul class="pricing-features">
-                <li>20 lifetime AI calls</li>
-                <li>2 basic AI models</li>
-                <li>Calorie &amp; macro tracking</li>
-                <li>Water tracking</li>
-                <li>Weekly manual sync</li>
-                <li class="no">Web search</li>
-              </ul>
-            </div>
-            <div class="pricing-col">
-              <div class="pricing-tier">Plus</div>
-              <div class="pricing-price" data-monthly="&euro;2.49" data-yearly="&euro;19.99">&euro;2.49</div>
-              <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 33%)">/month</div>
-              <ul class="pricing-features">
-                <li>5 AI calls per day</li>
-                <li>2 basic AI models</li>
-                <li>Calorie &amp; macro tracking</li>
-                <li>Water tracking</li>
-                <li>Auto cloud sync</li>
-                <li class="no">Web search</li>
-              </ul>
-            </div>
-            <div class="pricing-col highlight">
-              <div class="pricing-tier">Pro</div>
-              <div class="pricing-price" data-monthly="&euro;7.99" data-yearly="&euro;59.99">&euro;7.99</div>
-              <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 37%)">/month</div>
-              <ul class="pricing-features">
-                <li>25 AI calls per day</li>
-                <li>All 7 AI models</li>
-                <li>Auto cloud sync</li>
-                <li>AI Daily Score &amp; insights</li>
-                <li>Web search for brands</li>
-                <li>Advanced statistics</li>
-              </ul>
-            </div>
-          </div>
-          <p class="pricing-tax-note">Prices exclude applicable taxes, which may vary by region.</p>
-        </div>
-      </div>
+    </div>
+  </section>
 
+  <!-- FEATURE SHOWCASE WITH SCREENSHOTS -->
+  <section class="feature-showcase">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">In Detail</div>
+      <h2 class="section-title">Designed to be simple</h2>
+    </div>
+
+    <!-- Row 1: AI Scanner -->
+    <div class="showcase-row animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Just snap a pic</h3>
+        <p>Point your camera at any meal. CalTracker's AI detects individual food items, estimates portions, and calculates calories and macros — all in seconds.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Detects multiple items in one photo</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Shows confidence percentage per item</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Full macro breakdown (P / C / F)</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Select or deselect items before logging</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="2_AI-Food-Tracker.png" alt="AI Food Scanner" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Row 2: Statistics -->
+    <div class="showcase-row reverse animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Track your progress</h3>
+        <p>See today's activity at a glance — calories burned from steps and workouts, step count with goals, and your weight trend over time.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Calories burned from steps + workouts</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Step counter with daily goal</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Weight chart with trend line</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Health Connect & Apple Health sync</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="3_Statistics.png" alt="Statistics and progress tracking" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Row 3: AI Evaluation -->
+    <div class="showcase-row animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Let AI rate your meals</h3>
+        <p>Get a personalized daily nutrition score from 0 to 100. See your energy balance, individual meal scores, and detailed category breakdowns.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Overall score with AI explanation</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Energy balance (consumed − burned = net)</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Individual meal scores</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Macros, Timing & Quality breakdown</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="4_AI-Food-Rater.png" alt="AI Evaluation score" loading="lazy"></div>
+      </div>
+    </div>
+
+    <!-- Row 4: History -->
+    <div class="showcase-row reverse animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Compare your meals</h3>
+        <p>Browse your full history with daily summaries. See averages, days on target, total meals, and compare your macro intake day by day.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Average calories per day</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Days on target counter</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Daily AI score per entry</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Color-coded calorie progress</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="5_Meal_History.png" alt="Meal history" loading="lazy"></div>
+      </div>
     </div>
   </section>
 
@@ -1736,58 +1232,96 @@
   <section class="how-section" id="how">
     <div class="section-header animate-on-scroll">
       <div class="section-tag">Get Started</div>
-      <h2 class="section-title">Ready in 3 simple steps</h2>
-      <p class="section-subtitle">
-        No complicated setup. Download, set your goals, and start tracking.
-      </p>
+      <h2 class="section-title">Ready in 3 steps</h2>
     </div>
-
-    <div class="journey-container animate-on-scroll">
-      <div class="journey-step">
-        <div class="journey-number">1</div>
-        <div class="journey-card">
-          <div class="journey-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          </div>
-          <h3>Download</h3>
-          <p>Get CalTracker on Android - it's free with daily AI usage included!</p>
-        </div>
+    <div class="steps-container animate-on-scroll">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Download</h3>
+        <p>Get CalTracker free on Android or iOS. No account required to start.</p>
       </div>
-
-      <div class="journey-step">
-        <div class="journey-number">2</div>
-        <div class="journey-card">
-          <div class="journey-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-          </div>
-          <h3>Set Goals</h3>
-          <p>Define your calorie and macro targets based on your personal goals.</p>
-        </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Set your goals</h3>
+        <p>Enter your weight, target, and activity level. CalTracker calculates your daily targets.</p>
       </div>
-
-      <div class="journey-step last">
-        <div class="journey-number">3</div>
-        <div class="journey-card">
-          <div class="journey-icon">
-            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-          </div>
-          <h3>Track!</h3>
-          <p>Log meals with AI, scan barcodes, track water, and watch your progress grow!</p>
-        </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Start tracking</h3>
+        <p>Log meals with AI, scan barcodes, track water and weight. Watch your progress grow.</p>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-subtitle">Start free. Upgrade when you need more AI power.</p>
+    </div>
+    <div class="animate-on-scroll">
+      <div class="pricing-toggle-wrap">
+        <span class="pricing-toggle-label active" data-billing="monthly">Monthly</span>
+        <div class="toggle-switch" id="billing-toggle" role="switch" aria-checked="false"><div class="toggle-knob"></div></div>
+        <span class="pricing-toggle-label" data-billing="yearly">Yearly</span>
+        <span class="save-badge">Save up to 37%</span>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <div class="pricing-tier">Free</div>
+          <div class="pricing-price">&euro;0</div>
+          <div class="pricing-period">forever</div>
+          <ul class="pricing-features">
+            <li><span class="dot"></span>20 lifetime AI scans</li>
+            <li><span class="dot"></span>2 basic AI models</li>
+            <li><span class="dot"></span>Full calorie & macro tracking</li>
+            <li><span class="dot"></span>Water & weight tracking</li>
+            <li><span class="dot"></span>1 daily evaluation (score only)</li>
+            <li><span class="dot"></span>Weekly manual sync</li>
+            <li class="disabled"><span class="dot"></span>Web search for brands</li>
+          </ul>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-tier">Plus</div>
+          <div class="pricing-price" data-monthly="&euro;2.49" data-yearly="&euro;19.99">&euro;2.49</div>
+          <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 33%)">/month</div>
+          <ul class="pricing-features">
+            <li><span class="dot"></span>5 AI scans per day</li>
+            <li><span class="dot"></span>2 AI models</li>
+            <li><span class="dot"></span>Full calorie & macro tracking</li>
+            <li><span class="dot"></span>Water & weight tracking</li>
+            <li><span class="dot"></span>3 daily evaluations with insights</li>
+            <li><span class="dot"></span>Auto cloud sync</li>
+            <li class="disabled"><span class="dot"></span>Web search for brands</li>
+          </ul>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-tier">Pro</div>
+          <div class="pricing-price" data-monthly="&euro;7.99" data-yearly="&euro;59.99">&euro;7.99</div>
+          <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 37%)">/month</div>
+          <ul class="pricing-features">
+            <li><span class="dot"></span>25 AI scans per day</li>
+            <li><span class="dot"></span>All 7 AI models</li>
+            <li><span class="dot"></span>Full calorie & macro tracking</li>
+            <li><span class="dot"></span>Water & weight tracking</li>
+            <li><span class="dot"></span>10 daily evaluations (full analysis)</li>
+            <li><span class="dot"></span>Auto cloud sync</li>
+            <li><span class="dot"></span>Web search for brands</li>
+          </ul>
+        </div>
+      </div>
+      <p class="pricing-tax">Prices exclude applicable taxes, which may vary by region.</p>
+    </div>
+  </section>
+
+  <!--
+  TESTIMONIALS (hidden until real reviews are collected)
   <section class="testimonials-section" id="reviews">
     <div class="section-header animate-on-scroll">
       <div class="section-tag">Reviews</div>
       <h2 class="section-title">Loved by users</h2>
-      <p class="section-subtitle">
-        See what people are saying about their experience with CalTracker.
-      </p>
     </div>
-
     <div class="testimonials-grid">
       <div class="testimonial-card animate-on-scroll">
         <div class="testimonial-stars">
@@ -1797,18 +1331,12 @@
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <p class="testimonial-text">
-          "The AI food scanner is incredibly accurate! I just take a photo of my meal and it logs everything automatically. Makes calorie tracking so much easier."
-        </p>
+        <p class="testimonial-text">"The AI food scanner is incredibly accurate. I snapped a photo of my lunch and it identified every item, even the drink can. Makes tracking so effortless."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">MK</div>
-          <div class="testimonial-info">
-            <h4>Maria K.</h4>
-            <span>Fitness Enthusiast</span>
-          </div>
+          <div class="testimonial-info"><h4>Maria K.</h4><span>Fitness Enthusiast</span></div>
         </div>
       </div>
-
       <div class="testimonial-card animate-on-scroll">
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1817,18 +1345,12 @@
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <p class="testimonial-text">
-          "I've tried many calorie trackers but CalTracker is the cleanest and most motivating one. The streak system keeps me consistent every single day."
-        </p>
+        <p class="testimonial-text">"The daily AI evaluation is a game-changer. Getting a score and seeing exactly where I need to improve keeps me motivated to eat better every day."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">TL</div>
-          <div class="testimonial-info">
-            <h4>Thomas L.</h4>
-            <span>Weight Loss Journey</span>
-          </div>
+          <div class="testimonial-info"><h4>Thomas L.</h4><span>Weight Loss Journey</span></div>
         </div>
       </div>
-
       <div class="testimonial-card animate-on-scroll">
         <div class="testimonial-stars">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -1837,44 +1359,31 @@
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <p class="testimonial-text">
-          "The statistics and deficit calculations are exactly what I needed. I can finally see how my daily choices add up over weeks and months."
-        </p>
+        <p class="testimonial-text">"Love the history view with all the stats. Seeing my average intake, days on target, and macro trends over weeks gives me real accountability."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">SR</div>
-          <div class="testimonial-info">
-            <h4>Sarah R.</h4>
-            <span>Nutrition Coach</span>
-          </div>
+          <div class="testimonial-info"><h4>Sarah R.</h4><span>Nutrition Coach</span></div>
         </div>
       </div>
     </div>
   </section>
+  -->
 
-  <!-- PLATFORMS -->
-  <section class="platforms-section" id="platforms">
+  <!-- DOWNLOAD -->
+  <section class="platforms-section" id="download">
     <div class="section-header animate-on-scroll">
       <div class="section-tag">Download</div>
       <h2 class="section-title">Get CalTracker</h2>
-      <p class="section-subtitle">
-        Available on Android. More platforms coming soon.
-      </p>
+      <p class="section-subtitle">Available on Android. iOS coming soon.</p>
     </div>
-
-    <div class="platform-icons animate-on-scroll">
-      <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="platform" style="text-decoration: none; color: inherit;">
-        <div class="platform-icon-wrapper">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
-        </div>
-        <span>Android</span>
-        <div class="platform-badge available">Available</div>
+    <div class="platform-buttons animate-on-scroll">
+      <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="platform-btn">
+        <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+        <div class="platform-btn-text"><small>Download on</small><strong>Google Play</strong></div>
       </a>
-      <div class="platform coming-soon">
-        <div class="platform-icon-wrapper">
-          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        </div>
-        <span>iOS</span>
-        <div class="platform-badge soon">Coming Soon</div>
+      <div class="platform-btn disabled">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/></svg>
+        <div class="platform-btn-text"><small>Coming soon on</small><strong>App Store</strong></div>
       </div>
     </div>
   </section>
@@ -1883,36 +1392,28 @@
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="caltracker_icon.png" alt="CalTracker">
-          <span>CalTracker</span>
-        </div>
-        <p>AI-powered nutrition tracking. Build healthier habits.</p>
+        <div class="footer-logo"><img src="caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></div>
+        <p>AI-powered calorie & nutrition tracking. Build healthier habits that actually stick.</p>
       </div>
-      
       <div class="footer-links">
         <h4>Product</h4>
         <a href="#features">Features</a>
-        <a href="#how">How it Works</a>
-        <a href="#reviews">Reviews</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#pricing">Pricing</a>
       </div>
-      
       <div class="footer-links">
         <h4>Legal</h4>
-        <a href="privacy-policy.html">Privacy</a>
-        <a href="terms-of-service.html">Terms</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
         <a href="delete-account.html">Delete Account</a>
-        <a href="data-deletion.html">Delete Data</a>
+        <a href="data-deletion.html">Data Deletion</a>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2026 CalTracker &middot; Made with <span>&hearts;</span></p>
-    </div>
+    <div class="footer-bottom"><p>&copy; 2026 CalTracker. All rights reserved.</p></div>
   </footer>
 
   <script>
-    // Theme Toggle
+    // Theme
     function toggleTheme() {
       const html = document.documentElement;
       if (html.getAttribute('data-theme') === 'dark') {
@@ -1923,205 +1424,67 @@
         localStorage.setItem('theme', 'dark');
       }
     }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
-    // Waitlist Mode — set to true while app is in pre-release
-    const WAITLIST_MODE = true;
+    // Waitlist mode
+    const WAITLIST_MODE = false;
     if (WAITLIST_MODE) document.body.classList.add('waitlist-mode');
 
-    // Scroll Animations
+    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-    // Navbar scroll effect
+    // Pricing toggle
+    const billingToggle = document.getElementById('billing-toggle');
+    if (billingToggle) {
+      const monthlyLbl = document.querySelector('[data-billing="monthly"]');
+      const yearlyLbl = document.querySelector('[data-billing="yearly"]');
+      billingToggle.addEventListener('click', () => {
+        billingToggle.classList.toggle('on');
+        const yearly = billingToggle.classList.contains('on');
+        billingToggle.setAttribute('aria-checked', yearly);
+        if (monthlyLbl) monthlyLbl.classList.toggle('active', !yearly);
+        if (yearlyLbl) yearlyLbl.classList.toggle('active', yearly);
+        const key = yearly ? 'yearly' : 'monthly';
+        document.querySelectorAll('.pricing-price[data-monthly]').forEach(el => el.textContent = el.dataset[key]);
+        document.querySelectorAll('.pricing-period[data-monthly]').forEach(el => el.textContent = el.dataset[key]);
+      });
+    }
+
+    // Navbar shadow on scroll
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
-      navbar.style.boxShadow = window.pageYOffset > 100 ? '0 4px 30px rgba(0,0,0,0.1)' : 'none';
+      navbar.style.boxShadow = window.pageYOffset > 50 ? 'var(--shadow-md)' : 'var(--shadow-sm)';
     });
 
-    // Feature interactions
+    // Interactive water buttons
     (() => {
-      /* ---- Method Tabs ---- */
-      const methodTabs = document.querySelectorAll('.method-tab');
-      const methodPreviews = document.querySelectorAll('.method-preview');
-      methodTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          methodTabs.forEach(t => t.classList.remove('active'));
-          methodPreviews.forEach(p => p.classList.remove('active'));
-          tab.classList.add('active');
-          const p = document.querySelector('.method-preview[data-method="' + tab.dataset.method + '"]');
-          if (p) p.classList.add('active');
-        });
-      });
+      let water = 1550;
+      const goal = 2500;
+      const val = document.querySelector('.water-val');
+      const pct = document.querySelector('.water-pct');
+      const fill = document.querySelector('.water-track-fill');
+      const level = document.querySelector('.water-level');
 
-      /* ---- Calorie Ring ---- */
-      const ringFill = document.querySelector('.cal-ring-fill');
-      const ringNum = document.querySelector('.cal-ring-num');
-      const ringLbl = document.querySelector('.cal-ring-lbl');
-      const ringStats = document.querySelectorAll('.cal-ring-stat span:last-child');
-      const calBtns = document.querySelectorAll('.cal-btn');
-      const GOAL = 2100, CIRC = 314.16;
-      function setRing(eaten) {
-        const pct = eaten / GOAL;
-        const offset = CIRC * (1 - Math.min(pct, 1));
-        ringFill.style.strokeDashoffset = offset;
-        ringFill.setAttribute('stroke', pct <= 0.75 ? 'var(--green)' : pct <= 1 ? 'var(--orange)' : '#f44336');
-        ringNum.textContent = eaten;
-        ringLbl.textContent = '/ ' + GOAL + ' kcal';
-        if (ringStats.length >= 3) {
-          ringStats[0].textContent = GOAL + ' kcal';
-          ringStats[1].textContent = eaten + ' kcal';
-          ringStats[2].textContent = Math.max(0, GOAL - eaten) + ' kcal';
-        }
+      function render() {
+        const p = Math.min(100, Math.round((water / goal) * 100));
+        if (val) val.innerHTML = water + ' <span>/ ' + goal + ' ml</span>';
+        if (pct) pct.textContent = p + '% of daily goal';
+        if (fill) fill.style.width = p + '%';
+        if (level) level.style.height = p + '%';
       }
-      calBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          calBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          setRing(Number(btn.dataset.cal));
-        });
-      });
 
-      /* ---- Macro Periods ---- */
-      const macroProfiles = {
-        today: [{ w: '78%', v: '142g' }, { w: '62%', v: '186g' }, { w: '55%', v: '58g' }],
-        week: [{ w: '71%', v: '131g' }, { w: '67%', v: '201g' }, { w: '61%', v: '64g' }],
-        goal: [{ w: '85%', v: '155g' }, { w: '70%', v: '210g' }, { w: '65%', v: '68g' }]
-      };
-      document.querySelectorAll('.macro-periods .segment-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          btn.parentElement.querySelectorAll('.segment-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const p = macroProfiles[btn.dataset.period];
-          const fills = document.querySelectorAll('#fc-macros .macro-bar-fill');
-          const vals = document.querySelectorAll('#fc-macros .macro-value');
-          fills.forEach((f, i) => { f.style.width = p[i].w; vals[i].textContent = p[i].v; });
-        });
-      });
-
-      /* ---- Water ---- */
-      let water = 1500; const waterGoal = 2500;
-      const wAmt = document.querySelector('.water-amt');
-      const wGlass = document.querySelector('.water-glass-fill');
-      const wMeter = document.querySelector('.water-meter-fill');
-      const wGoalTxt = document.querySelector('.water-goal-txt');
-      function renderWater() {
-        const pct = Math.min(100, Math.round((water / waterGoal) * 100));
-        if (wAmt) wAmt.innerHTML = water + ' <span style="font-size:.75rem;font-weight:400;color:var(--text-secondary)">/ ' + waterGoal + ' ml</span>';
-        if (wGlass) wGlass.style.height = pct + '%';
-        if (wMeter) wMeter.style.width = pct + '%';
-        if (wGoalTxt) wGoalTxt.textContent = pct + '% of daily goal';
-      }
       document.querySelectorAll('.water-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          const ml = Number(btn.dataset.ml);
-          water = ml === 0 ? 0 : Math.min(waterGoal, water + ml);
-          renderWater();
+          const ml = parseInt(btn.textContent.replace(/[^0-9]/g, ''));
+          water = Math.min(goal, water + ml);
+          render();
         });
       });
-
-      /* ---- Weight & BMI ---- */
-      const weightSlider = document.querySelector('.weight-range');
-      const weightNum = document.querySelector('.weight-num');
-      const bmiNeedle = document.querySelector('.bmi-needle');
-      const goalProb = document.querySelector('.goal-prob');
-      if (weightSlider) {
-        weightSlider.addEventListener('input', () => {
-          const w = Number(weightSlider.value);
-          weightNum.textContent = w.toFixed(1);
-          const bmi = w / (1.75 * 1.75);
-          const pct = Math.min(100, Math.max(0, ((bmi - 15) / 25) * 100));
-          if (bmiNeedle) bmiNeedle.style.left = pct + '%';
-          const prob = Math.max(20, Math.min(98, Math.round(82 + (78.4 - w) * 3)));
-          if (goalProb) goalProb.innerHTML = '&#127919; ' + prob + '% goal probability based on current trend';
-        });
-      }
-
-      /* ---- AI Score ---- */
-      const scoreFill = document.querySelector('.score-fill');
-      const scoreStrong = document.querySelector('.score-num strong');
-      const scoreSmall = document.querySelector('.score-num small');
-      const SCORE_CIRC = 263.89;
-      const scoreMsgs = [
-        { s: 84, r: 'Great', items: [{ t: 'Protein target exceeded by 12g', c: 'strength' }, { t: 'Water goal completed', c: 'strength' }, { t: 'Add 15g fibre to reach optimum', c: 'improve' }] },
-        { s: 72, r: 'Good', items: [{ t: 'Calorie goal nearly hit (96%)', c: 'strength' }, { t: 'Dinner was well-balanced', c: 'strength' }, { t: 'Morning hydration needs attention', c: 'improve' }] },
-        { s: 91, r: 'Excellent', items: [{ t: 'All macros within 5% of target', c: 'strength' }, { t: '3L water consumed', c: 'strength' }, { t: 'Try adding more variety to lunch', c: 'improve' }] },
-        { s: 63, r: 'Fair', items: [{ t: 'Hit protein goal exactly', c: 'strength' }, { t: 'Carbs exceeded by 30g', c: 'improve' }, { t: 'Consider lighter evening snacks', c: 'improve' }] }
-      ];
-      let scoreIdx = 0;
-      const rescoreBtn = document.querySelector('.ai-rescore-btn');
-      if (rescoreBtn) {
-        rescoreBtn.addEventListener('click', () => {
-          scoreIdx = (scoreIdx + 1) % scoreMsgs.length;
-          const m = scoreMsgs[scoreIdx];
-          const offset = SCORE_CIRC * (1 - m.s / 100);
-          if (scoreFill) scoreFill.style.strokeDashoffset = offset;
-          if (scoreStrong) scoreStrong.textContent = m.s;
-          if (scoreSmall) scoreSmall.textContent = m.r;
-          const cards = document.querySelector('.insight-cards');
-          if (cards) cards.innerHTML = m.items.map(i => '<div class="insight-item ' + i.c + '">' + (i.c === 'strength' ? '&#9989; ' : '&#128161; ') + i.t + '</div>').join('');
-        });
-      }
-
-      /* ---- Streak ---- */
-      const streakDays = document.querySelectorAll('.streak-day');
-      const streakNum = document.querySelector('.streak-num');
-      streakDays.forEach(d => {
-        d.addEventListener('click', () => {
-          d.classList.toggle('active');
-          const count = document.querySelectorAll('.streak-day.active').length;
-          if (streakNum) streakNum.textContent = count;
-        });
-      });
-
-      /* ---- Sync Toggle ---- */
-      const syncToggle = document.querySelector('#fc-sync .sync-toggle');
-      if (syncToggle) {
-        const icon = document.querySelector('.sync-icon-big');
-        const statusTxt = document.querySelector('.sync-status-txt');
-        const descTxt = document.querySelector('#fc-sync .sync-desc');
-        syncToggle.addEventListener('click', () => {
-          syncToggle.classList.toggle('on');
-          const online = syncToggle.classList.contains('on');
-          syncToggle.setAttribute('aria-checked', online);
-          if (icon) icon.textContent = online ? '\u2601\uFE0F' : '\u2708\uFE0F';
-          if (statusTxt) statusTxt.textContent = online ? 'All Data Synced' : 'Offline Mode';
-          if (descTxt) descTxt.textContent = online ? 'Last sync: just now' : 'Data saved locally. Will sync when online.';
-        });
-      }
-
-      /* ---- Dashboard Widgets ---- */
-      document.querySelectorAll('.dash-widget').forEach(w => {
-        w.addEventListener('click', () => w.classList.toggle('active'));
-      });
-
-      /* ---- Pricing Toggle ---- */
-      const billingToggle = document.querySelector('#billing-toggle');
-      if (billingToggle) {
-        const monthlyLbl = document.querySelector('[data-billing="monthly"]');
-        const yearlyLbl = document.querySelector('[data-billing="yearly"]');
-        billingToggle.addEventListener('click', () => {
-          billingToggle.classList.toggle('on');
-          const yearly = billingToggle.classList.contains('on');
-          billingToggle.setAttribute('aria-checked', yearly);
-          if (monthlyLbl) monthlyLbl.classList.toggle('active', !yearly);
-          if (yearlyLbl) yearlyLbl.classList.toggle('active', yearly);
-          const key = yearly ? 'yearly' : 'monthly';
-          document.querySelectorAll('.pricing-price[data-monthly]').forEach(el => el.textContent = el.dataset[key]);
-          document.querySelectorAll('.pricing-period[data-monthly]').forEach(el => el.textContent = el.dataset[key]);
-        });
-      }
     })();
   </script>
 
