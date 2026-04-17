@@ -2,6 +2,667 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"/>
+  <title>CalTracker - AI-Powered Calorie & Macro Tracking</title>
+  <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights. Snap a photo, get instant nutrition data.">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+  <link rel="icon" type="image/png" href="caltracker_icon.png">
+  <link rel="apple-touch-icon" href="caltracker_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    :root {
+      --bg: #ffffff; --bg-soft: #f7f8fa; --bg-muted: #f0f1f3;
+      --text: #1a1a1a; --text-secondary: #6b7280; --text-muted: #9ca3af;
+      --border: #e5e7eb; --border-light: #f3f4f6;
+      --green: #4CAF50; --orange: #FF9800; --blue: #42A5F5; --pink: #EC407A;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+      --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    [data-theme="dark"] {
+      --bg: #111111; --bg-soft: #1a1a1a; --bg-muted: #222222;
+      --text: #f5f5f5; --text-secondary: #a0a0a0; --text-muted: #666666;
+      --border: #2a2a2a; --border-light: #1f1f1f;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text);
+      overflow-x: hidden; -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+    /* ==================== NAVBAR ==================== */
+    .navbar {
+      position: fixed; top: 8px; left: 8px; right: 8px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      z-index: 1000; border: 1px solid var(--border-light);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+      margin-top: var(--safe-top); transition: all 0.3s;
+    }
+    [data-theme="dark"] .navbar { background: rgba(17,17,17,0.85); border-color: var(--border); }
+
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text); }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-logo span { font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--bg-soft);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .theme-toggle:active { transform: scale(0.9); }
+    .theme-toggle svg { width: 18px; height: 18px; stroke: var(--text-secondary); fill: none; stroke-width: 2; }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+
+    .nav-cta {
+      background: var(--text); color: var(--bg);
+      padding: 10px 18px; border-radius: var(--radius-sm);
+      text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .nav-cta:active { transform: scale(0.95); }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      min-height: 100svh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 90px 20px 40px; text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 50px;
+      font-size: 0.75rem; color: var(--text-secondary); font-weight: 500;
+      margin-bottom: 20px; animation: fadeUp 0.5s ease;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+
+    .hero h1 {
+      font-size: 2.2rem; font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 16px;
+      animation: fadeUp 0.6s ease;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--orange), #FFB74D);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;
+      margin-bottom: 28px; padding: 0 8px; max-width: 400px;
+      animation: fadeUp 0.7s ease;
+    }
+
+    .hero-actions {
+      display: flex; flex-direction: column; gap: 12px;
+      width: 100%; max-width: 320px; animation: fadeUp 0.8s ease;
+    }
+
+    .btn {
+      padding: 15px 24px; border-radius: var(--radius-sm);
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.2s; border: none; cursor: pointer;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 18px; height: 18px; }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+
+    .hero-phone {
+      margin-top: 36px; animation: fadeUp 0.9s ease;
+    }
+    .phone-frame {
+      width: 220px; border-radius: 28px; overflow: hidden;
+      box-shadow: var(--shadow-lg); background: var(--bg-soft); margin: 0 auto;
+    }
+    .phone-frame img { width: 100%; display: block; border-radius: 28px; }
+
+    /* ==================== STATS ==================== */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+      padding: 32px 20px; background: var(--bg-soft);
+      border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);
+    }
+    .stat-item {
+      text-align: center; padding: 18px 12px; border-radius: var(--radius-md);
+      background: var(--bg); border: 1px solid var(--border-light);
+    }
+    .stat-number { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 2px; }
+    .stat-label { font-size: 0.78rem; color: var(--text-secondary); font-weight: 500; }
+
+    /* ==================== SECTIONS ==================== */
+    section { padding: 60px 20px; }
+
+    .section-header { text-align: center; margin-bottom: 32px; }
+    .section-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+    .section-title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; line-height: 1.2; }
+    .section-subtitle { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ==================== SCREENSHOTS ==================== */
+    .showcase-section { background: var(--bg-soft); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .showcase-scroll {
+      display: flex; gap: 24px; padding: 0 20px 8px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .showcase-scroll::-webkit-scrollbar { display: none; }
+    .showcase-item {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 14px; flex-shrink: 0; scroll-snap-align: center;
+    }
+    .showcase-phone {
+      width: 180px; border-radius: 24px; overflow: hidden;
+      box-shadow: var(--shadow-md); background: var(--bg);
+    }
+    .showcase-phone img { width: 100%; display: block; border-radius: 24px; }
+    .showcase-label { font-size: 0.85rem; font-weight: 700; letter-spacing: -0.01em; }
+
+    /* ==================== FEATURE SHOWCASE (screenshot rows) ==================== */
+    .feature-showcase { padding: 60px 20px; }
+
+    .showcase-row { margin-bottom: 56px; }
+    .showcase-row:last-child { margin-bottom: 0; }
+    .showcase-row-text { margin-bottom: 28px; }
+    .showcase-row-text h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .showcase-row-text p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-bottom: 18px; }
+    .showcase-row-text ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .showcase-row-text li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--text-secondary); font-weight: 500;
+    }
+    .check {
+      width: 22px; height: 22px; min-width: 22px; border-radius: 6px;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .check svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 2.5; }
+    .showcase-row-img { display: flex; justify-content: center; }
+    .showcase-row-img .phone-frame { width: 240px; }
+
+    /* ==================== HOW IT WORKS ==================== */
+    .how-section { background: var(--bg-soft); }
+
+    .step-card {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: var(--bg); border: 1px solid var(--border-light);
+      border-radius: var(--radius-md); padding: 20px; margin-bottom: 12px;
+    }
+    .step-num {
+      width: 36px; height: 36px; min-width: 36px; border-radius: 10px;
+      background: var(--text); color: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem; font-weight: 800;
+    }
+    .step-text h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .step-text p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ==================== PRICING ==================== */
+    .pricing-section { padding: 60px 20px; }
+
+    .pricing-toggle-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .pricing-toggle-label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
+    .pricing-toggle-label.active { color: var(--text); }
+    .toggle-switch {
+      width: 44px; height: 24px; background: var(--border); border-radius: 12px;
+      position: relative; cursor: pointer; transition: background 0.2s;
+    }
+    .toggle-switch.on { background: var(--text); }
+    .toggle-knob {
+      width: 18px; height: 18px; background: var(--bg); border-radius: 50%;
+      position: absolute; top: 3px; left: 3px; transition: transform 0.2s;
+    }
+    .toggle-switch.on .toggle-knob { transform: translateX(20px); }
+    .save-badge {
+      font-size: 0.7rem; font-weight: 700; color: var(--green);
+      background: rgba(76,175,80,0.1); padding: 4px 10px; border-radius: 6px;
+    }
+
+    .pricing-card {
+      background: var(--bg-soft); border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg); padding: 28px 24px; margin-bottom: 14px;
+      transition: all 0.2s;
+    }
+    .pricing-card.featured { border-color: var(--text); position: relative; }
+    .pricing-card.featured::before {
+      content: 'Most Popular'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: var(--text); color: var(--bg); font-size: 0.68rem; font-weight: 700;
+      padding: 3px 12px; border-radius: 6px; white-space: nowrap;
+    }
+    .pricing-tier { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .pricing-price { font-size: 2rem; font-weight: 900; letter-spacing: -0.02em; }
+    .pricing-period { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px; }
+    .pricing-features { list-style: none; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; color: var(--text-secondary); padding: 6px 0;
+    }
+    .pricing-features li.disabled { opacity: 0.4; text-decoration: line-through; }
+    .pricing-features .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+    }
+    .pricing-features li.disabled .dot { background: var(--text-muted); }
+    .pricing-tax { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 16px; }
+
+    /* ==================== DOWNLOAD ==================== */
+    .download-section { background: var(--bg-soft); text-align: center; }
+    .download-section .section-subtitle { margin-bottom: 28px; }
+
+    .platform-btn {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: var(--text); color: var(--bg); padding: 16px 28px;
+      border-radius: var(--radius-sm); text-decoration: none; margin-bottom: 12px;
+      transition: all 0.2s; width: 100%; max-width: 300px; margin-left: auto; margin-right: auto;
+    }
+    .platform-btn:active { transform: scale(0.97); }
+    .platform-btn svg { width: 24px; height: 24px; fill: var(--bg); flex-shrink: 0; }
+    .platform-btn-text { text-align: left; }
+    .platform-btn-text small { font-size: 0.68rem; opacity: 0.7; display: block; }
+    .platform-btn-text strong { font-size: 0.95rem; }
+    .platform-btn.disabled {
+      background: var(--bg-muted); color: var(--text-muted);
+      border: 1px solid var(--border-light); cursor: default;
+    }
+    .platform-btn.disabled svg { fill: var(--text-muted); }
+    .platform-btn.disabled:active { transform: none; }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      padding: 40px 20px 28px; border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .footer-logo {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; margin-bottom: 8px;
+    }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .footer-logo span { font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; }
+    .footer-tagline { color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 20px; }
+    .footer-links {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 16px; margin-bottom: 20px;
+    }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; font-weight: 500; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); padding-bottom: var(--safe-bottom); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="caltracker_icon.png" alt="CalTracker">
+      <span>CalTracker</span>
+    </a>
+    <div class="nav-right">
+      <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </div>
+      <a href="#download" class="nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><span class="dot"></span>Available on Android &amp; iOS</div>
+    <h1>Track calories<br>with <span class="accent">AI power.</span></h1>
+    <p class="hero-sub">Snap a photo of your meal and let AI do the rest. Track calories, macros, weight, steps, and get daily AI evaluations.</p>
+    <div class="hero-actions">
+      <a href="#download" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Free
+      </a>
+      <a href="#screenshots" class="btn btn-outline">See Screenshots</a>
+    </div>
+    <div class="hero-phone">
+      <div class="phone-frame">
+        <img src="1_Homescreen.png" alt="CalTracker Home Screen" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item animate-on-scroll">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Ways to log food</div>
+    </div>
+    <div class="stat-item animate-on-scroll">
+      <div class="stat-number">AI</div>
+      <div class="stat-label">Photo scanning</div>
+    </div>
+    <div class="stat-item animate-on-scroll">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Offline capable</div>
+    </div>
+    <div class="stat-item animate-on-scroll">
+      <div class="stat-number">Free</div>
+      <div class="stat-label">Daily AI usage</div>
+    </div>
+  </div>
+
+  <!-- APP SCREENSHOTS -->
+  <section class="showcase-section" id="screenshots">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">App Preview</div>
+      <h2 class="section-title">See CalTracker in action</h2>
+      <p class="section-subtitle">A clean interface that makes nutrition tracking effortless.</p>
+    </div>
+    <div class="showcase-scroll animate-on-scroll">
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="1_Homescreen.png" alt="Home Screen" loading="lazy"></div>
+        <div class="showcase-label">Home Dashboard</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="2_AI-Food-Tracker.png" alt="AI Food Scanner" loading="lazy"></div>
+        <div class="showcase-label">AI Food Scanner</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="3_Statistics.png" alt="Statistics" loading="lazy"></div>
+        <div class="showcase-label">Statistics</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="4_AI-Food-Rater.png" alt="AI Evaluation" loading="lazy"></div>
+        <div class="showcase-label">AI Meal Rating</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="5_Meal_History.png" alt="Meal History" loading="lazy"></div>
+        <div class="showcase-label">Meal History</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE SHOWCASE WITH SCREENSHOTS -->
+  <section class="feature-showcase" id="features">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">In Detail</div>
+      <h2 class="section-title">Designed to be simple</h2>
+    </div>
+
+    <div class="showcase-row animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Just snap a pic</h3>
+        <p>Point your camera at any meal. CalTracker's AI detects individual food items, estimates portions, and calculates calories and macros — all in seconds.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Detects multiple items in one photo</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Shows confidence percentage per item</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Full macro breakdown (P / C / F)</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Select or deselect items before logging</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="2_AI-Food-Tracker.png" alt="AI Food Scanner" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="showcase-row animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Track your progress</h3>
+        <p>See today's activity at a glance — calories burned from steps and workouts, step count with goals, and your weight trend over time.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Calories burned from steps + workouts</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Step counter with daily goal</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Weight chart with trend line</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Health Connect &amp; Apple Health sync</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="3_Statistics.png" alt="Statistics" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="showcase-row animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Let AI rate your meals</h3>
+        <p>Get a personalized daily nutrition score from 0 to 100. See your energy balance, individual meal scores, and detailed category breakdowns.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Overall score with AI explanation</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Energy balance (consumed &minus; burned = net)</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Individual meal scores</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Macros, Timing &amp; Quality breakdown</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="4_AI-Food-Rater.png" alt="AI Evaluation" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="showcase-row animate-on-scroll">
+      <div class="showcase-row-text">
+        <h3>Compare your meals</h3>
+        <p>Browse your full history with daily summaries. See averages, days on target, total meals, and compare your macro intake day by day.</p>
+        <ul>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Average calories per day</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Days on target counter</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Daily AI score per entry</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Color-coded calorie progress</li>
+        </ul>
+      </div>
+      <div class="showcase-row-img">
+        <div class="phone-frame"><img src="5_Meal_History.png" alt="Meal History" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">Get Started</div>
+      <h2 class="section-title">Ready in 3 steps</h2>
+    </div>
+
+    <div class="step-card animate-on-scroll">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <h3>Download</h3>
+        <p>Get CalTracker free on Android or iOS. No account required to start.</p>
+      </div>
+    </div>
+    <div class="step-card animate-on-scroll">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <h3>Set your goals</h3>
+        <p>Enter your weight, target, and activity level. CalTracker calculates your daily targets.</p>
+      </div>
+    </div>
+    <div class="step-card animate-on-scroll">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <h3>Start tracking</h3>
+        <p>Log meals with AI, scan barcodes, track water and weight. Watch your progress grow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-subtitle">Start free. Upgrade when you need more AI power.</p>
+    </div>
+
+    <div class="animate-on-scroll">
+      <div class="pricing-toggle-wrap">
+        <span class="pricing-toggle-label active" data-billing="monthly">Monthly</span>
+        <div class="toggle-switch" id="billing-toggle" role="switch" aria-checked="false"><div class="toggle-knob"></div></div>
+        <span class="pricing-toggle-label" data-billing="yearly">Yearly</span>
+        <span class="save-badge">Save up to 37%</span>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price">&euro;0</div>
+        <div class="pricing-period">forever</div>
+        <ul class="pricing-features">
+          <li><span class="dot"></span>20 lifetime AI scans</li>
+          <li><span class="dot"></span>2 basic AI models</li>
+          <li><span class="dot"></span>Full calorie &amp; macro tracking</li>
+          <li><span class="dot"></span>Water &amp; weight tracking</li>
+          <li><span class="dot"></span>1 daily evaluation (score only)</li>
+          <li><span class="dot"></span>Weekly manual sync</li>
+          <li class="disabled"><span class="dot"></span>Web search for brands</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Plus</div>
+        <div class="pricing-price" data-monthly="&euro;2.49" data-yearly="&euro;19.99">&euro;2.49</div>
+        <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 33%)">/month</div>
+        <ul class="pricing-features">
+          <li><span class="dot"></span>5 AI scans per day</li>
+          <li><span class="dot"></span>2 AI models</li>
+          <li><span class="dot"></span>Full calorie &amp; macro tracking</li>
+          <li><span class="dot"></span>Water &amp; weight tracking</li>
+          <li><span class="dot"></span>3 daily evaluations with insights</li>
+          <li><span class="dot"></span>Auto cloud sync</li>
+          <li class="disabled"><span class="dot"></span>Web search for brands</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price" data-monthly="&euro;7.99" data-yearly="&euro;59.99">&euro;7.99</div>
+        <div class="pricing-period" data-monthly="/month" data-yearly="/year (save 37%)">/month</div>
+        <ul class="pricing-features">
+          <li><span class="dot"></span>25 AI scans per day</li>
+          <li><span class="dot"></span>All 7 AI models</li>
+          <li><span class="dot"></span>Full calorie &amp; macro tracking</li>
+          <li><span class="dot"></span>Water &amp; weight tracking</li>
+          <li><span class="dot"></span>10 daily evaluations (full analysis)</li>
+          <li><span class="dot"></span>Auto cloud sync</li>
+          <li><span class="dot"></span>Web search for brands</li>
+        </ul>
+      </div>
+
+      <p class="pricing-tax">Prices exclude applicable taxes, which may vary by region.</p>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-section" id="download">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">Download</div>
+      <h2 class="section-title">Get CalTracker</h2>
+      <p class="section-subtitle">Available on Android. iOS coming soon.</p>
+    </div>
+    <div class="animate-on-scroll">
+      <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="platform-btn">
+        <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+        <div class="platform-btn-text"><small>Download on</small><strong>Google Play</strong></div>
+      </a>
+      <div class="platform-btn disabled">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/></svg>
+        <div class="platform-btn-text"><small>Coming soon on</small><strong>App Store</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <img src="caltracker_icon.png" alt="CalTracker">
+      <span>CalTracker</span>
+    </div>
+    <p class="footer-tagline">AI-powered calorie &amp; nutrition tracking.</p>
+    <div class="footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-of-service.html">Terms of Service</a>
+      <a href="delete-account.html">Delete Account</a>
+      <a href="data-deletion.html">Data Deletion</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 CalTracker. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Theme
+    function toggleTheme() {
+      const h = document.documentElement;
+      if (h.getAttribute('data-theme') === 'dark') { h.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { h.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+    // Pricing toggle
+    const billingToggle = document.getElementById('billing-toggle');
+    if (billingToggle) {
+      const monthlyLbl = document.querySelector('[data-billing="monthly"]');
+      const yearlyLbl = document.querySelector('[data-billing="yearly"]');
+      billingToggle.addEventListener('click', () => {
+        billingToggle.classList.toggle('on');
+        const yearly = billingToggle.classList.contains('on');
+        billingToggle.setAttribute('aria-checked', yearly);
+        if (monthlyLbl) monthlyLbl.classList.toggle('active', !yearly);
+        if (yearlyLbl) yearlyLbl.classList.toggle('active', yearly);
+        const key = yearly ? 'yearly' : 'monthly';
+        document.querySelectorAll('.pricing-price[data-monthly]').forEach(el => el.textContent = el.dataset[key]);
+        document.querySelectorAll('.pricing-period[data-monthly]').forEach(el => el.textContent = el.dataset[key]);
+      });
+    }
+
+    // Navbar shadow
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      navbar.style.boxShadow = window.pageYOffset > 50 ? 'var(--shadow-md)' : 'var(--shadow-sm)';
+    });
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
   <title>CalTracker - AI-Powered Calorie & Macro Tracking</title>
   <meta name="description" content="CalTracker helps you track calories, macros, and weight with AI-powered insights.">
