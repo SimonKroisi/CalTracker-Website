@@ -660,6 +660,43 @@
       const navbar = document.querySelector('.navbar');
       navbar.style.boxShadow = window.pageYOffset > 50 ? 'var(--shadow-md)' : 'var(--shadow-sm)';
     });
+
+    // ---- Conversion tracking (GA4 events) ----
+    (function () {
+      function track(name, params) {
+        if (typeof gtag === 'function') gtag('event', name, params || {});
+      }
+
+      function storeFromHref(href) {
+        if (!href) return null;
+        if (href.indexOf('play.google.com') !== -1) return 'google_play';
+        if (href.indexOf('apps.apple.com') !== -1) return 'app_store';
+        return null;
+      }
+
+      function placementOf(link) {
+        if (link.closest('.platforms-section') || link.closest('#download')) return 'download_section';
+        if (link.closest('.navbar')) return 'nav';
+        return 'other';
+      }
+
+      // App store download clicks
+      document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          track('app_download_click', {
+            store: storeFromHref(link.getAttribute('href')),
+            placement: placementOf(link)
+          });
+        });
+      });
+
+      // Waitlist CTA clicks
+      document.querySelectorAll('a[href*="waitlist"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          track('waitlist_cta_click', { placement: placementOf(link) });
+        });
+      });
+    })();
   </script>
 
 </body>

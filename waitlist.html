@@ -967,6 +967,11 @@
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
+        // GA4 conversion event helper
+        function trackConversion(name, params) {
+            if (typeof gtag === 'function') gtag('event', name, params || {});
+        }
+
         function showError(message) {
             const errorElement = document.getElementById('errorMessage');
             const emailInput = document.getElementById('email');
@@ -1030,6 +1035,9 @@
                     source: 'website'
                 });
 
+                trackConversion('sign_up', { method: 'waitlist' });
+                trackConversion('waitlist_signup', { source: 'website' });
+
                 localStorage.setItem('caltracker_waitlistEmail', email);
                 createConfetti();
                 form.style.display = 'none';
@@ -1069,6 +1077,7 @@
         const shareText = 'Just joined the CalTracker waitlist! AI-powered calorie and macro tracking. Join me:';
 
         document.getElementById('shareNative').addEventListener('click', async function() {
+            trackConversion('share', { method: navigator.share ? 'native' : 'clipboard', content_type: 'waitlist' });
             if (navigator.share) {
                 try {
                     await navigator.share({ title: 'CalTracker - Join the Waitlist', text: shareText, url: shareUrl });
@@ -1080,6 +1089,7 @@
         });
 
         document.getElementById('copyLink').addEventListener('click', function() {
+            trackConversion('share', { method: 'copy_link', content_type: 'waitlist' });
             navigator.clipboard.writeText(shareUrl).then(() => {
                 const btn = this;
                 btn.classList.add('copied');
