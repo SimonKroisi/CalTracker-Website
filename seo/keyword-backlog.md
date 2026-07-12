@@ -27,7 +27,7 @@
 | best calorie counting app free / best free calorie tracker app | T1 | medium | "reddit" variants show forum-weight SERP = winnable | queued |
 | best calorie tracker without subscription | T3 | easy | Perfect differentiator match (usable free tier) | queued |
 | calorie tracker without account / without login | T4 | easy | ~~Exact differentiator match~~ — INVALID as of 2026-07-13, CalTracker now requires an account, do not target | skip |
-| best offline calorie tracker | T4 | easy | Differentiator match | queued |
+| best offline calorie tracker | T4 | easy | Partial match only — CalTracker has no offline food database (quick add/history/cached barcodes only, see product-context.md). Don't write this as a #1 claim; position honestly or skip. | queued |
 | best food scanner app / food calorie scanner app | T2 | medium | | idea |
 | best calorie counting app for weight loss | T2 | medium | | idea |
 | best macro tracking app | T2 | medium | Concede MacroFactor strengths honestly | idea |
@@ -45,6 +45,7 @@
 | myfitnesspal vs lose it | T3 | medium | | idea |
 | cal ai vs snapcalorie | T4 | easy | | idea |
 | yazio vs lifesum | T3 | easy | EU-angle | idea |
+| yazio vs caltracker | T4 | easy | Own the SERP; YAZIO now researched (product-context.md-equivalent detail in the roundup post) — concede fasting/EU-database, lead with price + AI-model choice | idea |
 
 ## Informational (cluster support — expect impressions, not clicks)
 
@@ -60,3 +61,4 @@
 
 - 2026-07-12: Seeded from Google autocomplete (12 seeds, note: run with `&gl=us&hl=en` next time — this run had EU bias) + live SERP scan. GSC has no data for blog yet (no blog until today); re-run discovery against GSC after ~4 weeks of data.
 - 2026-07-13: Correction — CalTracker removed anonymous/no-account mode (account now mandatory at onboarding, confirmed by Simon). Retired the "without account/login" backlog row and stripped the claim from product-context.md, rules.md, llms.txt, the post template, both write skills, and the published roundup post. See change-log.md.
+- 2026-07-13: Correction #2 — "fully offline" was also overstated (no offline food database; confirmed by Simon). Downgraded the "best offline calorie tracker" row to a partial-match caution note. Also added YAZIO to the published roundup (fasting/EU-focused competitor, worth its own future "yazio vs caltracker" comparison — added as idea below) and repositioned CalTracker to #3 in that post, grounded in fresh competitor research. See change-log.md.

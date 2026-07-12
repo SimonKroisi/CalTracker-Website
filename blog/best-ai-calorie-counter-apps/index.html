@@ -70,7 +70,7 @@
     "headline": "The Best AI Calorie Counter Apps in 2026, Compared Honestly",
     "description": "We compared the AI photo calorie trackers people actually shortlist — Cal AI, MyFitnessPal, SnapCalorie, Lose It! and CalTracker — on price, free tiers, and accuracy.",
     "datePublished": "2026-07-12",
-    "dateModified": "2026-07-12",
+    "dateModified": "2026-07-13",
     "author": { "@type": "Organization", "name": "CalTracker", "url": "https://caltracker.eu/" },
     "publisher": {
       "@type": "Organization",
@@ -86,11 +86,12 @@
     "@context": "https://schema.org",
     "@type": "ItemList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "CalTracker — best value and privacy" },
-      { "@type": "ListItem", "position": 2, "name": "Cal AI — the mainstream pick" },
-      { "@type": "ListItem", "position": 3, "name": "MyFitnessPal Premium+ — biggest food database" },
-      { "@type": "ListItem", "position": 4, "name": "SnapCalorie — portion-measurement focus" },
-      { "@type": "ListItem", "position": 5, "name": "Lose It! — budget classic with photo logging" }
+      { "@type": "ListItem", "position": 1, "name": "Cal AI — the mainstream pick" },
+      { "@type": "ListItem", "position": 2, "name": "MyFitnessPal Premium+ — biggest food database" },
+      { "@type": "ListItem", "position": 3, "name": "CalTracker — best value for AI logging" },
+      { "@type": "ListItem", "position": 4, "name": "YAZIO — best for European users and fasting" },
+      { "@type": "ListItem", "position": 5, "name": "SnapCalorie — portion-measurement focus" },
+      { "@type": "ListItem", "position": 6, "name": "Lose It! — budget classic, thin free tier" }
     ]
   }
   </script>
@@ -102,12 +103,12 @@
       {
         "@type": "Question",
         "name": "How accurate are AI calorie counters?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Good AI photo scanners typically land within 10–20% of the true calorie count for common meals, and do worse on mixed dishes, sauces, and unusual portions. That's accurate enough for weight management — daily consistency matters more than per-meal precision — but always review and edit the AI's guess when it looks off." }
+        "acceptedAnswer": { "@type": "Answer", "text": "It varies more than marketing pages admit. Independent tests put photo-AI error somewhere between about 10% and 20% for clearly visible meals, worse for mixed dishes, hidden fats, and unusual portions — one widely cited test caught a leading app misidentifying a piece of fruit entirely. Consistency matters more than any single estimate: always glance at the AI's guess before saving." }
       },
       {
         "@type": "Question",
         "name": "Is there a good free AI calorie counter?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Fully free unlimited AI photo scanning doesn't really exist because every scan costs the developer real compute money. CalTracker includes a limited number of free AI scans plus free unlimited barcode scanning, database search, and manual logging; most competitors put photo AI entirely behind a subscription." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Free unlimited AI photo scanning doesn't really exist because every scan costs the developer real compute money. In this roundup, only CalTracker (limited free scans) and SnapCalorie (3 free photo logs/day) offer any free AI photo logging at all — Cal AI, MyFitnessPal, YAZIO, and Lose It! all gate it entirely behind a paid tier." }
       },
       {
         "@type": "Question",
@@ -117,7 +118,12 @@
       {
         "@type": "Question",
         "name": "Do AI calorie apps work offline?",
-        "acceptedAnswer": { "@type": "Answer", "text": "AI photo analysis itself needs an internet connection in every app on this list, because the image is processed on servers. The difference is what happens to the rest of the app: CalTracker keeps all core tracking (manual logging, history, statistics, water, weight) fully usable offline, while several competitors need a connection for most screens." }
+        "acceptedAnswer": { "@type": "Answer", "text": "AI photo analysis needs an internet connection everywhere on this list — it runs on servers. CalTracker is the only app here with any offline capability beyond that: quick add, editing entries, water, weight, history, and previously-cached barcodes work without a connection, though there's no offline food database, so a fresh barcode or a database search still needs internet." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is YAZIO good for intermittent fasting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — YAZIO's built-in fasting tracker (16:8, 5:2, 6:1 and other presets) is generally considered the strongest of any mainstream calorie app, enough that reviewers note it can replace a separate fasting app entirely. It's a PRO feature, not included free." }
       }
     ]
   }
@@ -236,62 +242,69 @@
   <main class="post">
     <span class="post-tag">Roundup</span>
     <h1>The Best AI Calorie Counter Apps in 2026, Compared Honestly</h1>
-    <p class="post-meta">By the CalTracker team · Updated <time datetime="2026-07-12">July 12, 2026</time> · 9 min read</p>
+    <p class="post-meta">By the CalTracker team · Updated <time datetime="2026-07-13">July 13, 2026</time> · 11 min read</p>
 
     <div class="tldr">
-      <p><strong>TL;DR:</strong> If you want the cheapest genuinely good AI photo tracker with a fully offline core, use <strong>CalTracker</strong> (yes, that's us — bias disclosed below, facts checkable). If you want the app everyone on TikTok uses, <strong>Cal AI</strong>. If database size beats everything for you, <strong>MyFitnessPal Premium+</strong>. For portion-measurement nerdery, <strong>SnapCalorie</strong>. On a strict budget with photo logging as a bonus, <strong>Lose It!</strong>.</p>
+      <p><strong>TL;DR:</strong> For most people the two mainstream defaults are <strong>Cal AI</strong> (the app everyone's seen on TikTok, now owned by MyFitnessPal) or <strong>MyFitnessPal Premium+</strong> (unmatched food database). If you want AI photo logging without a subscription pushing toward $100/year and don't mind a smaller database and no offline food search, <strong>CalTracker</strong> (yes, that's us — bias disclosed below, facts checkable) is the value pick. <strong>YAZIO</strong> is strongest for European users and anyone doing intermittent fasting. <strong>SnapCalorie</strong>'s portion-estimation angle is interesting but the accuracy evidence is mixed. <strong>Lose It!</strong> is cheapest but its free tier no longer includes barcode scanning or photo logging.</p>
     </div>
 
     <p>AI photo logging went from gimmick to the default way people start calorie tracking in about two years. The pitch is identical everywhere — point your camera at the plate, get calories and macros — but the apps differ enormously in price, free-tier honesty, and what happens after the photo.</p>
 
-    <p>One disclosure before the list: <strong>we build CalTracker</strong>, one of the apps below. We've kept every claim about competitors verifiable (pricing checked on their own pages, July 2026) and we tell you plainly what they do better than us. Decide on the facts.</p>
+    <p>One disclosure before the list: <strong>we build CalTracker</strong>, one of the six apps below — currently our own #3 pick, not #1, because staying honest here matters more than flattering ourselves. Every competitor claim is sourced: pricing checked on vendor pages, accuracy and complaint patterns drawn from independent reviews and user reports, all checked July 2026.</p>
 
     <h2>The comparison at a glance</h2>
     <div class="table-wrap">
       <table>
-        <tr><th>App</th><th>Photo AI</th><th>Price (as of July 2026)</th><th>Free tier</th><th>Offline core</th></tr>
-        <tr><td><strong>CalTracker</strong></td><td>Yes, choice of AI models</td><td>Plus €2.49/mo · €19.99/yr; Pro €7.99/mo · €59.99/yr</td><td>All core tracking free forever + limited AI scans</td><td>✅</td></tr>
-        <tr><td>Cal AI</td><td>Yes</td><td>~$9.99/mo · $29.99/yr</td><td>3-day trial (card required)</td><td>❌</td></tr>
-        <tr><td>MyFitnessPal</td><td>Yes (Premium+ only)</td><td>Premium ~$19.99/mo; Premium+ ~$24.99/mo · $99.99/yr</td><td>Manual logging (barcode scan paywalled)</td><td>❌</td></tr>
-        <tr><td>SnapCalorie</td><td>Yes, 3D portion estimation</td><td>~$8.99/mo</td><td>Limited</td><td>❌</td></tr>
-        <tr><td>Lose It!</td><td>Yes (Snap It)</td><td>~$39.99/yr</td><td>Solid manual tracking</td><td>❌</td></tr>
+        <tr><th>App</th><th>Photo AI</th><th>Price (as of July 2026)</th><th>Free tier</th></tr>
+        <tr><td>Cal AI</td><td>Yes</td><td>~$9.99/mo · $29.99/yr list (dynamic — some users report different offers)</td><td>3-day trial, card required</td></tr>
+        <tr><td>MyFitnessPal</td><td>Yes (Premium+ only)</td><td>Premium ~$19.99/mo · $79.99/yr; Premium+ ~$24.99/mo · $99.99/yr</td><td>Manual logging only — barcode scan paywalled</td></tr>
+        <tr><td><strong>CalTracker</strong></td><td>Yes, choice of AI models</td><td>Plus €2.49/mo · €19.99/yr; Pro €7.99/mo · €59.99/yr</td><td>All core tracking free forever + limited AI scans</td></tr>
+        <tr><td>YAZIO</td><td>Yes (PRO only)</td><td>PRO ~$6.99/mo · $47.90/yr (promo pricing sometimes lower)</td><td>Manual logging + water only — barcode, AI, fasting all PRO-only</td></tr>
+        <tr><td>SnapCalorie</td><td>Yes, 3D portion estimation</td><td>~$8.99/mo</td><td>3 free photo logs/day</td></tr>
+        <tr><td>Lose It!</td><td>Yes (Snap It, Premium only)</td><td>~$39.99/yr</td><td>Text/manual search only — barcode and Snap It both paywalled</td></tr>
       </table>
     </div>
     <p class="note">Competitor prices are US App Store list prices checked July 2026; regional pricing and promos vary. If you spot an outdated number, tell us at caltracker.app@gmail.com and we'll fix it.</p>
 
-    <h2>1. CalTracker — best value and privacy</h2>
-    <p><strong>Best for:</strong> people who want AI photo logging without a $100/year subscription.</p>
-    <p>CalTracker gives you five ways to log — AI photo scan, barcode scanner, food database search (FatSecret + OpenFoodFacts), quick add, and one-tap favorites — plus water, weight, and step tracking via Apple Health / Health Connect. The AI part is unusual in two ways: you can <strong>choose the AI model</strong> (faster vs. more accurate) and edit the food description before analysis, which fixes most bad guesses. At the end of the day an <strong>AI evaluation scores your whole day</strong> from 0–100, not just individual meals.</p>
-    <p>The feature nobody else on this list has: a <strong>fully offline core</strong>, so logging, history, and statistics work on a plane or in a dead zone once you're signed in (the AI scanner itself needs internet, as it does in every app here). Signing up takes a few taps via email, Google, or Apple.</p>
-    <p><strong>Price:</strong> free forever for all core tracking with a limited number of free AI scans; Plus is €2.49/month or €19.99/year; Pro (more scans, best models, web-search recognition for branded products) is €7.99/month or €59.99/year.</p>
-    <p><strong>Honest drawback:</strong> no micronutrient tracking (protein, carbs, and fat only — if you need vitamin-level detail, Cronometer is the specialist), no recipes or meal plans, and the food database is smaller than MyFitnessPal's.</p>
-
-    <h2>2. Cal AI — the mainstream pick</h2>
+    <h2>1. Cal AI — the mainstream pick</h2>
     <p><strong>Best for:</strong> people who want the most popular option and don't mind paying for it.</p>
-    <p>Cal AI is the app that made photo calorie counting famous — built by two teenagers, 15M+ downloads, and <a href="https://techcrunch.com/2026/03/02/myfitnesspal-has-acquired-cal-ai-the-viral-calorie-app-built-by-teens/" target="_blank" rel="noopener noreferrer">acquired by MyFitnessPal in March 2026</a>. It's fast, polished, and since the acquisition it taps MyFitnessPal's food database, which noticeably helped branded-food recognition.</p>
-    <p><strong>Price:</strong> around $9.99/month or $29.99/year.</p>
-    <p><strong>Honest drawback:</strong> there's no real free tier — the 3-day trial requires payment details upfront, which is the single most common complaint in its reviews. And after the acquisition, it's no longer the scrappy independent alternative; it's MyFitnessPal's second brand.</p>
+    <p>Cal AI is the app that made photo calorie counting famous — built by two teenagers, 15M+ downloads, and <a href="https://techcrunch.com/2026/03/02/myfitnesspal-has-acquired-cal-ai-the-viral-calorie-app-built-by-teens/" target="_blank" rel="noopener noreferrer">acquired by MyFitnessPal in March 2026</a>. It's fast and polished, and since the acquisition it taps MyFitnessPal's food database, which noticeably helped branded-food recognition.</p>
+    <p><strong>Price:</strong> listed around $9.99/month or $29.99/year, but pricing is reportedly dynamic — <a href="https://nutriscan.app/blog/posts/cal-ai-pricing-2026-monthly-yearly-premium-abc6e7b26f" target="_blank" rel="noopener noreferrer">reviewers note different users see different offers</a>, and the price isn't shown until after a multi-step onboarding quiz.</p>
+    <p><strong>Honest drawback:</strong> there's no real free tier — the 3-day trial requires payment details upfront, which alongside the opaque/dynamic pricing is the most common complaint in its reviews. On accuracy, <a href="https://nutrola.app/en/blog/cal-ai-review-2026" target="_blank" rel="noopener noreferrer">independent testing has been mixed</a> — strong on simple, clearly visible meals, but Reddit users in r/loseit and r/caloriecount report it consistently undercounting meals with hidden fats, oils, or dressings.</p>
 
-    <h2>3. MyFitnessPal Premium+ — biggest food database</h2>
+    <h2>2. MyFitnessPal Premium+ — biggest food database</h2>
     <p><strong>Best for:</strong> people who eat lots of branded and restaurant food and want everything findable.</p>
-    <p>MyFitnessPal's moat is the database: over 20 million foods and hundreds of restaurant chains. Its AI photo logging (Meal Scan) and voice logging live in the <strong>Premium+</strong> tier. If you can find literally everything you eat by search, the AI matters less — and nobody beats MFP at findability.</p>
-    <p><strong>Price:</strong> Premium ~$19.99/month or $79.99/year; Premium+ ~$24.99/month or $99.99/year.</p>
-    <p><strong>Honest drawback:</strong> it's the most expensive path to AI logging on this list, and the free tier has been progressively stripped — barcode scanning moved behind the paywall in 2022. The crowdsourced database is huge but noisy; independent checks have found significant error rates in user-submitted entries.</p>
+    <p>MyFitnessPal's moat is the database: over 20 million foods and hundreds of restaurant chains. Its AI photo logging (Meal Scan) and voice logging live in the <strong>Premium+</strong> tier. If you can find literally everything you eat by search, the AI matters less — and nobody beats MFP at findability. (It's also Cal AI's parent company now, if you're weighing the two.)</p>
+    <p><strong>Price:</strong> Premium ~$19.99/month or $79.99/year; Premium+ ~$24.99/month or $99.99/year — the most expensive path to AI logging on this list.</p>
+    <p><strong>Honest drawback:</strong> the free tier has been progressively stripped — barcode scanning moved behind the paywall in 2022, a change with immediate and intense user backlash. The crowdsourced database is huge but noisy: <a href="https://www.amyfoodjournal.com/blog/myfitnesspal-review" target="_blank" rel="noopener noreferrer">reviewers and Reddit's r/loseit routinely warn</a> that duplicate entries for the same food carry wildly different calorie counts, and independent nutrient-accuracy checks have found meaningful errors in user-submitted data.</p>
 
-    <h2>4. SnapCalorie — portion-measurement focus</h2>
+    <h2>3. CalTracker — best value for AI logging</h2>
+    <p><strong>Best for:</strong> people who want AI photo logging without a subscription pushing toward $100/year, and don't mind a smaller database and no offline food search.</p>
+    <p>CalTracker gives you five ways to log — AI photo scan, barcode scanner, food database search (FatSecret + OpenFoodFacts), quick add, and one-tap favorites — plus water, weight, and step tracking via Apple Health / Health Connect. The AI part is unusual in two ways: you can <strong>choose the AI model</strong> (faster vs. more accurate) and edit the food description before analysis, which fixes most bad guesses. At the end of the day an <strong>AI evaluation scores your whole day</strong> from 0–100, not just individual meals.</p>
+    <p>The offline story is real but modest, worth being precise about: once you're signed in (a free account via email, Google, or Apple is required at onboarding — no guest mode), quick add, editing entries, water, weight, and history/stats all work with zero connection, and a barcode you've already scanned before stays recognizable offline too. There's no offline food database, though — a fresh barcode, a database search, or an AI photo scan all need a connection, same as every app here.</p>
+    <p><strong>Price:</strong> free forever for all core tracking with a limited number of free AI scans; Plus is €2.49/month or €19.99/year; Pro (more scans, best models, web-search recognition for branded products) is €7.99/month or €59.99/year.</p>
+    <p><strong>Honest drawback:</strong> no micronutrient tracking (protein, carbs, and fat only — if you need vitamin-level detail, Cronometer is the specialist), no recipes, meal plans, or fasting tools (YAZIO below wins there), and the food database is smaller than MyFitnessPal's.</p>
+
+    <h2>4. YAZIO — best for European users and fasting</h2>
+    <p><strong>Best for:</strong> European users who want strong local food coverage, or anyone doing intermittent fasting.</p>
+    <p>YAZIO has 50M+ downloads and a <a href="https://nutrola.app/en/blog/yazio-review-2026" target="_blank" rel="noopener noreferrer">4.7/5 Trustpilot rating from over 5,000 reviews</a> — the strongest reputation of any app in this roundup. Its standout feature is intermittent fasting: built-in timers with 16:8, 5:2, 6:1 and other presets that reviewers say are good enough to replace a separate fasting app entirely. PRO also adds 2,900+ recipes and noticeably better European food coverage than the US-centric competitors here.</p>
+    <p><strong>Price:</strong> PRO is listed around $6.99/month or $47.90/year, with <a href="https://nutriscan.app/blog/posts/yazio-pricing-2026-free-vs-pro-what-pro-unlocks-33b26f8fc7" target="_blank" rel="noopener noreferrer">promo pricing sometimes dropping the annual price to around $38</a>; a 7-day free trial gives full PRO access.</p>
+    <p><strong>Honest drawback:</strong> the free tier is thin — barcode scanning, AI photo logging, and the fasting tracker are all PRO-only, so free users get basic manual entry and water tracking and not much else. Food coverage outside Europe is weaker, and reviewers flag notifications as aggressive.</p>
+
+    <h2>5. SnapCalorie — portion-measurement focus</h2>
     <p><strong>Best for:</strong> people whose main frustration is portion size, not food identification.</p>
-    <p>SnapCalorie's angle is scientific: it uses 3D portion estimation to judge <em>how much</em> food is on the plate, which is where most photo AI actually fails. When it works, volume-heavy meals (rice bowls, pasta) get more realistic numbers.</p>
+    <p>SnapCalorie's angle is scientific: it uses 3D portion estimation to judge <em>how much</em> food is on the plate, which is where most photo AI actually fails. It's also one of only two apps in this roundup with any free AI photo logging at all — 3 photo logs per day, no ads.</p>
     <p><strong>Price:</strong> around $8.99/month.</p>
-    <p><strong>Honest drawback:</strong> independent accuracy tests have been mixed — the 3D approach helps some meals and hurts others — and the app around the scanner (history, insights, general tracking UX) is thinner than the rest of this list.</p>
+    <p><strong>Honest drawback:</strong> accuracy evidence is genuinely contested — <a href="https://macaron.im/blog/best-ai-calorie-counter-apps" target="_blank" rel="noopener noreferrer">one source rates it meaningfully better than most photo trackers</a> at roughly ±15% error, while another independent test put it as the least accurate AI tracker measured, at ±19.8% MAPE versus Cal AI's ±14.6%. We're not going to pretend that's resolved — try the free tier yourself before paying. The app around the scanner (history, insights, general tracking UX) is also thinner than the rest of this list.</p>
 
-    <h2>5. Lose It! — budget classic with photo logging</h2>
-    <p><strong>Best for:</strong> people who mostly want a proven weight-loss tracker and treat photo AI as a bonus.</p>
-    <p>Lose It! has been doing structured weight-loss tracking for over a decade, and its Snap It feature adds photo-based logging on top of a mature, friendly app with strong goal-setting and progress features.</p>
-    <p><strong>Price:</strong> premium is about $39.99/year — the cheapest US-priced subscription here after CalTracker.</p>
-    <p><strong>Honest drawback:</strong> the AI is the least central to the product; if photo logging is your primary workflow rather than an occasional shortcut, the apps above do it better.</p>
+    <h2>6. Lose It! — budget classic, thinner free tier than it looks</h2>
+    <p><strong>Best for:</strong> people who mostly want a proven weight-loss tracker and treat photo AI as an occasional bonus, not the main workflow.</p>
+    <p>Lose It! has been doing structured weight-loss tracking for over a decade, with strong goal-setting and progress features. Its Snap It photo-logging feature was one of the first AI scanners on the market.</p>
+    <p><strong>Price:</strong> premium is about $39.99/year — the cheapest subscription among the paid options here, though CalTracker's free tier and €2.49/month Plus still undercut it.</p>
+    <p><strong>Honest drawback:</strong> the free tier is thinner than it first appears — it's text and manual search only, with <strong>both barcode scanning and Snap It (photo AI) gated behind Premium</strong>. And Snap It itself, being an early entrant, <a href="https://nutrola.app/en/blog/is-there-a-better-app-than-lose-it" target="_blank" rel="noopener noreferrer">hasn't kept pace with newer AI loggers</a> on mixed plates and non-Western meals per recent comparisons.</p>
 
     <h2>How accurate is any of this?</h2>
-    <p>Set expectations: a good AI scanner gets common meals within roughly 10–20% of the truth, does well on distinct items (an apple, a burger, packaged foods), and struggles with stews, casseroles, cooking oil, and anything where portion depth is invisible. Two practical consequences:</p>
+    <p>Set expectations, and don't fully trust any single number: independent tests put photo-AI error somewhere between roughly 10% and 20% for clearly visible meals, and MAPE figures for the same apps vary meaningfully between testers (SnapCalorie alone has been rated both "meaningfully better than most" and "the least accurate" in different tests). Every app struggles with stews, casseroles, cooking oil, and anything where portion depth or hidden fat is invisible — Cal AI and Lose It!'s Snap It both draw specific Reddit complaints about undercounting for exactly this reason. Two practical consequences:</p>
     <ul>
       <li><strong>Always glance at the estimate before saving.</strong> Apps that let you edit the description or portion (CalTracker, SnapCalorie) recover from bad guesses; apps that don't, compound them.</li>
       <li><strong>Consistency beats precision.</strong> A tracker that's 15% off in the same direction every day still shows you an accurate <em>trend</em>, which is what weight management actually runs on.</li>
@@ -299,26 +312,28 @@
     <p>And before any app can help, you need a calorie target to track against — our free <a href="/tools/calorie-calculator/">calorie &amp; TDEE calculator</a> computes one with the same Mifflin-St Jeor formula the CalTracker app uses, no sign-up.</p>
 
     <h2>How we picked</h2>
-    <p>We included apps where AI photo logging is a shipping, central feature (not a beta toggle), checked every price on the vendor's own page in July 2026, and drew accuracy characterizations from independent published tests plus our own development experience building a food-recognition pipeline. We excluded apps we couldn't verify. CalTracker's facts come from our own spec sheet; everything else links to primary sources where a claim could be contested.</p>
+    <p>We included apps where AI photo logging is a shipping, central feature (not a beta toggle), checked every price on the vendor's own page in July 2026, and cross-checked accuracy and complaint patterns against independent reviews and user reports (Reddit's r/loseit and r/caloriecount, published test comparisons) rather than relying on vendor marketing. Where sources disagreed — SnapCalorie's accuracy, most notably — we said so instead of picking the number that sounded better. CalTracker ranks third, not first: honesty about our own limitations (smaller database, no offline food search, no fasting tools) mattered more to us than a flattering self-review. CalTracker's own facts come from our internal spec sheet; every competitor claim links to a primary source where one could be contested.</p>
 
     <section class="faq">
       <h2>FAQ</h2>
       <h3>How accurate are AI calorie counters?</h3>
-      <p>Within about 10–20% on common meals, worse on mixed dishes and hidden fats. Good enough for trend-based weight management if you review each estimate before saving.</p>
+      <p>Roughly 10–20% off on clearly visible meals in most independent tests, worse on mixed dishes and hidden fats — though the exact figures vary by tester and even contradict each other for some apps (see the accuracy section above). Good enough for trend-based weight management if you review each estimate before saving.</p>
       <h3>Is there a good free AI calorie counter?</h3>
-      <p>Unlimited free photo AI doesn't exist sustainably — every scan costs the developer server money. CalTracker's free tier includes limited AI scans plus unlimited free barcode/database/manual logging; most competitors gate photo AI entirely behind a subscription.</p>
+      <p>Free unlimited photo AI doesn't exist sustainably — every scan costs the developer server money. In this roundup, only CalTracker (limited free scans) and SnapCalorie (3 free photo logs/day) offer any free AI photo logging; Cal AI, MyFitnessPal, YAZIO, and Lose It! all gate it entirely behind a paid tier.</p>
       <h3>Did MyFitnessPal really buy Cal AI?</h3>
       <p>Yes, announced March 2026. Cal AI continues as a separate app, now using MyFitnessPal's food database.</p>
       <h3>Do AI calorie apps work offline?</h3>
-      <p>Photo analysis needs internet everywhere (it runs on servers). The difference is the rest of the app: CalTracker keeps all core tracking usable offline; the others largely don't.</p>
+      <p>Photo analysis needs internet everywhere (it runs on servers). CalTracker is the only app here with any other offline capability: quick add, editing entries, water, weight, history, and previously-cached barcodes work without a connection — but there's no offline food database, so a fresh barcode or search still needs internet.</p>
+      <h3>Is YAZIO good for intermittent fasting?</h3>
+      <p>Yes — its built-in fasting tracker (16:8, 5:2, 6:1, and other presets) is generally considered the strongest of any mainstream calorie app, enough to replace a standalone fasting app for most people. It's a PRO feature, not included free.</p>
     </section>
 
-    <p class="disclaimer">This article is general information, not medical or nutrition advice. Calorie needs are individual — consult a doctor or registered dietitian before starting a diet, especially with any medical condition or history of disordered eating. We build CalTracker; competitor prices and features were verified on their official pages in July 2026 and may have changed since.</p>
+    <p class="disclaimer">This article is general information, not medical or nutrition advice. Calorie needs are individual — consult a doctor or registered dietitian before starting a diet, especially with any medical condition or history of disordered eating. We build CalTracker; competitor prices, features, and accuracy claims were checked against official pages and independent reviews in July 2026 and may have changed since.</p>
 
     <div class="cta-box">
       <img src="/caltracker_icon.png" alt="CalTracker app icon">
-      <h2>Try the honest one on the list</h2>
-      <p>AI photo logging from €2.49/month — or free with limited scans. Free forever for core tracking, works offline.</p>
+      <h2>Curious about the value pick?</h2>
+      <p>AI photo logging from €2.49/month — or free with limited scans. Free forever for core tracking; logs offline too.</p>
       <div class="cta-actions">
         <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="store-btn">
           <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>

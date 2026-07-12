@@ -376,9 +376,10 @@ CalTracker requires a free account to use the app. Sign up during onboarding wit
 | Auto-Sync | ❌ | ✅ | ✅ |
 | Manual Sync | 1x per week | Unlimited | Unlimited |
 
-### 📴 Full Offline Mode
-CalTracker works **100% offline** for core features:
-- ✅ Add & edit meals
+### 📴 Partial Offline Mode
+CalTracker has no offline food database, but core logging and history work without internet:
+- ✅ Quick add (manual calorie/macro entry) and editing existing meals
+- ✅ Barcode scan — only for barcodes already cached from an earlier lookup
 - ✅ Track water intake
 - ✅ Log weight
 - ✅ View history & statistics
@@ -386,8 +387,8 @@ CalTracker works **100% offline** for core features:
 
 **Features requiring internet:**
 - ❌ AI food scanner (cloud processing)
-- ❌ Barcode lookup (online database)
-- ❌ Database search (online food API)
+- ❌ New (uncached) barcode lookups — pulls from the online OpenFoodFacts database
+- ❌ Database search — no offline food database
 - ❌ Cloud sync
 
 **Auto-recovery:** When connection is restored, the app automatically syncs all pending changes.
@@ -595,7 +596,7 @@ CalTracker works **100% offline** for core features:
 1. **5 ways to track food** (Search, AI Photo, Barcode, Quick Add, Favorites)
 2. **AI-powered nutrition analysis** with 7 model options
 3. **Free tier covers all core tracking**
-4. **Full offline functionality**
+4. **Offline logging** (quick add, history, water, weight — no offline food database)
 5. **Daily AI evaluation** with personalized insights
 6. **Customizable dashboard** with drag-and-drop widgets
 

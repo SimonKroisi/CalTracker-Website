@@ -41,7 +41,7 @@
 
 ## Differentiators to lead with (all true, all verifiable)
 
-1. **Works 100% offline** for core tracking once signed in (AI scanner, barcode lookup, database search, and sync need internet).
+1. **Partial offline logging** once signed in: quick add, editing existing entries, water, weight, history/statistics all work without internet. Barcode scanning works offline only for barcodes already cached from an earlier lookup — there is no offline food database, so fresh barcode lookups, database search, and AI photo scanning all require a connection. Real but modest edge — don't oversell as "fully offline."
 2. **Cheap**: Plus **€2.49/mo or €19.99/yr**; Pro **€7.99/mo or €59.99/yr**. Undercuts MyFitnessPal Premium (~$19.99/mo), Cal AI (~$9.99/mo), Cronometer Gold (~$10.99/mo). Free tier is genuinely usable (all core tracking free forever).
 3. **Choice of AI models** for photo scanning (speed vs accuracy) instead of one black box.
 4. **Daily AI evaluation** — scores the whole day, not just individual meals.
@@ -70,6 +70,7 @@
 ## Never claim (features CalTracker does NOT have)
 
 - ❌ **No-account / anonymous / guest mode** — REMOVED as of 2026-07-13. Account creation (email, Google, or Apple) is now mandatory at onboarding; there is no skip option. Do not describe CalTracker as "no sign-up" or "works without an account" anywhere.
+- ❌ **"Fully offline" / "100% offline" / "offline core" as a blanket claim** — CORRECTED as of 2026-07-13. There is no offline food database: database search never works offline, and barcode scanning only works offline for previously-cached barcodes (fresh lookups need internet, same as AI scanning). Only say specifically what works offline: quick add, editing entries, water, weight, history/stats, and cached-barcode rescans.
 - ❌ Micronutrient / vitamin / mineral tracking
 - ❌ Recipes, meal plans, or recipe import
 - ❌ Intermittent fasting timers

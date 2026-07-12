@@ -12,7 +12,7 @@
 |-----|------------|--------------------------------------------------|-------------------|
 | MyFitnessPal | Market leader, 20M+ food database | Premium ~$19.99/mo · $79.99/yr; Premium+ ~$24.99/mo adds AI Meal Scan | Barcode scan paywalled since 2022 — recurring user complaint; acquired Cal AI (reported March 2026 — verify before citing) |
 | Cal AI | Viral AI photo tracker | ~$9.99/mo · $29.99/yr, 3-day trial requiring card | Our most direct AI rival; active "cal ai vs X" SERP space |
-| YAZIO | EU-strong, fasting tracker | ~$23.90/yr promo pricing | Best European food coverage; barcode free |
+| YAZIO | EU-strong, best-in-class fasting tracker | PRO ~$6.99/mo · $47.90/yr list (promo sometimes ~$38/yr) | Best European food coverage; free tier is thin — barcode, AI photo, and fasting are all PRO-only (corrected 2026-07-13, was previously listed as free) |
 | Cronometer | Accuracy/micronutrients (84 nutrients, lab-verified) | Gold ~$10.99/mo · $59.99/yr | Concede micros to them; we don't track micros |
 | Lose It! | Weight-loss focus, Snap It photo logging | ~$39.99/yr | |
 | MacroFactor | Adaptive TDEE algorithm, lifter audience | subscription-only (~$71.99/yr) | Strong Reddit reputation |
@@ -42,5 +42,5 @@ Big-media sites in the same SERPs (their presence = hard, aim for long-tail vari
 ## Standing observations
 
 - The "cal ai vs [anything]" space is active and monetizable — autocomplete shows myfitnesspal, macrofactor, cronometer, snapcalorie, lose it, mynetdiary.
-- "without subscription / without ads / offline" modifier space has weak dedicated content and matches CalTracker's genuine differentiators. ("without account" no longer applies — CalTracker requires an account as of 2026-07-13, see product-context.md Never-claim list.)
+- "without subscription / without ads" modifier space has weak dedicated content and matches CalTracker's genuine differentiators. ("without account" no longer applies — CalTracker requires an account as of 2026-07-13. "Offline" is only a partial match — no offline food database, see product-context.md Never-claim list before targeting either.)
 - Several SEO competitors have /compare/ URL factories — per our rules we do NOT copy that (no programmatic SEO); we write each comparison by hand.

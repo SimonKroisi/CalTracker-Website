@@ -19,7 +19,7 @@ Same pre-flight, bookkeeping, and page mechanics as [seo-write-article](../seo-w
 5. Side-by-side table: price, free tier reality, logging methods, AI features, database, offline, account requirement, platforms.
 6. One section per deciding dimension (from the Reddit research), each ending with a one-line "winner" call.
 7. "Who should pick X / who should pick Y" — genuinely balanced.
-8. If neither app is CalTracker: a short, clearly-marked "where CalTracker fits" box (price, offline core, AI-model choice) — one box, not a hijack. If CalTracker loses a dimension, say so; conceding is the credibility play.
+8. If neither app is CalTracker: a short, clearly-marked "where CalTracker fits" box (price, partial offline logging, AI-model choice) — one box, not a hijack. If CalTracker loses a dimension, say so; conceding is the credibility play.
 9. FAQ from autocomplete questions on the pair.
 
 ## Page specifics
