@@ -20,7 +20,7 @@ Output: `blog/<slug>/index.html` built from [seo/templates/post-template.html](.
 ## Write
 
 5. Structure for a roundup: verdict-first TL;DR (table of picks), then one section per app — what it's best at, pricing, one honest drawback — then a short how-we-picked note, then FAQ (3–5 real questions from autocomplete's `reddit`/question patterns).
-6. CalTracker appears honestly: include it where it genuinely belongs, lead with its true differentiators (price, anonymous mode, offline, AI-model choice), and concede what competitors do better. Facts about CalTracker come ONLY from product-context.md.
+6. CalTracker appears honestly: include it where it genuinely belongs, lead with its true differentiators (price, offline core, AI-model choice, daily AI evaluation), and concede what competitors do better. Facts about CalTracker come ONLY from product-context.md — check the Never-claim list before asserting anything, it's updated when app features change (e.g. anonymous mode was removed 2026-07-13).
 7. Reading level: practical, first-person developer voice, no filler intros ("In today's fast-paced world…" = delete). 1,200–2,000 words; comparison tables over prose walls.
 8. Health disclaimer where calorie advice appears.
 

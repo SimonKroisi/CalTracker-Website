@@ -41,12 +41,11 @@
 
 ## Differentiators to lead with (all true, all verifiable)
 
-1. **No account required** — full anonymous mode, all data local. Matches search intent: "calorie tracker without account / without login".
-2. **Works 100% offline** for core tracking (AI scanner, barcode lookup, database search, and sync need internet).
-3. **Cheap**: Plus **€2.49/mo or €19.99/yr**; Pro **€7.99/mo or €59.99/yr**. Undercuts MyFitnessPal Premium (~$19.99/mo), Cal AI (~$9.99/mo), Cronometer Gold (~$10.99/mo). Free tier is genuinely usable (all core tracking free forever).
-4. **Choice of AI models** for photo scanning (speed vs accuracy) instead of one black box.
-5. **Daily AI evaluation** — scores the whole day, not just individual meals.
-6. **Privacy-friendly**: anonymous mode, EU developer, GDPR-conscious.
+1. **Works 100% offline** for core tracking once signed in (AI scanner, barcode lookup, database search, and sync need internet).
+2. **Cheap**: Plus **€2.49/mo or €19.99/yr**; Pro **€7.99/mo or €59.99/yr**. Undercuts MyFitnessPal Premium (~$19.99/mo), Cal AI (~$9.99/mo), Cronometer Gold (~$10.99/mo). Free tier is genuinely usable (all core tracking free forever).
+3. **Choice of AI models** for photo scanning (speed vs accuracy) instead of one black box.
+4. **Daily AI evaluation** — scores the whole day, not just individual meals.
+5. **Privacy-friendly**: EU developer, GDPR-conscious, data deletion available on request.
 
 ## Pricing (verify before every publish — may change)
 
@@ -60,7 +59,7 @@
 
 ## Also true (usable when relevant)
 
-- Cloud sync (Firebase) across devices for account holders; smart diff-based.
+- Cloud sync (Firebase) across devices; smart diff-based.
 - CSV export (7/30/365 days).
 - Meal reminders, water reminders, weight reminders.
 - Streaks with server-side validation.
@@ -70,6 +69,7 @@
 
 ## Never claim (features CalTracker does NOT have)
 
+- ❌ **No-account / anonymous / guest mode** — REMOVED as of 2026-07-13. Account creation (email, Google, or Apple) is now mandatory at onboarding; there is no skip option. Do not describe CalTracker as "no sign-up" or "works without an account" anywhere.
 - ❌ Micronutrient / vitamin / mineral tracking
 - ❌ Recipes, meal plans, or recipe import
 - ❌ Intermittent fasting timers

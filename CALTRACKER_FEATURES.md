@@ -17,7 +17,7 @@
 7. [Daily AI Evaluation & Insights](#7-daily-ai-evaluation--insights)
 8. [Dashboard & Customization](#8-dashboard--customization)
 9. [Statistics & History](#9-statistics--history)
-10. [With or Without Account](#10-with-or-without-account)
+10. [Account & Sign-In](#10-account--sign-in)
 11. [Cloud Sync & Offline Mode](#11-cloud-sync--offline-mode)
 12. [Health App Integration](#12-health-app-integration)
 13. [Subscription Plans](#13-subscription-plans)
@@ -333,16 +333,9 @@ Get a **personalized AI analysis** of your entire day's nutrition — including 
 
 ---
 
-## 10. With or Without Account
+## 10. Account & Sign-In
 
-CalTracker works perfectly **without creating an account** — or you can sign up for cloud sync and cross-device access.
-
-### 👤 Anonymous Mode (No Account)
-- Full app functionality without signing up
-- All data stored locally on your device
-- No email, no password — just start tracking
-- Perfect for privacy-focused users
-- Can create an account later without losing data
+CalTracker requires a free account to use the app. Sign up during onboarding with email/password, Google, or Apple — all three take a few taps and enable cloud sync from the start.
 
 ### 📧 Email & Password
 - Classic sign-up with email verification
@@ -365,7 +358,7 @@ CalTracker works perfectly **without creating an account** — or you can sign u
 - **Data backup** — never lose your tracking history
 - **AI usage tracking** — quota tied to authenticated account
 
-**Interactive Demo Idea:** A split view showing two paths: Left side "Without Account" shows a phone with a simple "Start Tracking" button → immediately enters the app. Right side "With Account" shows Google / Apple / Email buttons → quick sign-in animation → cloud sync icon. Both paths lead to the same full-featured dashboard.
+**Interactive Demo Idea:** A phone mockup showing the sign-in screen with Google / Apple / Email buttons → tapping one triggers a quick sign-in animation → a cloud sync icon pulses → the full-featured dashboard fades in.
 
 ---
 
@@ -530,11 +523,10 @@ CalTracker works **100% offline** for core features:
 4. **Birthdate & Info** — Date picker, gender, activity level
 5. **Goal Selection** — Choose: Lose / Maintain / Gain weight + see calorie estimate
 6. **Review** — Summary of all your inputs
-7. **Account (Optional)** — Create account or skip (anonymous)
+7. **Account** — Create account with email, Google, or Apple sign-in
 8. **Premium Offer** — See Plus/Pro plans or continue free
 
 - Personalized calorie and macro goals calculated automatically
-- Skip account creation and use the app immediately
 - Premium trial offer available during onboarding
 
 **Interactive Demo Idea:** A step-by-step carousel showing each onboarding page sliding in from the right. Mini animations for each step: name types itself, weight slides with a dial animation, goal buttons highlight on tap, and a final confetti celebration when setup is complete.
@@ -602,7 +594,7 @@ CalTracker works **100% offline** for core features:
 ### 🏆 Headline Features (Hero Section)
 1. **5 ways to track food** (Search, AI Photo, Barcode, Quick Add, Favorites)
 2. **AI-powered nutrition analysis** with 7 model options
-3. **Works with or without an account**
+3. **Free tier covers all core tracking**
 4. **Full offline functionality**
 5. **Daily AI evaluation** with personalized insights
 6. **Customizable dashboard** with drag-and-drop widgets

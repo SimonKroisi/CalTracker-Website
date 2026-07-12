@@ -26,7 +26,7 @@
 | best ai calorie counter apps | T2 | easy-medium | Indie blogs rank (amyfoodjournal, macaron.im); our flagship | published 2026-07-12 → /blog/best-ai-calorie-counter-apps/ |
 | best calorie counting app free / best free calorie tracker app | T1 | medium | "reddit" variants show forum-weight SERP = winnable | queued |
 | best calorie tracker without subscription | T3 | easy | Perfect differentiator match (usable free tier) | queued |
-| calorie tracker without account / without login | T4 | easy | Tiny volume, exact anonymous-mode match, easy #1 | queued |
+| calorie tracker without account / without login | T4 | easy | ~~Exact differentiator match~~ — INVALID as of 2026-07-13, CalTracker now requires an account, do not target | skip |
 | best offline calorie tracker | T4 | easy | Differentiator match | queued |
 | best food scanner app / food calorie scanner app | T2 | medium | | idea |
 | best calorie counting app for weight loss | T2 | medium | | idea |
@@ -59,3 +59,4 @@
 ## Discovery log
 
 - 2026-07-12: Seeded from Google autocomplete (12 seeds, note: run with `&gl=us&hl=en` next time — this run had EU bias) + live SERP scan. GSC has no data for blog yet (no blog until today); re-run discovery against GSC after ~4 weeks of data.
+- 2026-07-13: Correction — CalTracker removed anonymous/no-account mode (account now mandatory at onboarding, confirmed by Simon). Retired the "without account/login" backlog row and stripped the claim from product-context.md, rules.md, llms.txt, the post template, both write skills, and the published roundup post. See change-log.md.

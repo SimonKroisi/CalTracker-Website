@@ -10,7 +10,7 @@ Goal: append scored, honest keyword rows to [seo/keyword-backlog.md](../../../se
 ## Process
 
 1. **Pick seeds** from three sources:
-   - Differentiators in [seo/product-context.md](../../../seo/product-context.md) (e.g. "without account", "offline", "ai photo")
+   - Differentiators in [seo/product-context.md](../../../seo/product-context.md) (e.g. "offline", "ai photo", "ai model choice") — check the Never-claim list too, it tracks removed features
    - Competitor gaps noted in [seo/competitors.md](../../../seo/competitors.md)
    - Existing winners: if Search Console access exists (MCP tool or user-provided export), queries already getting impressions at position 8–30 are the highest-value seeds. If no GSC access is configured, say so once and continue without it.
 

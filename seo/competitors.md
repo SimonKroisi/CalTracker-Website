@@ -42,5 +42,5 @@ Big-media sites in the same SERPs (their presence = hard, aim for long-tail vari
 ## Standing observations
 
 - The "cal ai vs [anything]" space is active and monetizable — autocomplete shows myfitnesspal, macrofactor, cronometer, snapcalorie, lose it, mynetdiary.
-- "without account / without subscription / without ads / offline" modifier space has weak dedicated content and matches CalTracker's genuine differentiators.
+- "without subscription / without ads / offline" modifier space has weak dedicated content and matches CalTracker's genuine differentiators. ("without account" no longer applies — CalTracker requires an account as of 2026-07-13, see product-context.md Never-claim list.)
 - Several SEO competitors have /compare/ URL factories — per our rules we do NOT copy that (no programmatic SEO); we write each comparison by hand.

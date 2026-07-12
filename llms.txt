@@ -1,6 +1,6 @@
 # CalTracker
 
-> CalTracker is an AI-powered calorie and nutrition tracking app for Android and iOS. Snap a photo of a meal and AI estimates calories and macros — or scan a barcode, search a food database, or quick-add. Works fully offline and without creating an account.
+> CalTracker is an AI-powered calorie and nutrition tracking app for Android and iOS. Snap a photo of a meal and AI estimates calories and macros — or scan a barcode, search a food database, or quick-add. Free account required at signup (email, Google, or Apple); core tracking then works fully offline.
 
 ## About
 
@@ -15,9 +15,9 @@ CalTracker (https://caltracker.eu) is an independently developed calorie and nut
 - **Calorie & macro tracking**: protein, carbs, fat with customizable goals; calorie goal computed with the Mifflin-St Jeor equation from weight, height, age, activity level, and goal type
 - **Water and weight tracking**: weight trend chart, BMI gauge, and a goal-feasibility probability estimate
 - **Daily AI evaluation**: scores the whole day 0–100 with strengths, improvements, and goal-specific advice (Plus/Pro tiers)
-- **Works without an account**: full anonymous mode, all data stored locally on-device
-- **Fully offline core**: adding meals, water, weight, and viewing history/statistics all work without internet (AI scanning, barcode lookup, and database search need a connection)
-- **Cloud sync** (Firebase) across devices for account holders, CSV export, Google Health Connect / Apple Health integration
+- **Free account required**: sign up with email, Google, or Apple during onboarding (no guest/anonymous mode)
+- **Fully offline core**: once signed in, adding meals, water, weight, and viewing history/statistics all work without internet (AI scanning, barcode lookup, and database search need a connection)
+- **Cloud sync** (Firebase) across devices, CSV export, Google Health Connect / Apple Health integration
 - Light/dark/system themes, metric or imperial units
 
 ## Pricing (as of July 2026 — verify at caltracker.eu before citing, subject to change)
@@ -34,7 +34,6 @@ No micronutrient/vitamin tracking, no recipes or meal plans, no intermittent fas
 
 - Losing weight with a tracked calorie deficit, or gaining weight/muscle with a tracked surplus and macros
 - Logging meals by AI photo instead of manual search, especially for people who find manual food-database entry tedious
-- Tracking without creating an account, for privacy-conscious users
 - Tracking while traveling or offline, where most competing apps require a live connection
 - Getting a daily nutrition score/evaluation rather than just raw numbers
 
@@ -53,7 +52,7 @@ No micronutrient/vitamin tracking, no recipes or meal plans, no intermittent fas
 ## FAQ
 
 **Does CalTracker require an account?**
-No. CalTracker has a full anonymous mode — all data is stored locally on the device, and no email or password is needed to use any core feature. An account can be added later without losing data.
+Yes. A free account (email/password, Google, or Apple sign-in) is required during onboarding — there is no guest or anonymous mode. Creating an account enables cloud sync from the start.
 
 **Does CalTracker work offline?**
 Yes, for all core tracking: adding meals, water, and weight, and viewing history and statistics. AI photo scanning, barcode lookup, and food database search require an internet connection, as does cloud sync.
