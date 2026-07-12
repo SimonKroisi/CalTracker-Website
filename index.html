@@ -85,7 +85,7 @@
       const ua = navigator.userAgent.toLowerCase();
       const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua);
       if (isMobile && !window.location.href.includes('mobile.html')) {
-        window.location.href = 'mobile.html';
+        window.location.href = 'mobile.html' + window.location.search + window.location.hash;
       }
     })();
   </script>
