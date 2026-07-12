@@ -4,31 +4,41 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover"/>
 
-  <!-- Analytics & Marketing – laden erst nach Cookie-Zustimmung (DSGVO) -->
+  <!-- Analytics & Marketing – TikTok mit Consent-Hold, GA4 erst nach Zustimmung (DSGVO) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
 
-    // Wird erst nach Klick auf "Akzeptieren" (oder bei gespeicherter Zustimmung) aufgerufen.
-    function loadTrackingScripts() {
-      if (window.__trackingLoaded) return;
-      window.__trackingLoaded = true;
+    // TikTok Pixel: Basiscode läuft sofort (nötig für die Pixel-Verifizierung),
+    // aber der Consent wird zurückgehalten -> es werden keine Events gesendet und
+    // keine Cookies gesetzt, bis der Nutzer im Banner zustimmt.
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-      // --- Google Analytics (GA4) ---
+      ttq.holdConsent();
+      ttq.load('D99I9VBC77U7PB56OJI0');
+      ttq.page();
+    }(window, document, 'ttq');
+
+    // Google Analytics (GA4) wird erst nach Zustimmung geladen.
+    function loadGoogleAnalytics() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
       var ga = document.createElement('script');
       ga.async = true;
       ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG';
       document.head.appendChild(ga);
       gtag('js', new Date());
       gtag('config', 'G-7SY51HPJCG');
+    }
 
-      // --- TikTok Pixel ---
-      !function (w, d, t) {
-        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-        ttq.load('D99I9VBC77U7PB56OJI0');
-        ttq.page();
-      }(window, document, 'ttq');
+    // Vom Cookie-Banner aufgerufen:
+    function grantTrackingConsent() {
+      if (window.ttq) ttq.grantConsent();   // TikTok: zurückgehaltene Events freigeben
+      loadGoogleAnalytics();                // GA4 nachladen
+    }
+    function revokeTrackingConsent() {
+      if (window.ttq) ttq.revokeConsent();  // TikTok: Consent widerrufen
     }
   </script>
 
@@ -934,19 +944,22 @@
       try { choice = localStorage.getItem(KEY); } catch (e) {}
 
       if (choice === 'granted') {
-        loadTrackingScripts();           // Zustimmung liegt vor -> Tracking laden
-      } else if (choice !== 'denied') {
+        grantTrackingConsent();          // Zustimmung liegt vor
+      } else if (choice === 'denied') {
+        revokeTrackingConsent();         // Ablehnung liegt vor
+      } else {
         banner.hidden = false;           // Noch keine Entscheidung -> Banner zeigen
       }
 
       document.getElementById('cc-accept').addEventListener('click', function () {
         try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
         banner.hidden = true;
-        loadTrackingScripts();
+        grantTrackingConsent();
       });
       document.getElementById('cc-decline').addEventListener('click', function () {
         try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
         banner.hidden = true;
+        revokeTrackingConsent();
       });
     })();
   </script>
