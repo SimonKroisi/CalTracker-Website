@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<!--
+  CalTracker blog post template — filled by the seo-write-article / seo-write-comparison skills.
+  Tokens to replace (all occurrences):
+    {{TITLE}}            <title> + og/twitter title, ≤ 60 chars, keyword-first
+    {{META_DESCRIPTION}} 140–160 chars
+    {{SLUG}}             URL slug, page lives at /blog/{{SLUG}}/index.html
+    {{TAG}}              category chip, e.g. "Roundup", "Comparison", "Guide"
+    {{H1}}               on-page headline (may differ slightly from TITLE)
+    {{DATE_ISO}}         2026-07-12
+    {{DATE_HUMAN}}       July 12, 2026
+    {{READ_TIME}}        e.g. "9 min read"
+    {{ARTICLE_BODY}}     article HTML (h2/h3/p/ul/table/.tldr/.faq — see classes below)
+    {{EXTRA_JSON_LD}}    additional schema blocks (FAQPage/ItemList) or empty string
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Analytics & Marketing – TikTok mit Consent-Hold, GA4 erst nach Zustimmung (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.holdConsent();
+      ttq.load('D99I9VBC77U7PB56OJI0');
+      ttq.page();
+    }(window, document, 'ttq');
+    function loadGoogleAnalytics() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-7SY51HPJCG');
+    }
+    function grantTrackingConsent() {
+      if (window.ttq) ttq.grantConsent();
+      loadGoogleAnalytics();
+    }
+    function revokeTrackingConsent() {
+      if (window.ttq) ttq.revokeConsent();
+    }
+  </script>
+
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="author" content="CalTracker">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://caltracker.eu/blog/{{SLUG}}/">
+
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://caltracker.eu/blog/{{SLUG}}/">
+  <meta property="og:site_name" content="CalTracker">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://caltracker.eu/caltracker_icon.png">
+  <meta property="article:published_time" content="{{DATE_ISO}}">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="https://caltracker.eu/caltracker_icon.png">
+
+  <link rel="icon" type="image/png" href="/caltracker_icon.png">
+  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{H1}}",
+    "description": "{{META_DESCRIPTION}}",
+    "datePublished": "{{DATE_ISO}}",
+    "dateModified": "{{DATE_ISO}}",
+    "author": { "@type": "Organization", "name": "CalTracker", "url": "https://caltracker.eu/" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalTracker",
+      "logo": { "@type": "ImageObject", "url": "https://caltracker.eu/caltracker_icon.png" }
+    },
+    "mainEntityOfPage": "https://caltracker.eu/blog/{{SLUG}}/",
+    "image": "https://caltracker.eu/caltracker_icon.png"
+  }
+  </script>
+  {{EXTRA_JSON_LD}}
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-soft: #f7f8fa; --bg-muted: #f0f1f3;
+      --text: #1a1a1a; --text-secondary: #6b7280; --text-muted: #9ca3af;
+      --border: #e5e7eb; --border-light: #f3f4f6;
+      --green: #4CAF50; --green-light: #81C784; --orange: #FF9800; --red: #ef4444; --blue: #42A5F5;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
+    }
+    [data-theme="dark"] {
+      --bg: #111111; --bg-soft: #1a1a1a; --bg-muted: #222222;
+      --text: #f5f5f5; --text-secondary: #a0a0a0; --text-muted: #666666;
+      --border: #2a2a2a; --border-light: #1f1f1f;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2); --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    .navbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+    [data-theme="dark"] .navbar { background: rgba(17,17,17,0.85); border-color: var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-muted); }
+    .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: var(--text); }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+    .nav-cta { background: var(--text); color: var(--bg); padding: 9px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    .post { max-width: 760px; margin: 0 auto; padding: 48px 20px 32px; }
+    .post-tag { display: inline-block; background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .post h1 { font-size: clamp(1.7rem, 4.5vw, 2.5rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .post-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 36px; }
+    .post h2 { font-size: 1.45rem; font-weight: 800; margin: 40px 0 14px; letter-spacing: -0.01em; }
+    .post h3 { font-size: 1.15rem; font-weight: 700; margin: 28px 0 10px; }
+    .post p, .post li { font-size: 1.02rem; line-height: 1.75; color: var(--text); }
+    .post p { margin-bottom: 16px; }
+    .post ul, .post ol { margin: 0 0 16px 22px; }
+    .post li { margin-bottom: 6px; }
+    .post a { color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .post strong { font-weight: 700; }
+    .table-wrap { overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .post table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 560px; }
+    .post th { background: var(--bg-soft); text-align: left; font-weight: 700; }
+    .post th, .post td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .post tr:last-child td { border-bottom: none; }
+    .tldr { background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: var(--radius-sm); padding: 18px 20px; margin: 0 0 28px; }
+    .tldr p:last-child { margin-bottom: 0; }
+    .note { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; margin: 20px 0; font-size: 0.95rem; color: var(--text-secondary); }
+    .faq h3 { margin-top: 22px; }
+    .disclaimer { font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; padding-top: 16px; }
+
+    .cta-box { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin: 44px 0 8px; text-align: center; }
+    .cta-box img { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px; }
+    .cta-box h2 { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; }
+    .cta-box p { color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 18px; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 12px; text-decoration: none; }
+    .store-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .store-btn small { display: block; font-size: 0.65rem; opacity: 0.8; text-align: left; }
+    .store-btn strong { display: block; font-size: 0.95rem; line-height: 1.1; text-align: left; }
+
+    footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 24px 24px; }
+    .footer-content { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 10px; }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 7px; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.9rem; max-width: 280px; }
+    .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+    .footer-links a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; margin-bottom: 8px; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1000px; margin: 28px auto 0; padding-top: 18px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+
+    .cc-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: var(--bg-soft); border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.12); padding: 16px 20px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+    .cc-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .cc-text { font-size: 0.85rem; line-height: 1.5; margin: 0; flex: 1 1 320px; color: var(--text-secondary); }
+    .cc-text a { color: var(--text); text-decoration: underline; }
+    .cc-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cc-btn { font-family: inherit; font-size: 0.85rem; font-weight: 600; padding: 10px 20px; border-radius: 10px; cursor: pointer; border: 1px solid var(--border); transition: opacity 0.2s; }
+    .cc-btn:hover { opacity: 0.85; }
+    .cc-decline { background: transparent; color: var(--text-secondary); }
+    .cc-accept { background: var(--text); color: var(--bg-soft); border-color: var(--text); }
+    @media (max-width: 640px) { .cc-inner { flex-direction: column; align-items: stretch; } .cc-actions { justify-content: stretch; } .cc-btn { flex: 1; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/tools/">Free Tools</a>
+    </div>
+    <div class="nav-right">
+      <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+      <a href="/#download" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <main class="post">
+    <span class="post-tag">{{TAG}}</span>
+    <h1>{{H1}}</h1>
+    <p class="post-meta">By the CalTracker team · Updated <time datetime="{{DATE_ISO}}">{{DATE_HUMAN}}</time> · {{READ_TIME}}</p>
+
+    {{ARTICLE_BODY}}
+
+    <div class="cta-box">
+      <img src="/caltracker_icon.png" alt="CalTracker app icon">
+      <h2>Track calories with AI — free</h2>
+      <p>Snap a photo, scan a barcode, or search the database. No account needed, works offline.</p>
+      <div class="cta-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+          <span><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+        <a href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span><small>Download on</small><strong>App Store</strong></span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></div>
+        <p>AI-powered calorie & nutrition tracking. Build healthier habits that actually stick.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <a href="/#features">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Free Tools</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+        <a href="/delete-account.html">Delete Account</a>
+        <a href="/data-deletion.html">Data Deletion</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 CalTracker. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+    // Download / Conversion Tracking (TikTok Pixel + GA4)
+    (function () {
+      var storeLinks = document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+      storeLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          var isIOS = link.href.indexOf('apps.apple.com') !== -1;
+          var platform = isIOS ? 'ios_app_store' : 'android_google_play';
+          if (window.ttq) {
+            ttq.track('ClickButton', {
+              contents: [{ content_id: 'caltracker_app', content_name: 'CalTracker App Download' }],
+              content_type: 'product',
+              description: platform
+            });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'download_click', { app_platform: platform, link_url: link.href });
+          }
+        });
+      });
+    })();
+  </script>
+
+  <div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie-Zustimmung" hidden>
+    <div class="cc-inner">
+      <p class="cc-text">
+        Wir nutzen Cookies für Statistik (Google Analytics) und Marketing (TikTok), um unsere Werbung zu verbessern. Details in der <a href="/privacy-policy.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cc-actions">
+        <button type="button" class="cc-btn cc-decline" id="cc-decline">Ablehnen</button>
+        <button type="button" class="cc-btn cc-accept" id="cc-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'cc_consent';
+      var banner = document.getElementById('cc-banner');
+      var choice = null;
+      try { choice = localStorage.getItem(KEY); } catch (e) {}
+      if (choice === 'granted') { grantTrackingConsent(); }
+      else if (choice === 'denied') { revokeTrackingConsent(); }
+      else { banner.hidden = false; }
+      document.getElementById('cc-accept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        banner.hidden = true; grantTrackingConsent();
+      });
+      document.getElementById('cc-decline').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        banner.hidden = true; revokeTrackingConsent();
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Analytics & Marketing – TikTok mit Consent-Hold, GA4 erst nach Zustimmung (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.holdConsent();
+      ttq.load('D99I9VBC77U7PB56OJI0');
+      ttq.page();
+    }(window, document, 'ttq');
+    function loadGoogleAnalytics() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-7SY51HPJCG');
+    }
+    function grantTrackingConsent() {
+      if (window.ttq) ttq.grantConsent();
+      loadGoogleAnalytics();
+    }
+    function revokeTrackingConsent() {
+      if (window.ttq) ttq.revokeConsent();
+    }
+  </script>
+
+  <title>Free Calorie Calculator – TDEE, Deficit & Macros</title>
+  <meta name="description" content="Calculate your maintenance calories (TDEE), calorie deficit target, and macros with the Mifflin-St Jeor equation. Free, instant, no sign-up — metric & imperial.">
+  <meta name="author" content="CalTracker">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://caltracker.eu/tools/calorie-calculator/">
+
+  <meta property="og:title" content="Free Calorie Calculator – TDEE, Deficit & Macros">
+  <meta property="og:description" content="Calculate your maintenance calories (TDEE), calorie deficit target, and macros with the Mifflin-St Jeor equation. Free, instant, no sign-up.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://caltracker.eu/tools/calorie-calculator/">
+  <meta property="og:site_name" content="CalTracker">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://caltracker.eu/caltracker_icon.png">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Free Calorie Calculator – TDEE, Deficit & Macros">
+  <meta name="twitter:description" content="Calculate your maintenance calories (TDEE), calorie deficit target, and macros with the Mifflin-St Jeor equation. Free, instant, no sign-up.">
+
+  <link rel="icon" type="image/png" href="/caltracker_icon.png">
+  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CalTracker Calorie Calculator",
+    "url": "https://caltracker.eu/tools/calorie-calculator/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "description": "Free calorie calculator: maintenance calories (TDEE), calorie deficit or surplus target, and macro split using the Mifflin-St Jeor equation.",
+    "publisher": { "@type": "Organization", "name": "CalTracker", "url": "https://caltracker.eu/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How accurate is this calorie calculator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It uses the Mifflin-St Jeor equation, which research has found to be among the most reliable estimation formulas for resting metabolic rate. Any formula is still an estimate — real-world needs vary by roughly ±10%. Track your intake and weight for two to three weeks and adjust based on actual results." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is TDEE?",
+        "acceptedAnswer": { "@type": "Answer", "text": "TDEE (Total Daily Energy Expenditure) is the total number of calories you burn per day: your basal metabolic rate (BMR) multiplied by an activity factor that accounts for exercise and daily movement. Eating at your TDEE maintains your current weight." }
+      },
+      {
+        "@type": "Question",
+        "name": "How big should my calorie deficit be?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A deficit of about 500 kcal per day (roughly 0.5 kg or 1 lb of weight loss per week) is a common sustainable starting point. Larger deficits work faster but are harder to stick to and increase muscle loss risk. Avoid prolonged intakes below about 1,200 kcal (women) or 1,500 kcal (men) without medical supervision." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the Mifflin-St Jeor equation better than Harris-Benedict?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For most people, yes. Studies comparing prediction equations found Mifflin-St Jeor more accurate than the older Harris-Benedict equation for modern populations, which is why most evidence-based calculators and apps, including CalTracker, use it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to hit my calorie target exactly every day?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Your weekly average matters far more than any single day. Staying within about 10% of your target most days produces the same results as hitting it exactly — and is much easier to sustain." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-soft: #f7f8fa; --bg-muted: #f0f1f3;
+      --text: #1a1a1a; --text-secondary: #6b7280; --text-muted: #9ca3af;
+      --border: #e5e7eb; --border-light: #f3f4f6;
+      --green: #4CAF50; --green-light: #81C784; --orange: #FF9800; --blue: #42A5F5;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
+    }
+    [data-theme="dark"] {
+      --bg: #111111; --bg-soft: #1a1a1a; --bg-muted: #222222;
+      --text: #f5f5f5; --text-secondary: #a0a0a0; --text-muted: #666666;
+      --border: #2a2a2a; --border-light: #1f1f1f;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2); --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    .navbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+    [data-theme="dark"] .navbar { background: rgba(17,17,17,0.85); border-color: var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-muted); }
+    .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: var(--text); }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+    .nav-cta { background: var(--text); color: var(--bg); padding: 9px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 48px 20px 32px; }
+    .wrap h1 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .lede { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; margin-bottom: 32px; }
+
+    .calc { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 26px; box-shadow: var(--shadow-sm); }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    @media (max-width: 560px) { .calc-grid { grid-template-columns: 1fr; } }
+    .field label { display: block; font-size: 0.83rem; font-weight: 700; margin-bottom: 7px; color: var(--text); }
+    .field input[type="number"], .field select {
+      width: 100%; padding: 11px 13px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); color: var(--text); font-family: inherit; font-size: 1rem; font-weight: 500;
+    }
+    .field input:focus, .field select:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: transparent; }
+    .seg { display: flex; background: var(--bg-muted); border-radius: 999px; padding: 4px; gap: 4px; }
+    .seg button { flex: 1; border: none; background: transparent; color: var(--text-secondary); font-family: inherit; font-size: 0.9rem; font-weight: 600; padding: 8px 10px; border-radius: 999px; cursor: pointer; }
+    .seg button.active { background: var(--bg); color: var(--text); box-shadow: var(--shadow-sm); }
+    .dual { display: flex; gap: 10px; }
+    .dual .sub { flex: 1; }
+    .dual .sub span { display: block; font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+    .full { grid-column: 1 / -1; }
+    .hidden { display: none !important; }
+
+    .results { margin-top: 24px; display: none; }
+    .results.show { display: block; }
+    .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 14px; }
+    @media (max-width: 560px) { .res-grid { grid-template-columns: 1fr; } }
+    .res-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; text-align: center; }
+    .res-card .num { font-size: 1.55rem; font-weight: 900; letter-spacing: -0.02em; }
+    .res-card .lbl { font-size: 0.8rem; color: var(--text-secondary); margin-top: 3px; }
+    .res-card.hero { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+    .res-card.hero .num { color: var(--green); }
+    .macros { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; }
+    .macros h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 12px; }
+    .macro-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; font-size: 0.9rem; }
+    .macro-row:last-child { margin-bottom: 0; }
+    .macro-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .macro-row .g { margin-left: auto; font-weight: 800; }
+    .res-note { font-size: 0.85rem; color: var(--text-secondary); margin-top: 14px; line-height: 1.55; }
+    .warn { color: var(--orange); font-weight: 600; }
+
+    .content { margin-top: 48px; }
+    .content h2 { font-size: 1.45rem; font-weight: 800; margin: 40px 0 14px; letter-spacing: -0.01em; }
+    .content h3 { font-size: 1.12rem; font-weight: 700; margin: 26px 0 10px; }
+    .content p, .content li { font-size: 1.01rem; line-height: 1.75; }
+    .content p { margin-bottom: 16px; }
+    .content ul, .content ol { margin: 0 0 16px 22px; }
+    .content li { margin-bottom: 6px; }
+    .content a { color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .table-wrap { overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .content table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 480px; }
+    .content th { background: var(--bg-soft); text-align: left; font-weight: 700; }
+    .content th, .content td { padding: 11px 14px; border-bottom: 1px solid var(--border); }
+    .content tr:last-child td { border-bottom: none; }
+    .formula { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 18px; font-size: 0.95rem; margin: 14px 0; line-height: 1.7; }
+    .disclaimer { font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; padding-top: 16px; line-height: 1.6; }
+
+    .cta-box { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin: 44px 0 8px; text-align: center; }
+    .cta-box img { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px; }
+    .cta-box h2 { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; }
+    .cta-box p { color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 18px; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 12px; text-decoration: none; }
+    .store-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .store-btn small { display: block; font-size: 0.65rem; opacity: 0.8; text-align: left; }
+    .store-btn strong { display: block; font-size: 0.95rem; line-height: 1.1; text-align: left; }
+
+    footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 24px 24px; }
+    .footer-content { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 10px; }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 7px; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.9rem; max-width: 280px; }
+    .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+    .footer-links a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; margin-bottom: 8px; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1000px; margin: 28px auto 0; padding-top: 18px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+
+    .cc-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: var(--bg-soft); border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.12); padding: 16px 20px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+    .cc-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .cc-text { font-size: 0.85rem; line-height: 1.5; margin: 0; flex: 1 1 320px; color: var(--text-secondary); }
+    .cc-text a { color: var(--text); text-decoration: underline; }
+    .cc-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cc-btn { font-family: inherit; font-size: 0.85rem; font-weight: 600; padding: 10px 20px; border-radius: 10px; cursor: pointer; border: 1px solid var(--border); transition: opacity 0.2s; }
+    .cc-btn:hover { opacity: 0.85; }
+    .cc-decline { background: transparent; color: var(--text-secondary); }
+    .cc-accept { background: var(--text); color: var(--bg-soft); border-color: var(--text); }
+    @media (max-width: 640px) { .cc-inner { flex-direction: column; align-items: stretch; } .cc-actions { justify-content: stretch; } .cc-btn { flex: 1; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/blog/">Blog</a>
+      <a href="/tools/" aria-current="page">Free Tools</a>
+    </div>
+    <div class="nav-right">
+      <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+      <a href="/#download" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <h1>Calorie Calculator</h1>
+    <p class="lede">Work out your maintenance calories (TDEE), a sensible calorie target for losing or gaining weight, and your macros — using the <strong>Mifflin-St Jeor equation</strong>, the same formula the CalTracker app uses. Free, instant, no sign-up.</p>
+
+    <div class="calc" id="calc">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Sex</label>
+          <div class="seg" id="seg-sex">
+            <button type="button" data-v="male" class="active">Male</button>
+            <button type="button" data-v="female">Female</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="age">Age</label>
+          <input type="number" id="age" min="15" max="100" placeholder="e.g. 28" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label>Units</label>
+          <div class="seg" id="seg-units">
+            <button type="button" data-v="metric" class="active">Metric</button>
+            <button type="button" data-v="imperial">Imperial</button>
+          </div>
+        </div>
+        <div class="field" id="f-height-metric">
+          <label for="height-cm">Height (cm)</label>
+          <input type="number" id="height-cm" min="120" max="230" placeholder="e.g. 175" inputmode="numeric">
+        </div>
+        <div class="field hidden" id="f-height-imperial">
+          <label>Height (ft / in)</label>
+          <div class="dual">
+            <div class="sub"><input type="number" id="height-ft" min="4" max="7" placeholder="5" inputmode="numeric"><span>feet</span></div>
+            <div class="sub"><input type="number" id="height-in" min="0" max="11" placeholder="9" inputmode="numeric"><span>inches</span></div>
+          </div>
+        </div>
+        <div class="field" id="f-weight-metric">
+          <label for="weight-kg">Weight (kg)</label>
+          <input type="number" id="weight-kg" min="35" max="250" step="0.1" placeholder="e.g. 78" inputmode="decimal">
+        </div>
+        <div class="field hidden" id="f-weight-imperial">
+          <label for="weight-lbs">Weight (lbs)</label>
+          <input type="number" id="weight-lbs" min="80" max="550" step="0.1" placeholder="e.g. 172" inputmode="decimal">
+        </div>
+        <div class="field full">
+          <label for="activity">Activity level</label>
+          <select id="activity">
+            <option value="1.2">Sedentary — desk job, little or no exercise</option>
+            <option value="1.375">Lightly active — exercise 1–3 days/week</option>
+            <option value="1.55" selected>Moderately active — exercise 3–5 days/week</option>
+            <option value="1.725">Very active — exercise 6–7 days/week</option>
+            <option value="1.9">Extremely active — physical job + hard training</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Goal</label>
+          <div class="seg" id="seg-goal">
+            <button type="button" data-v="lose" class="active">Lose</button>
+            <button type="button" data-v="maintain">Maintain</button>
+            <button type="button" data-v="gain">Gain</button>
+          </div>
+        </div>
+        <div class="field" id="f-rate">
+          <label for="rate">Pace</label>
+          <select id="rate">
+            <option value="275">Gentle — ~0.25 kg (0.5 lb) / week</option>
+            <option value="550" selected>Steady — ~0.5 kg (1 lb) / week</option>
+            <option value="825">Fast — ~0.75 kg (1.7 lb) / week</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results" id="results" aria-live="polite">
+        <div class="res-grid">
+          <div class="res-card"><div class="num" id="r-bmr">—</div><div class="lbl">BMR (kcal/day)</div></div>
+          <div class="res-card"><div class="num" id="r-tdee">—</div><div class="lbl">Maintenance / TDEE</div></div>
+          <div class="res-card hero"><div class="num" id="r-target">—</div><div class="lbl" id="r-target-lbl">Daily target</div></div>
+        </div>
+        <div class="macros">
+          <h3>Suggested macros (30% protein · 50% carbs · 20% fat)</h3>
+          <div class="macro-row"><span class="macro-dot" style="background:#EC407A"></span>Protein<span class="g" id="m-protein">—</span></div>
+          <div class="macro-row"><span class="macro-dot" style="background:#42A5F5"></span>Carbs<span class="g" id="m-carbs">—</span></div>
+          <div class="macro-row"><span class="macro-dot" style="background:#FF9800"></span>Fat<span class="g" id="m-fat">—</span></div>
+        </div>
+        <p class="res-note" id="r-note"></p>
+      </div>
+    </div>
+
+    <section class="content">
+      <h2>How this calculator works</h2>
+      <p>The calculator estimates your <strong>basal metabolic rate (BMR)</strong> — the energy your body burns at complete rest — with the Mifflin-St Jeor equation, then multiplies it by an activity factor to get your <strong>total daily energy expenditure (TDEE)</strong>. Your goal then shifts the target: a deficit below TDEE to lose weight, a surplus above it to gain.</p>
+
+      <div class="formula">
+        <strong>Mifflin-St Jeor equation</strong><br>
+        Men: BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5<br>
+        Women: BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age − 161
+      </div>
+
+      <p>Mifflin-St Jeor is the formula most evidence-based apps and dietitians default to — comparative studies have found it more accurate than the older Harris-Benedict equation for modern populations. It's also exactly what the <a href="/">CalTracker app</a> uses when it sets your daily calorie goal during onboarding.</p>
+
+      <h3>Activity multipliers</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Level</th><th>Description</th><th>Multiplier</th></tr>
+          <tr><td>Sedentary</td><td>Desk job, little or no exercise</td><td>1.2</td></tr>
+          <tr><td>Lightly active</td><td>Exercise 1–3 days/week</td><td>1.375</td></tr>
+          <tr><td>Moderately active</td><td>Exercise 3–5 days/week</td><td>1.55</td></tr>
+          <tr><td>Very active</td><td>Exercise 6–7 days/week</td><td>1.725</td></tr>
+          <tr><td>Extremely active</td><td>Physical job plus hard training</td><td>1.9</td></tr>
+        </table>
+      </div>
+      <p>Most people overestimate their activity level. If you sit most of the day and train three times a week, "lightly active" or "moderately active" is usually closer to the truth than "very active".</p>
+
+      <h2>What to do with your number</h2>
+      <ol>
+        <li><strong>Pick the gentle or steady pace.</strong> A ~500 kcal/day deficit (≈0.5 kg per week) is the classic sustainable starting point. Aggressive deficits work on paper and fail in kitchens.</li>
+        <li><strong>Track against it for 2–3 weeks.</strong> Every formula is an estimate; your real TDEE shows up in the trend line of your weight. Adjust by 100–200 kcal if the scale disagrees with the math.</li>
+        <li><strong>Watch the weekly average, not single days.</strong> One high day changes nothing if the week averages out.</li>
+      </ol>
+      <p>That second step — logging what you actually eat — is the hard part, and it's the problem CalTracker exists to make easy: snap a photo and the AI estimates calories and macros, or scan a barcode, or search the food database. It works <strong>without an account and fully offline</strong>, and the free tier includes all core tracking.</p>
+
+      <h2 id="faq">FAQ</h2>
+      <h3>How accurate is this calorie calculator?</h3>
+      <p>It uses the most validated general-purpose formula available, but every formula is an estimate — individual metabolisms vary by roughly ±10%. Treat the number as a starting point and calibrate against two to three weeks of real tracking data.</p>
+      <h3>What is TDEE exactly?</h3>
+      <p>Total Daily Energy Expenditure: everything you burn in a day — resting metabolism, digestion, daily movement, and exercise. Eat at TDEE and your weight stays put; that's why it's also called "maintenance calories".</p>
+      <h3>How big should my calorie deficit be?</h3>
+      <p>About 500 kcal/day is the standard sustainable recommendation (~0.5 kg or 1 lb per week). Going below ~1,200 kcal (women) or ~1,500 kcal (men) for extended periods isn't advisable without medical supervision — the calculator will warn you if your target lands there.</p>
+      <h3>Why does this differ from other calculators?</h3>
+      <p>Different sites use different formulas (Harris-Benedict, Katch-McArdle) and rounder activity multipliers. Differences of 50–150 kcal between calculators are normal and matter less than consistent tracking.</p>
+      <h3>Does CalTracker use the same formula?</h3>
+      <p>Yes — the app calculates your calorie goal with Mifflin-St Jeor from the same inputs during onboarding, then tracks your actual intake and weight against it, including a probability estimate of hitting your goal by your target date.</p>
+
+      <p class="disclaimer">This calculator provides general estimates for healthy adults and is not medical advice. Calorie needs vary with individual health conditions. Consult a doctor or registered dietitian before starting a diet, especially if you are pregnant, under 18, have a medical condition, or have a history of disordered eating.</p>
+    </section>
+
+    <div class="cta-box">
+      <img src="/caltracker_icon.png" alt="CalTracker app icon">
+      <h2>Now track against your target — free</h2>
+      <p>CalTracker sets this same goal automatically and lets you log meals by photo, barcode, or search. No account needed, works offline.</p>
+      <div class="cta-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+          <span><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+        <a href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span><small>Download on</small><strong>App Store</strong></span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></div>
+        <p>AI-powered calorie & nutrition tracking. Build healthier habits that actually stick.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <a href="/#features">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Free Tools</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+        <a href="/delete-account.html">Delete Account</a>
+        <a href="/data-deletion.html">Data Deletion</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 CalTracker. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+    // ============ Calculator ============
+    (function () {
+      const state = { sex: 'male', units: 'metric', goal: 'lose' };
+
+      function segInit(id, key, onChange) {
+        const seg = document.getElementById(id);
+        seg.querySelectorAll('button').forEach(btn => {
+          btn.addEventListener('click', () => {
+            seg.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state[key] = btn.dataset.v;
+            if (onChange) onChange(btn.dataset.v);
+            compute();
+          });
+        });
+      }
+
+      segInit('seg-sex', 'sex');
+      segInit('seg-goal', 'goal', v => {
+        const rate = document.getElementById('f-rate');
+        const rateSel = document.getElementById('rate');
+        if (v === 'maintain') { rate.classList.add('hidden'); }
+        else {
+          rate.classList.remove('hidden');
+          rateSel.options[0].text = v === 'gain' ? 'Lean bulk — ~0.25 kg (0.5 lb) / week' : 'Gentle — ~0.25 kg (0.5 lb) / week';
+          rateSel.options[1].text = v === 'gain' ? 'Standard bulk — ~0.5 kg (1 lb) / week' : 'Steady — ~0.5 kg (1 lb) / week';
+          rateSel.options[2].style.display = v === 'gain' ? 'none' : '';
+          if (v === 'gain' && rateSel.value === '825') rateSel.value = '550';
+        }
+      });
+      segInit('seg-units', 'units', v => {
+        document.getElementById('f-height-metric').classList.toggle('hidden', v !== 'metric');
+        document.getElementById('f-weight-metric').classList.toggle('hidden', v !== 'metric');
+        document.getElementById('f-height-imperial').classList.toggle('hidden', v !== 'imperial');
+        document.getElementById('f-weight-imperial').classList.toggle('hidden', v !== 'imperial');
+      });
+
+      ['age','height-cm','weight-kg','height-ft','height-in','weight-lbs'].forEach(id =>
+        document.getElementById(id).addEventListener('input', compute));
+      document.getElementById('activity').addEventListener('change', compute);
+      document.getElementById('rate').addEventListener('change', compute);
+
+      function num(id) { const v = parseFloat(document.getElementById(id).value); return isFinite(v) ? v : null; }
+
+      function compute() {
+        const age = num('age');
+        let kg, cm;
+        if (state.units === 'metric') { kg = num('weight-kg'); cm = num('height-cm'); }
+        else {
+          const lbs = num('weight-lbs'), ft = num('height-ft'), inch = num('height-in') || 0;
+          kg = lbs !== null ? lbs * 0.45359237 : null;
+          cm = ft !== null ? (ft * 12 + inch) * 2.54 : null;
+        }
+        const results = document.getElementById('results');
+        if (age === null || kg === null || cm === null || age < 15 || age > 100) { results.classList.remove('show'); return; }
+
+        const bmr = 10 * kg + 6.25 * cm - 5 * age + (state.sex === 'male' ? 5 : -161);
+        const tdee = bmr * parseFloat(document.getElementById('activity').value);
+        const delta = state.goal === 'maintain' ? 0 : parseFloat(document.getElementById('rate').value) * (state.goal === 'lose' ? -1 : 1);
+        const target = Math.round(tdee + delta);
+
+        document.getElementById('r-bmr').textContent = Math.round(bmr).toLocaleString('en-US');
+        document.getElementById('r-tdee').textContent = Math.round(tdee).toLocaleString('en-US');
+        document.getElementById('r-target').textContent = target.toLocaleString('en-US');
+        document.getElementById('r-target-lbl').textContent =
+          state.goal === 'lose' ? 'Daily target (deficit)' : state.goal === 'gain' ? 'Daily target (surplus)' : 'Daily target (maintain)';
+
+        // Macros 30/50/20 (protein & carbs 4 kcal/g, fat 9 kcal/g) — CalTracker's default split
+        document.getElementById('m-protein').textContent = Math.round(target * 0.30 / 4) + ' g';
+        document.getElementById('m-carbs').textContent = Math.round(target * 0.50 / 4) + ' g';
+        document.getElementById('m-fat').textContent = Math.round(target * 0.20 / 9) + ' g';
+
+        const floor = state.sex === 'male' ? 1500 : 1200;
+        const note = document.getElementById('r-note');
+        if (state.goal === 'lose' && target < floor) {
+          note.innerHTML = '<span class="warn">⚠ Your target is below ' + floor.toLocaleString('en-US') +
+            ' kcal.</span> Deficits this low aren\'t advisable without medical supervision — consider a gentler pace or more activity instead.';
+        } else if (state.goal === 'lose') {
+          note.textContent = 'Estimated pace: ' + (Math.abs(delta) === 275 ? '~0.25 kg (0.5 lb)' : Math.abs(delta) === 550 ? '~0.5 kg (1 lb)' : '~0.75 kg (1.7 lb)') + ' per week. Recalculate after every ~5 kg of progress.';
+        } else if (state.goal === 'gain') {
+          note.textContent = 'A modest surplus limits fat gain. Weigh in weekly and adjust by 100–200 kcal based on the trend.';
+        } else {
+          note.textContent = 'Eat at this level to hold your current weight. Verify against 2–3 weeks of tracking.';
+        }
+
+        results.classList.add('show');
+
+        if (typeof gtag === 'function' && !window.__calcUsed) {
+          window.__calcUsed = true;
+          gtag('event', 'tool_used', { tool_name: 'calorie_calculator' });
+        }
+      }
+    })();
+
+    // Download / Conversion Tracking (TikTok Pixel + GA4)
+    (function () {
+      var storeLinks = document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+      storeLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          var isIOS = link.href.indexOf('apps.apple.com') !== -1;
+          var platform = isIOS ? 'ios_app_store' : 'android_google_play';
+          if (window.ttq) {
+            ttq.track('ClickButton', {
+              contents: [{ content_id: 'caltracker_app', content_name: 'CalTracker App Download' }],
+              content_type: 'product',
+              description: platform
+            });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'download_click', { app_platform: platform, link_url: link.href });
+          }
+        });
+      });
+    })();
+  </script>
+
+  <div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie-Zustimmung" hidden>
+    <div class="cc-inner">
+      <p class="cc-text">
+        Wir nutzen Cookies für Statistik (Google Analytics) und Marketing (TikTok), um unsere Werbung zu verbessern. Details in der <a href="/privacy-policy.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cc-actions">
+        <button type="button" class="cc-btn cc-decline" id="cc-decline">Ablehnen</button>
+        <button type="button" class="cc-btn cc-accept" id="cc-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'cc_consent';
+      var banner = document.getElementById('cc-banner');
+      var choice = null;
+      try { choice = localStorage.getItem(KEY); } catch (e) {}
+      if (choice === 'granted') { grantTrackingConsent(); }
+      else if (choice === 'denied') { revokeTrackingConsent(); }
+      else { banner.hidden = false; }
+      document.getElementById('cc-accept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        banner.hidden = true; grantTrackingConsent();
+      });
+      document.getElementById('cc-decline').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        banner.hidden = true; revokeTrackingConsent();
+      });
+    })();
+  </script>
+
+</body>
+</html>
