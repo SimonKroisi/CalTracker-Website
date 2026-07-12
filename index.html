@@ -4,13 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG"></script>
+  <!-- Analytics & Marketing – laden erst nach Cookie-Zustimmung (DSGVO) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-7SY51HPJCG');
+
+    // Wird erst nach Klick auf "Akzeptieren" (oder bei gespeicherter Zustimmung) aufgerufen.
+    function loadTrackingScripts() {
+      if (window.__trackingLoaded) return;
+      window.__trackingLoaded = true;
+
+      // --- Google Analytics (GA4) ---
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-7SY51HPJCG');
+
+      // --- TikTok Pixel ---
+      !function (w, d, t) {
+        w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+        ttq.load('D99I9VBC77U7PB56OJI0');
+        ttq.page();
+      }(window, document, 'ttq');
+    }
   </script>
 
   <title>CalTracker – AI Calorie Counter & Macro Tracker App</title>
@@ -1674,6 +1693,111 @@
           water = Math.min(goal, water + ml);
           render();
         });
+      });
+    })();
+  </script>
+
+  <!-- Download / Conversion Tracking (TikTok Pixel + GA4) -->
+  <script>
+    (function () {
+      // Alle Google-Play- und App-Store-Links auf der Seite
+      var storeLinks = document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+      storeLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          var isIOS = link.href.indexOf('apps.apple.com') !== -1;
+          var platform = isIOS ? 'ios_app_store' : 'android_google_play';
+
+          // --- TikTok Pixel: meldet die Conversion an TikTok Ads Manager ---
+          if (window.ttq) {
+            ttq.track('ClickButton', {
+              contents: [{ content_id: 'caltracker_app', content_name: 'CalTracker App Download' }],
+              content_type: 'product',
+              description: platform
+            });
+          }
+
+          // --- Google Analytics (GA4): sichtbar in deinen GA4-Events ---
+          if (typeof gtag === 'function') {
+            gtag('event', 'download_click', {
+              app_platform: platform,
+              link_url: link.href
+            });
+          }
+        });
+      });
+    })();
+  </script>
+
+  <!-- Cookie Consent Banner -->
+  <style>
+    .cc-banner {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+      background: var(--bg-soft, #ffffff);
+      border-top: 1px solid var(--border, #e5e7eb);
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.12);
+      padding: 16px 20px;
+      padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+    .cc-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .cc-text {
+      font-size: 0.85rem; line-height: 1.5; margin: 0; flex: 1 1 320px;
+      color: var(--text-secondary, #4b5563);
+    }
+    .cc-text a { color: var(--text, #111827); text-decoration: underline; }
+    .cc-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cc-btn {
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      padding: 10px 20px; border-radius: 10px; cursor: pointer;
+      border: 1px solid var(--border, #e5e7eb); transition: opacity 0.2s;
+    }
+    .cc-btn:hover { opacity: 0.85; }
+    .cc-decline { background: transparent; color: var(--text-secondary, #4b5563); }
+    .cc-accept {
+      background: var(--text, #111827); color: var(--bg-soft, #ffffff);
+      border-color: var(--text, #111827);
+    }
+    @media (max-width: 640px) {
+      .cc-inner { flex-direction: column; align-items: stretch; }
+      .cc-actions { justify-content: stretch; }
+      .cc-btn { flex: 1; }
+    }
+  </style>
+  <div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie-Zustimmung" hidden>
+    <div class="cc-inner">
+      <p class="cc-text">
+        Wir nutzen Cookies für Statistik (Google Analytics) und Marketing (TikTok), um unsere Werbung zu verbessern. Details in der <a href="privacy-policy.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cc-actions">
+        <button type="button" class="cc-btn cc-decline" id="cc-decline">Ablehnen</button>
+        <button type="button" class="cc-btn cc-accept" id="cc-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'cc_consent';
+      var banner = document.getElementById('cc-banner');
+      var choice = null;
+      try { choice = localStorage.getItem(KEY); } catch (e) {}
+
+      if (choice === 'granted') {
+        loadTrackingScripts();           // Zustimmung liegt vor -> Tracking laden
+      } else if (choice !== 'denied') {
+        banner.hidden = false;           // Noch keine Entscheidung -> Banner zeigen
+      }
+
+      document.getElementById('cc-accept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        banner.hidden = true;
+        loadTrackingScripts();
+      });
+      document.getElementById('cc-decline').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        banner.hidden = true;
       });
     })();
   </script>
