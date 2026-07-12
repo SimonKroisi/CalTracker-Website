@@ -12,7 +12,7 @@
 
 4. **No programmatic SEO.** No generated page factories, no /compare/ URL matrices. Every page is written and edited individually. (Google eventually torches factories, and our name is on this.)
 5. **Priority order: tools > roundups > comparisons > informational.** Tools rank fastest and earn backlinks. Roundups and comparisons get clicks (reader is shopping). Informational posts feed topic clusters but get eaten by AI overviews — write them for structure, not traffic.
-6. **Product truth only from [product-context.md](product-context.md).** Generators never invent CalTracker features. Competitor claims need a live check (WebFetch their pricing page) and an "as of <month year>" qualifier.
+6. **Product truth only from [product-context.md](product-context.md).** Generators never invent CalTracker features. Competitor claims need a live check (WebFetch their pricing page) and an "as of <month year>" qualifier. [/llms.txt](../llms.txt) mirrors this file for AI answer engines (ChatGPT, Perplexity, etc.) — update both together whenever pricing or features change; don't let them drift apart.
 7. **Honesty is the conversion strategy.** Concede real competitor strengths (MFP's database, Cronometer's micros, MacroFactor's adaptive TDEE). Recommend CalTracker only where it genuinely wins: price, anonymous mode, offline, AI-model choice, daily AI evaluation.
 
 ## Page mechanics (every new page)
