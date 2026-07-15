@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Analytics & Marketing – TikTok mit Consent-Hold, GA4 erst nach Zustimmung (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.holdConsent();
+      ttq.load('D99I9VBC77U7PB56OJI0');
+      ttq.page();
+    }(window, document, 'ttq');
+    function loadGoogleAnalytics() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-7SY51HPJCG');
+    }
+    function grantTrackingConsent() {
+      if (window.ttq) ttq.grantConsent();
+      loadGoogleAnalytics();
+    }
+    function revokeTrackingConsent() {
+      if (window.ttq) ttq.revokeConsent();
+    }
+  </script>
+
+  <title>Mifflin-St Jeor Equation Explained (With Example)</title>
+  <meta name="description" content="The Mifflin-St Jeor equation is how most apps estimate your calories. Here's the formula, a worked example, why it's the go-to, and where it falls short.">
+  <meta name="author" content="CalTracker">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://caltracker.eu/blog/mifflin-st-jeor-equation-explained/">
+
+  <meta property="og:title" content="Mifflin-St Jeor Equation Explained (With Example)">
+  <meta property="og:description" content="The Mifflin-St Jeor equation is how most apps estimate your calories. Here's the formula, a worked example, why it's the go-to, and where it falls short.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://caltracker.eu/blog/mifflin-st-jeor-equation-explained/">
+  <meta property="og:site_name" content="CalTracker">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://caltracker.eu/caltracker_icon.png">
+  <meta property="article:published_time" content="2026-07-15">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mifflin-St Jeor Equation Explained (With Example)">
+  <meta name="twitter:description" content="The formula most calorie apps use, a worked example, why it's the go-to, and where it falls short.">
+  <meta name="twitter:image" content="https://caltracker.eu/caltracker_icon.png">
+
+  <link rel="icon" type="image/png" href="/caltracker_icon.png">
+  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Mifflin-St Jeor Equation, Explained (With a Worked Example)",
+    "description": "The Mifflin-St Jeor equation is how most apps estimate your calories. Here's the formula, a worked example, why it's the go-to, and where it falls short.",
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15",
+    "author": { "@type": "Organization", "name": "CalTracker", "url": "https://caltracker.eu/" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalTracker",
+      "logo": { "@type": "ImageObject", "url": "https://caltracker.eu/caltracker_icon.png" }
+    },
+    "mainEntityOfPage": "https://caltracker.eu/blog/mifflin-st-jeor-equation-explained/",
+    "image": "https://caltracker.eu/caltracker_icon.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Mifflin-St Jeor equation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It's a formula published in 1990 that estimates your Basal Metabolic Rate (BMR) — the calories your body burns at complete rest — from your weight, height, age, and sex. Multiply the result by an activity factor and you get your Total Daily Energy Expenditure (TDEE), the calories you burn in a normal day. It's the equation most modern calorie apps and dietitians use." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Mifflin-St Jeor formula for men and women?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both use weight in kg, height in cm, and age in years. Men: BMR = (10 × weight) + (6.25 × height) − (5 × age) + 5. Women: BMR = (10 × weight) + (6.25 × height) − (5 × age) − 161. The only difference is the final constant: +5 for men, −161 for women." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Mifflin-St Jeor accurate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It's the most accurate general-population BMR equation in common use — it predicts resting metabolic rate within about 10% of measured values more often than older formulas like Harris-Benedict, with an average error around 5%. But it's still an estimate: it doesn't know your body-fat percentage, so it's less reliable for very muscular or very high-body-fat individuals. Treat the number as a starting point and adjust from real-world results." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between BMR and TDEE?",
+        "acceptedAnswer": { "@type": "Answer", "text": "BMR is what you'd burn lying in bed all day doing nothing — just keeping your body running. TDEE is BMR plus everything else: walking, working, exercising, even digesting food. You get TDEE by multiplying BMR by an activity factor from 1.2 (sedentary) to 1.9 (very active). Your calorie goal is based on TDEE, not BMR." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-soft: #f7f8fa; --bg-muted: #f0f1f3;
+      --text: #1a1a1a; --text-secondary: #6b7280; --text-muted: #9ca3af;
+      --border: #e5e7eb; --border-light: #f3f4f6;
+      --green: #4CAF50; --green-light: #81C784; --orange: #FF9800; --red: #ef4444; --blue: #42A5F5;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
+    }
+    [data-theme="dark"] {
+      --bg: #111111; --bg-soft: #1a1a1a; --bg-muted: #222222;
+      --text: #f5f5f5; --text-secondary: #a0a0a0; --text-muted: #666666;
+      --border: #2a2a2a; --border-light: #1f1f1f;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2); --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    .navbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+    [data-theme="dark"] .navbar { background: rgba(17,17,17,0.85); border-color: var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-muted); }
+    .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: var(--text); }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+    .nav-cta { background: var(--text); color: var(--bg); padding: 9px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    .post { max-width: 760px; margin: 0 auto; padding: 48px 20px 32px; }
+    .post-tag { display: inline-block; background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .post h1 { font-size: clamp(1.7rem, 4.5vw, 2.5rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .post-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 36px; }
+    .post h2 { font-size: 1.45rem; font-weight: 800; margin: 40px 0 14px; letter-spacing: -0.01em; }
+    .post h3 { font-size: 1.15rem; font-weight: 700; margin: 28px 0 10px; }
+    .post p, .post li { font-size: 1.02rem; line-height: 1.75; color: var(--text); }
+    .post p { margin-bottom: 16px; }
+    .post ul, .post ol { margin: 0 0 16px 22px; }
+    .post li { margin-bottom: 6px; }
+    .post a { color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .post strong { font-weight: 700; }
+    .table-wrap { overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .post table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 560px; }
+    .post th { background: var(--bg-soft); text-align: left; font-weight: 700; }
+    .post th, .post td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .post tr:last-child td { border-bottom: none; }
+    .tldr { background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: var(--radius-sm); padding: 18px 20px; margin: 0 0 28px; }
+    .tldr p:last-child { margin-bottom: 0; }
+    .note { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; margin: 20px 0; font-size: 0.95rem; color: var(--text-secondary); }
+    .formula { background: var(--bg-muted); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 20px; margin: 18px 0; font-size: 1.02rem; line-height: 1.7; }
+    .formula strong { font-weight: 800; }
+    .faq h3 { margin-top: 22px; }
+    .disclaimer { font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; padding-top: 16px; }
+
+    .cta-box { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin: 44px 0 8px; text-align: center; }
+    .cta-box img { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px; }
+    .cta-box h2 { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; }
+    .cta-box p { color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 18px; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 12px; text-decoration: none; }
+    .store-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .store-btn small { display: block; font-size: 0.65rem; opacity: 0.8; text-align: left; }
+    .store-btn strong { display: block; font-size: 0.95rem; line-height: 1.1; text-align: left; }
+
+    footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 24px 24px; }
+    .footer-content { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 10px; }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 7px; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.9rem; max-width: 280px; }
+    .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+    .footer-links a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; margin-bottom: 8px; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1000px; margin: 28px auto 0; padding-top: 18px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+
+    .cc-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: var(--bg-soft); border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.12); padding: 16px 20px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+    .cc-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .cc-text { font-size: 0.85rem; line-height: 1.5; margin: 0; flex: 1 1 320px; color: var(--text-secondary); }
+    .cc-text a { color: var(--text); text-decoration: underline; }
+    .cc-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cc-btn { font-family: inherit; font-size: 0.85rem; font-weight: 600; padding: 10px 20px; border-radius: 10px; cursor: pointer; border: 1px solid var(--border); transition: opacity 0.2s; }
+    .cc-btn:hover { opacity: 0.85; }
+    .cc-decline { background: transparent; color: var(--text-secondary); }
+    .cc-accept { background: var(--text); color: var(--bg-soft); border-color: var(--text); }
+    @media (max-width: 640px) { .cc-inner { flex-direction: column; align-items: stretch; } .cc-actions { justify-content: stretch; } .cc-btn { flex: 1; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/tools/">Free Tools</a>
+    </div>
+    <div class="nav-right">
+      <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+      <a href="/#download" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <main class="post">
+    <span class="post-tag">Guide</span>
+    <h1>The Mifflin-St Jeor Equation, Explained (With a Worked Example)</h1>
+    <p class="post-meta">By the CalTracker team · Updated <time datetime="2026-07-15">July 15, 2026</time> · 7 min read</p>
+
+    <div class="tldr">
+      <p><strong>TL;DR:</strong> The Mifflin-St Jeor equation estimates your <strong>BMR</strong> — the calories you'd burn at complete rest — from weight, height, age, and sex. Multiply that by an activity factor (1.2 to 1.9) to get your <strong>TDEE</strong>, the calories you actually burn in a day. Men add 5 at the end; women subtract 161. It's the most accurate general-purpose formula in common use (within ~10% of measured values for most people), which is why nearly every calorie app — including ours — starts here. It's still an estimate, so treat the number as a starting point and adjust from real results.</p>
+    </div>
+
+    <p>Every calorie app hands you a daily number and rarely explains where it came from. For most of them — MyFitnessPal, YAZIO, Cal AI, CalTracker — the answer is the same 35-year-old formula: the Mifflin-St Jeor equation. Here's exactly what it does, worked through with real numbers, plus the honest limits of what a formula can tell you.</p>
+
+    <h2>What it actually calculates</h2>
+    <p>Two terms do all the work here:</p>
+    <ul>
+      <li><strong>BMR (Basal Metabolic Rate)</strong> — the energy your body burns doing absolutely nothing: breathing, pumping blood, keeping your brain and organs running. If you stayed in bed all day, this is roughly what you'd burn. It's the biggest chunk of your daily calories, usually 60–70%.</li>
+      <li><strong>TDEE (Total Daily Energy Expenditure)</strong> — BMR <em>plus</em> everything else: walking to work, typing, exercising, fidgeting, and even the energy used to digest your food. This is the number your calorie goal is built on.</li>
+    </ul>
+    <p>Mifflin-St Jeor gives you BMR. You get to TDEE by multiplying by an activity factor. Then you subtract to lose weight, or add to gain.</p>
+
+    <h2>The formula</h2>
+    <p>Both versions use <strong>weight in kilograms</strong>, <strong>height in centimetres</strong>, and <strong>age in years</strong>. The only thing that changes between them is the number on the end.</p>
+    <div class="formula">
+      <p><strong>Men:</strong> BMR = (10 × weight) + (6.25 × height) − (5 × age) <strong>+ 5</strong></p>
+      <p style="margin-bottom:0;"><strong>Women:</strong> BMR = (10 × weight) + (6.25 × height) − (5 × age) <strong>− 161</strong></p>
+    </div>
+    <p class="note">Using pounds and inches? Convert first: weight in kg = pounds ÷ 2.205; height in cm = inches × 2.54. Or skip the arithmetic entirely and use our <a href="/tools/calorie-calculator/">calorie &amp; TDEE calculator</a>, which handles metric and imperial.</p>
+
+    <h2>A worked example</h2>
+    <p>Let's run it for a <strong>30-year-old woman, 70 kg, 168 cm, moderately active</strong>.</p>
+    <p><strong>Step 1 — BMR.</strong> Plug into the women's formula:</p>
+    <div class="formula">
+      <p>BMR = (10 × 70) + (6.25 × 168) − (5 × 30) − 161</p>
+      <p>BMR = 700 + 1050 − 150 − 161</p>
+      <p style="margin-bottom:0;">BMR = <strong>1,439 calories/day</strong></p>
+    </div>
+    <p><strong>Step 2 — TDEE.</strong> "Moderately active" means an activity factor of 1.55:</p>
+    <div class="formula">
+      <p>TDEE = 1,439 × 1.55</p>
+      <p style="margin-bottom:0;">TDEE ≈ <strong>2,230 calories/day</strong></p>
+    </div>
+    <p><strong>Step 3 — a goal.</strong> To lose weight at a steady, sustainable pace, subtract a deficit. A 500-calorie daily deficit works out to roughly <strong>0.45 kg (1 lb) per week</strong> of fat loss:</p>
+    <div class="formula">
+      <p style="margin-bottom:0;">Target = 2,230 − 500 = <strong>~1,730 calories/day to lose weight</strong></p>
+    </div>
+    <p>To maintain, she'd eat around 2,230; to gain, she'd add a surplus of 250–500. (For a 30-year-old <em>man</em> with the identical stats, Step 1 ends in <strong>+5</strong> instead of <strong>−161</strong>, giving a BMR of 1,605 — the 166-calorie gap between the two constants reflects average differences in body composition.)</p>
+
+    <h2>Activity multipliers</h2>
+    <p>The multiplier is where most people go wrong — it's tempting to overrate yourself. Be honest; "I go to the gym" doesn't make you "very active" if you sit the other 15 hours.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Activity level</th><th>Multiplier</th><th>Roughly means</th></tr>
+        <tr><td>Sedentary</td><td>× 1.2</td><td>Desk job, little or no exercise</td></tr>
+        <tr><td>Lightly active</td><td>× 1.375</td><td>Light exercise 1–3 days/week</td></tr>
+        <tr><td>Moderately active</td><td>× 1.55</td><td>Moderate exercise 3–5 days/week</td></tr>
+        <tr><td>Active</td><td>× 1.725</td><td>Hard exercise 6–7 days/week</td></tr>
+        <tr><td>Very active</td><td>× 1.9</td><td>Physical job or twice-daily training</td></tr>
+      </table>
+    </div>
+
+    <h2>Why this formula won</h2>
+    <p>Mifflin-St Jeor was published in 1990 (Mifflin, St Jeor et al., <em>American Journal of Clinical Nutrition</em>) from a study of 498 healthy adults, measured with indirect calorimetry. It replaced the older Harris-Benedict equation from 1919, which was built on a smaller, less representative sample and tends to overestimate for modern populations.</p>
+    <p>In head-to-head reviews, Mifflin-St Jeor predicts resting metabolic rate within about 10% of the measured value more often than any other equation of its kind, with an average error around 5%. That's why the Academy of Nutrition and Dietetics has recommended it and why it's the default in most reputable calorie apps and calculators today.</p>
+
+    <h2>Where it's wrong (and why that's OK)</h2>
+    <p>A formula built on four inputs can't capture everything:</p>
+    <ul>
+      <li><strong>It ignores body composition.</strong> Muscle burns more at rest than fat, but the equation only sees total weight — so it tends to under-estimate for very muscular people and over-estimate for very high-body-fat individuals. (Formulas like Katch-McArdle use body-fat percentage instead, if you know yours accurately.)</li>
+      <li><strong>The activity multiplier is a guess on top of a guess.</strong> Two people who both call themselves "moderately active" can differ by hundreds of calories a day.</li>
+      <li><strong>Your real metabolism varies</strong> with sleep, stress, hormones, and dieting history in ways no static formula tracks.</li>
+    </ul>
+    <p>None of this makes it useless — it makes it a <strong>starting point</strong>. The right workflow is: get your estimate, eat to it consistently for 2–3 weeks, watch the scale trend, and adjust the target based on what actually happened to your weight. Reality beats any formula. That's also the honest limit of AI food scanning, which we cover in <a href="/blog/how-accurate-are-ai-calorie-counters/">how accurate AI calorie counters really are</a>.</p>
+
+    <h2>From equation to daily habit</h2>
+    <p>The math gives you a target; a tracker tells you whether you're hitting it. CalTracker computes your goal with this exact Mifflin-St Jeor equation (weight, height, age, sex, five activity levels, and your chosen deficit or surplus), shows an estimated weekly weight change, and lets you override the number if your own results say otherwise. Want the number without installing anything? The free <a href="/tools/calorie-calculator/">calorie &amp; TDEE calculator</a> runs the same formula in your browser.</p>
+
+    <section class="faq">
+      <h2>FAQ</h2>
+      <h3>What is the Mifflin-St Jeor equation?</h3>
+      <p>A 1990 formula that estimates your Basal Metabolic Rate — the calories your body burns at rest — from weight, height, age, and sex. Multiply by an activity factor to get TDEE, the calories you burn in a normal day. It's the equation most modern calorie apps and dietitians use.</p>
+      <h3>What is the formula for men and women?</h3>
+      <p>Both use weight (kg), height (cm), and age (years). Men: (10 × weight) + (6.25 × height) − (5 × age) + 5. Women: the same, but − 161 instead of + 5.</p>
+      <h3>Is Mifflin-St Jeor accurate?</h3>
+      <p>It's the most accurate general-population BMR formula in common use — within ~10% of measured values for most people, average error around 5%. But it doesn't account for body-fat percentage, so it's less reliable for very muscular or very high-body-fat individuals. Use it as a starting point and adjust from real results.</p>
+      <h3>What's the difference between BMR and TDEE?</h3>
+      <p>BMR is what you burn at complete rest. TDEE is BMR plus all your daily movement, exercise, and digestion — found by multiplying BMR by an activity factor (1.2 sedentary to 1.9 very active). Your calorie goal is based on TDEE.</p>
+    </section>
+
+    <p class="disclaimer">This article is general information, not medical or nutrition advice. Calorie needs are individual — consult a doctor or registered dietitian before starting a diet, especially with any medical condition or history of disordered eating. Equation outputs are estimates and shouldn't replace professional guidance.</p>
+
+    <div class="cta-box">
+      <img src="/caltracker_icon.png" alt="CalTracker app icon">
+      <h2>Your number, then the habit</h2>
+      <p>CalTracker sets your goal with the Mifflin-St Jeor formula, then tracks it. Free forever for core tracking; logs offline too.</p>
+      <div class="cta-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+          <span><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+        <a href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span><small>Download on</small><strong>App Store</strong></span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></div>
+        <p>AI-powered calorie & nutrition tracking. Build healthier habits that actually stick.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <a href="/#features">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Free Tools</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+        <a href="/delete-account.html">Delete Account</a>
+        <a href="/data-deletion.html">Data Deletion</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 CalTracker. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+    // Download / Conversion Tracking (TikTok Pixel + GA4)
+    (function () {
+      var storeLinks = document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+      storeLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          var isIOS = link.href.indexOf('apps.apple.com') !== -1;
+          var platform = isIOS ? 'ios_app_store' : 'android_google_play';
+          if (window.ttq) {
+            ttq.track('ClickButton', {
+              contents: [{ content_id: 'caltracker_app', content_name: 'CalTracker App Download' }],
+              content_type: 'product',
+              description: platform
+            });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'download_click', { app_platform: platform, link_url: link.href });
+          }
+        });
+      });
+    })();
+  </script>
+
+  <div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie-Zustimmung" hidden>
+    <div class="cc-inner">
+      <p class="cc-text">
+        Wir nutzen Cookies für Statistik (Google Analytics) und Marketing (TikTok), um unsere Werbung zu verbessern. Details in der <a href="/privacy-policy.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cc-actions">
+        <button type="button" class="cc-btn cc-decline" id="cc-decline">Ablehnen</button>
+        <button type="button" class="cc-btn cc-accept" id="cc-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'cc_consent';
+      var banner = document.getElementById('cc-banner');
+      var choice = null;
+      try { choice = localStorage.getItem(KEY); } catch (e) {}
+      if (choice === 'granted') { grantTrackingConsent(); }
+      else if (choice === 'denied') { revokeTrackingConsent(); }
+      else { banner.hidden = false; }
+      document.getElementById('cc-accept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        banner.hidden = true; grantTrackingConsent();
+      });
+      document.getElementById('cc-decline').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        banner.hidden = true; revokeTrackingConsent();
+      });
+    })();
+  </script>
+
+</body>
+</html>

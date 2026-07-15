@@ -37,10 +37,10 @@
 
 | Keyword | Tier | Difficulty | Notes | Status |
 |---|---|---|---|---|
-| cal ai vs myfitnesspal | T3 | easy | Active space; nutrola/intakenutrition rank | queued |
+| cal ai vs myfitnesspal | T3 | easy | Active space; nutrola/intakenutrition rank | published 2026-07-15 → /blog/cal-ai-vs-myfitnesspal/ |
 | caltracker vs myfitnesspal | T4 | easy | Brand-building; write once brand queries appear in GSC | queued |
 | cal ai vs caltracker | T4 | easy | Own the SERP for our own comparison | queued |
-| myfitnesspal vs yazio | T3 | easy | Top autocomplete for "myfitnesspal vs" | idea |
+| myfitnesspal vs yazio | T3 | easy | Top autocomplete for "myfitnesspal vs" | published 2026-07-15 → /blog/myfitnesspal-vs-yazio/ |
 | myfitnesspal vs cronometer | T3 | medium | | idea |
 | myfitnesspal vs lose it | T3 | medium | | idea |
 | cal ai vs snapcalorie | T4 | easy | | idea |
@@ -51,14 +51,15 @@
 
 | Keyword | Tier | Difficulty | Notes | Status |
 |---|---|---|---|---|
-| how accurate are ai calorie counters | T3 | easy | Link-earning potential; supports AI cluster | queued |
+| how accurate are ai calorie counters | T3 | easy | Link-earning potential; supports AI cluster | published 2026-07-15 → /blog/how-accurate-are-ai-calorie-counters/ |
 | how to track calories (beginner guide) | T1 | hard | AI-overview-eaten; write for cluster only | idea |
-| how to track calories when eating out | T3 | medium | Autocomplete find | idea |
+| how to track calories when eating out | T3 | medium | Autocomplete find | published 2026-07-15 → /blog/how-to-track-calories-eating-out/ |
 | what is a calorie deficit / how big should it be | T1 | hard | Supports deficit-calculator tool | idea |
-| mifflin st jeor equation explained | T3 | easy | Supports calorie calculator; scientific angle | idea |
+| mifflin st jeor equation explained | T3 | easy | Supports calorie calculator; scientific angle | published 2026-07-15 → /blog/mifflin-st-jeor-equation-explained/ |
 
 ## Discovery log
 
 - 2026-07-12: Seeded from Google autocomplete (12 seeds, note: run with `&gl=us&hl=en` next time — this run had EU bias) + live SERP scan. GSC has no data for blog yet (no blog until today); re-run discovery against GSC after ~4 weeks of data.
 - 2026-07-13: Correction — CalTracker removed anonymous/no-account mode (account now mandatory at onboarding, confirmed by Simon). Retired the "without account/login" backlog row and stripped the claim from product-context.md, rules.md, llms.txt, the post template, both write skills, and the published roundup post. See change-log.md.
+- 2026-07-15: Published a 3-post informational batch (how-accurate-ai / eating-out / mifflin-st-jeor) modeled on ezscreenshots.com/blog's style, per Simon. ⚠️ Indexing not yet confirmed — `site:caltracker.eu` still returned only the homepage; the 2026-07-12 roundup wasn't indexed at publish time. Do NOT write the next batch until these 4 blog URLs index (rule 2). See change-log.md.
 - 2026-07-13: Correction #2 — "fully offline" was also overstated (no offline food database; confirmed by Simon). Downgraded the "best offline calorie tracker" row to a partial-match caution note. Also added YAZIO to the published roundup (fasting/EU-focused competitor, worth its own future "yazio vs caltracker" comparison — added as idea below) and repositioned CalTracker to #3 in that post, grounded in fresh competitor research. See change-log.md.

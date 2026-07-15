@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Analytics & Marketing – TikTok mit Consent-Hold, GA4 erst nach Zustimmung (DSGVO) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.holdConsent();
+      ttq.load('D99I9VBC77U7PB56OJI0');
+      ttq.page();
+    }(window, document, 'ttq');
+    function loadGoogleAnalytics() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7SY51HPJCG';
+      document.head.appendChild(ga);
+      gtag('js', new Date());
+      gtag('config', 'G-7SY51HPJCG');
+    }
+    function grantTrackingConsent() {
+      if (window.ttq) ttq.grantConsent();
+      loadGoogleAnalytics();
+    }
+    function revokeTrackingConsent() {
+      if (window.ttq) ttq.revokeConsent();
+    }
+  </script>
+
+  <title>How Accurate Are AI Calorie Counters, Really?</title>
+  <meta name="description" content="AI calorie apps promise exact numbers from a photo. Independent testing tells a messier story. Here's the real error range — and how to log around it.">
+  <meta name="author" content="CalTracker">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+
+  <link rel="canonical" href="https://caltracker.eu/blog/how-accurate-are-ai-calorie-counters/">
+
+  <meta property="og:title" content="How Accurate Are AI Calorie Counters, Really?">
+  <meta property="og:description" content="AI calorie apps promise exact numbers from a photo. Independent testing tells a messier story. Here's the real error range — and how to log around it.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://caltracker.eu/blog/how-accurate-are-ai-calorie-counters/">
+  <meta property="og:site_name" content="CalTracker">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://caltracker.eu/caltracker_icon.png">
+  <meta property="article:published_time" content="2026-07-15">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How Accurate Are AI Calorie Counters, Really?">
+  <meta name="twitter:description" content="AI calorie apps promise exact numbers from a photo. Independent testing tells a messier story — here's the real error range.">
+  <meta name="twitter:image" content="https://caltracker.eu/caltracker_icon.png">
+
+  <link rel="icon" type="image/png" href="/caltracker_icon.png">
+  <link rel="apple-touch-icon" href="/caltracker_icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Accurate Are AI Calorie Counters, Really?",
+    "description": "AI calorie apps promise exact numbers from a photo. Independent testing tells a messier story. Here's the real error range — and how to log around it.",
+    "datePublished": "2026-07-15",
+    "dateModified": "2026-07-15",
+    "author": { "@type": "Organization", "name": "CalTracker", "url": "https://caltracker.eu/" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalTracker",
+      "logo": { "@type": "ImageObject", "url": "https://caltracker.eu/caltracker_icon.png" }
+    },
+    "mainEntityOfPage": "https://caltracker.eu/blog/how-accurate-are-ai-calorie-counters/",
+    "image": "https://caltracker.eu/caltracker_icon.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How accurate are AI calorie counting apps?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On a clearly photographed, single-plate meal, most AI calorie apps land within roughly 10–25% of the true value. Accuracy drops on mixed dishes (stews, curries, casseroles), fried food, and anything with hidden oil, butter, or dressing, because those calories aren't visible in the photo. That's accurate enough to track a weight trend if you review and correct each estimate before saving it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I trust an app that claims 99% accuracy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Be skeptical. Near-perfect accuracy claims (sub-5% error) almost always come from the company selling the app or a blog it controls, not an independent lab. Physics is the giveaway: a photo can't see the tablespoon of oil a dish was cooked in, so no camera-only method can be near-perfect on real restaurant food. Consistent, editable estimates matter more than a marketing number." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is AI photo logging more accurate than a barcode scan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. A barcode reads the exact figures off the packaging, so for packaged food it beats any photo estimate. AI photo logging wins on convenience and on foods with no label — a plate at a restaurant, home cooking, loose produce — where the alternative is guessing anyway." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my calorie count 15% off — is the app broken?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Probably not. 15% off is inside the normal range for photo estimation. What matters for weight management is that the error is roughly consistent day to day, because a tracker that's 15% high every day still shows an accurate trend line. Review the estimate, fix obvious misses (portion size, hidden fats), and let the weekly average do the work." }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg-soft: #f7f8fa; --bg-muted: #f0f1f3;
+      --text: #1a1a1a; --text-secondary: #6b7280; --text-muted: #9ca3af;
+      --border: #e5e7eb; --border-light: #f3f4f6;
+      --green: #4CAF50; --green-light: #81C784; --orange: #FF9800; --red: #ef4444; --blue: #42A5F5;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04); --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
+    }
+    [data-theme="dark"] {
+      --bg: #111111; --bg-soft: #1a1a1a; --bg-muted: #222222;
+      --text: #f5f5f5; --text-secondary: #a0a0a0; --text-muted: #666666;
+      --border: #2a2a2a; --border-light: #1f1f1f;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2); --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    .navbar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); box-shadow: var(--shadow-sm); }
+    [data-theme="dark"] .navbar { background: rgba(17,17,17,0.85); border-color: var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 800; font-size: 1.1rem; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .theme-toggle { cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-muted); }
+    .theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: var(--text); }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+    .nav-cta { background: var(--text); color: var(--bg); padding: 9px 18px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    .post { max-width: 760px; margin: 0 auto; padding: 48px 20px 32px; }
+    .post-tag { display: inline-block; background: var(--green); color: #fff; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; margin-bottom: 16px; }
+    .post h1 { font-size: clamp(1.7rem, 4.5vw, 2.5rem); font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .post-meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 36px; }
+    .post h2 { font-size: 1.45rem; font-weight: 800; margin: 40px 0 14px; letter-spacing: -0.01em; }
+    .post h3 { font-size: 1.15rem; font-weight: 700; margin: 28px 0 10px; }
+    .post p, .post li { font-size: 1.02rem; line-height: 1.75; color: var(--text); }
+    .post p { margin-bottom: 16px; }
+    .post ul, .post ol { margin: 0 0 16px 22px; }
+    .post li { margin-bottom: 6px; }
+    .post a { color: var(--green); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+    .post strong { font-weight: 700; }
+    .table-wrap { overflow-x: auto; margin: 20px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    .post table { border-collapse: collapse; width: 100%; font-size: 0.92rem; min-width: 560px; }
+    .post th { background: var(--bg-soft); text-align: left; font-weight: 700; }
+    .post th, .post td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .post tr:last-child td { border-bottom: none; }
+    .tldr { background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--green); border-radius: var(--radius-sm); padding: 18px 20px; margin: 0 0 28px; }
+    .tldr p:last-child { margin-bottom: 0; }
+    .note { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; margin: 20px 0; font-size: 0.95rem; color: var(--text-secondary); }
+    .faq h3 { margin-top: 22px; }
+    .disclaimer { font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); margin-top: 40px; padding-top: 16px; }
+
+    .cta-box { background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin: 44px 0 8px; text-align: center; }
+    .cta-box img { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 12px; }
+    .cta-box h2 { font-size: 1.3rem; font-weight: 800; margin: 0 0 8px; }
+    .cta-box p { color: var(--text-secondary); font-size: 0.98rem; margin-bottom: 18px; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 12px; text-decoration: none; }
+    .store-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .store-btn small { display: block; font-size: 0.65rem; opacity: 0.8; text-align: left; }
+    .store-btn strong { display: block; font-size: 0.95rem; line-height: 1.1; text-align: left; }
+
+    footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 40px 24px 24px; }
+    .footer-content { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 10px; }
+    .footer-logo img { width: 28px; height: 28px; border-radius: 7px; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.9rem; max-width: 280px; }
+    .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 12px; }
+    .footer-links a { display: block; color: var(--text-secondary); text-decoration: none; font-size: 0.92rem; margin-bottom: 8px; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1000px; margin: 28px auto 0; padding-top: 18px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+
+    .cc-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: var(--bg-soft); border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.12); padding: 16px 20px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+    .cc-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; justify-content: space-between; }
+    .cc-text { font-size: 0.85rem; line-height: 1.5; margin: 0; flex: 1 1 320px; color: var(--text-secondary); }
+    .cc-text a { color: var(--text); text-decoration: underline; }
+    .cc-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cc-btn { font-family: inherit; font-size: 0.85rem; font-weight: 600; padding: 10px 20px; border-radius: 10px; cursor: pointer; border: 1px solid var(--border); transition: opacity 0.2s; }
+    .cc-btn:hover { opacity: 0.85; }
+    .cc-decline { background: transparent; color: var(--text-secondary); }
+    .cc-accept { background: var(--text); color: var(--bg-soft); border-color: var(--text); }
+    @media (max-width: 640px) { .cc-inner { flex-direction: column; align-items: stretch; } .cc-actions { justify-content: stretch; } .cc-btn { flex: 1; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="/" class="nav-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></a>
+    <div class="nav-links">
+      <a href="/#features">Features</a>
+      <a href="/blog/" aria-current="page">Blog</a>
+      <a href="/tools/">Free Tools</a>
+    </div>
+    <div class="nav-right">
+      <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/></svg>
+        <svg class="moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2"/></svg>
+      </div>
+      <a href="/#download" class="nav-cta">Get the App</a>
+    </div>
+  </nav>
+
+  <main class="post">
+    <span class="post-tag">Guide</span>
+    <h1>How Accurate Are AI Calorie Counters, Really?</h1>
+    <p class="post-meta">By the CalTracker team · Updated <time datetime="2026-07-15">July 15, 2026</time> · 7 min read</p>
+
+    <div class="tldr">
+      <p><strong>TL;DR:</strong> Point-and-shoot calorie apps are usually <strong>10–25% off</strong> on a clearly photographed, single-plate meal — and worse on stews, curries, and anything cooked in oil you can't see. That's accurate enough to track a weight <em>trend</em>, but only if you glance at the estimate and fix the obvious misses before saving. Treat any "99% accurate" claim with suspicion: it almost always comes from the company selling the app, not an independent test. A camera can't see the tablespoon of oil in the pan, so no photo-only method is ever near-perfect on real food.</p>
+    </div>
+
+    <p>"Just snap a photo and get exact calories" is the pitch on every AI food tracker, ours included. It's a genuinely useful feature — but "exact" is marketing. Here's the honest version of how accurate these apps are, where they break, and how to log in a way that makes the error stop mattering.</p>
+
+    <h2>The short answer</h2>
+    <p>For a meal that's clearly visible on a single plate — a chicken breast, some rice, a pile of broccoli — a good AI tracker will usually land within about <strong>10–25%</strong> of the real number. For context, that's roughly in line with, and often better than, how well people estimate calories in their heads, which studies have repeatedly shown to be off by 20–40% (almost always <em>under</em>).</p>
+    <p>So the useful framing isn't "is it perfect?" (it isn't) but "is it better than the alternative?" For food with no barcode — a restaurant plate, a home-cooked curry, a handful of nuts — the alternative is a pure guess, and the AI usually guesses better.</p>
+
+    <h2>Why you should distrust the accuracy claims</h2>
+    <p>Search "how accurate are AI calorie apps" and you'll hit a wall of pages citing "studies" that put error at 1–2%, ranking whichever app the page happens to be selling as the "most precise." Be skeptical of all of it. Two tells:</p>
+    <ul>
+      <li><strong>Follow the source.</strong> Near-perfect accuracy figures almost always trace back to the app vendor or a blog it controls — not an independent lab, and not a peer-reviewed journal you can actually find.</li>
+      <li><strong>Physics.</strong> A calorie is a measure of energy. Cooking oil, butter, and sugar are extremely energy-dense and often invisible in a photo — a restaurant stir-fry can hide 200+ calories of oil that no camera can detect. Any method that only looks at the surface of a plate has a hard ceiling on how accurate it can be.</li>
+    </ul>
+    <p>The credible independent comparisons we've seen cluster in the <strong>10–25% error</strong> range for photo estimation, with meaningful spread between apps and between meal types. We went through this app by app in our <a href="/blog/best-ai-calorie-counter-apps/">honest roundup of AI calorie counters</a>, where even the "winners" landed around ±15% and the same app got rated both best and worst by different testers. When someone shows you a single confident number, they're hiding the spread.</p>
+
+    <h2>What the AI actually gets wrong</h2>
+    <p>Accuracy isn't one number — it depends entirely on what's on the plate. The failure modes are predictable:</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Food type</th><th>Roughly how well AI does</th><th>Why</th></tr>
+        <tr><td>Single, separated items (grilled chicken, rice, veg)</td><td>Best case</td><td>Clearly visible, standard shapes, easy to identify and portion</td></tr>
+        <tr><td>Packaged food with a label</td><td>Use the barcode instead</td><td>The exact numbers are printed right there — don't photo-guess a label</td></tr>
+        <tr><td>Mixed / saucy dishes (curry, stew, casserole, stir-fry)</td><td>Weak</td><td>Ingredients and portions are hidden under sauce; oil is invisible</td></tr>
+        <tr><td>Fried or oil-heavy food</td><td>Often undercounted</td><td>Absorbed cooking oil is pure calories the camera can't see</td></tr>
+        <tr><td>Drinks, dressings, spreads</td><td>Easily missed</td><td>Small volume, huge calorie density; often not in the frame at all</td></tr>
+        <tr><td>Depth / portion size (a deep bowl vs a flat plate)</td><td>Consistent weak point</td><td>A 2D photo can't judge how much food is underneath</td></tr>
+      </table>
+    </div>
+    <p>Notice the pattern: the AI is good at <em>identifying</em> food and bad at <em>quantifying</em> it. "That's rice" is easy. "That's 180 grams of rice cooked in a tablespoon of butter" is the hard part — and it's where most of the error lives.</p>
+
+    <h2>Why 15% off is completely fine (for weight loss)</h2>
+    <p>Here's the part that gets lost in accuracy debates: for managing your weight, <strong>consistency beats precision</strong>. Weight change is driven by your calorie balance over weeks, not the exact number on any single meal.</p>
+    <p>If your tracker reads 15% high every single day, your daily totals are all wrong in the same direction — which means the <em>trend line</em> is still accurate. You'll still see clearly whether you're trending down, flat, or up, and you can adjust your target from real-world results. A tracker that's imprecise but consistent is a perfectly good instrument for the job. One that's precise on Monday and random on Tuesday is not.</p>
+    <p>This is also why chasing a "1% accurate" app is the wrong goal. You don't need a lab. You need a number you log the same way every day, plus the discipline to react to the scale trend.</p>
+
+    <h2>How to make AI logging more accurate</h2>
+    <p>You can close most of the gap with a few habits:</p>
+    <ul>
+      <li><strong>Always review the estimate before saving.</strong> This is the single biggest lever. The AI gives a starting guess; you know it was a large portion, or that it was fried. Nudge it.</li>
+      <li><strong>Edit the description.</strong> Apps that let you correct "salad" to "Caesar salad with dressing and croutons" before analysis recover most bad guesses. Apps that don't, bake the error in.</li>
+      <li><strong>Shoot from a slight angle, in good light, with something for scale.</strong> A fork or your hand in frame helps the model judge portion size far better than a straight-down shot.</li>
+      <li><strong>Log the invisible stuff separately.</strong> Add the oil, butter, dressing, and drinks by hand — that's where the hidden calories hide.</li>
+      <li><strong>Use the barcode for anything packaged.</strong> Don't photo-guess a food that has its exact numbers printed on the box.</li>
+    </ul>
+    <p>Before any of this helps, you need a target to log against. Our free <a href="/tools/calorie-calculator/">calorie &amp; TDEE calculator</a> gives you a daily number using the same Mifflin-St Jeor formula the app uses — no sign-up required.</p>
+
+    <h2>Where CalTracker lands on this</h2>
+    <p>We build one of these apps, so treat this as disclosed bias with checkable facts. CalTracker won't claim a magic accuracy number, because none of us honestly can. What we did instead is design around the error: you can <strong>choose the AI model</strong> (a faster one or a more accurate one), <strong>edit the food description</strong> before it's analyzed, and at the end of the day an <strong>AI evaluation scores your whole day 0–100</strong> rather than pretending each individual meal was measured to the calorie. The goal isn't a perfect number — it's a consistent, correctable one you'll actually keep using.</p>
+
+    <section class="faq">
+      <h2>FAQ</h2>
+      <h3>How accurate are AI calorie counting apps?</h3>
+      <p>On a clearly photographed single plate, most land within roughly 10–25% of the true value. Accuracy drops on mixed dishes, fried food, and anything with hidden oil or dressing, because those calories aren't visible. That's accurate enough for trend-based weight management if you review and correct each estimate.</p>
+      <h3>Should I trust an app that claims 99% accuracy?</h3>
+      <p>Be skeptical. Sub-5% error claims almost always come from the app vendor, not an independent lab — and a photo physically can't see the oil a dish was cooked in, so no camera-only method is near-perfect on real food. Consistency and editability matter more than a marketing number.</p>
+      <h3>Is AI photo logging more accurate than a barcode scan?</h3>
+      <p>No. A barcode reads the exact figures off the packaging, so for packaged food it wins every time. AI photo logging is for food with no label — restaurant plates, home cooking, loose produce — where you'd otherwise be guessing.</p>
+      <h3>Why is my calorie count 15% off — is the app broken?</h3>
+      <p>Probably not. 15% is inside the normal range for photo estimation. What matters is that the error is roughly consistent day to day, because a tracker that's 15% high every day still shows an accurate trend. Review the estimate, fix portion and hidden-fat misses, and trust the weekly average.</p>
+    </section>
+
+    <p class="disclaimer">This article is general information, not medical or nutrition advice. Calorie needs are individual — consult a doctor or registered dietitian before starting a diet, especially with any medical condition or history of disordered eating. Accuracy figures describe general ranges from independent comparisons and may not match any specific app or meal.</p>
+
+    <div class="cta-box">
+      <img src="/caltracker_icon.png" alt="CalTracker app icon">
+      <h2>Log it, review it, move on</h2>
+      <p>AI photo scanning with an editable estimate and your choice of model. Free forever for core tracking; logs offline too.</p>
+      <div class="cta-actions">
+        <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+          <span><small>Get it on</small><strong>Google Play</strong></span>
+        </a>
+        <a href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" target="_blank" rel="noopener noreferrer" class="store-btn">
+          <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          <span><small>Download on</small><strong>App Store</strong></span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/caltracker_icon.png" alt="CalTracker"><span>CalTracker</span></div>
+        <p>AI-powered calorie & nutrition tracking. Build healthier habits that actually stick.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <a href="/#features">Features</a>
+        <a href="/blog/">Blog</a>
+        <a href="/tools/">Free Tools</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-of-service.html">Terms of Service</a>
+        <a href="/delete-account.html">Delete Account</a>
+        <a href="/data-deletion.html">Data Deletion</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 CalTracker. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.getAttribute('data-theme') === 'dark') { html.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else { html.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+
+    // Download / Conversion Tracking (TikTok Pixel + GA4)
+    (function () {
+      var storeLinks = document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]');
+      storeLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          var isIOS = link.href.indexOf('apps.apple.com') !== -1;
+          var platform = isIOS ? 'ios_app_store' : 'android_google_play';
+          if (window.ttq) {
+            ttq.track('ClickButton', {
+              contents: [{ content_id: 'caltracker_app', content_name: 'CalTracker App Download' }],
+              content_type: 'product',
+              description: platform
+            });
+          }
+          if (typeof gtag === 'function') {
+            gtag('event', 'download_click', { app_platform: platform, link_url: link.href });
+          }
+        });
+      });
+    })();
+  </script>
+
+  <div id="cc-banner" class="cc-banner" role="dialog" aria-label="Cookie-Zustimmung" hidden>
+    <div class="cc-inner">
+      <p class="cc-text">
+        Wir nutzen Cookies für Statistik (Google Analytics) und Marketing (TikTok), um unsere Werbung zu verbessern. Details in der <a href="/privacy-policy.html">Datenschutzerklärung</a>.
+      </p>
+      <div class="cc-actions">
+        <button type="button" class="cc-btn cc-decline" id="cc-decline">Ablehnen</button>
+        <button type="button" class="cc-btn cc-accept" id="cc-accept">Akzeptieren</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var KEY = 'cc_consent';
+      var banner = document.getElementById('cc-banner');
+      var choice = null;
+      try { choice = localStorage.getItem(KEY); } catch (e) {}
+      if (choice === 'granted') { grantTrackingConsent(); }
+      else if (choice === 'denied') { revokeTrackingConsent(); }
+      else { banner.hidden = false; }
+      document.getElementById('cc-accept').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        banner.hidden = true; grantTrackingConsent();
+      });
+      document.getElementById('cc-decline').addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        banner.hidden = true; revokeTrackingConsent();
+      });
+    })();
+  </script>
+
+</body>
+</html>
