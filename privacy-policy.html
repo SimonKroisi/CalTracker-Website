@@ -124,7 +124,7 @@
   <div class="page-container">
     <div class="page-header">
       <h1>Privacy Policy</h1>
-      <div class="page-meta">Effective Date: July 12, 2026</div>
+      <div class="page-meta">Effective Date: July 27, 2026</div>
     </div>
 
     <div class="legal-content">
@@ -156,7 +156,16 @@
       <h3>5. Water Intake Data</h3>
       <p>Daily water intake logs including amounts and timestamps, used to track hydration goals.</p>
 
-      <h3>6. App Usage &amp; Analytics</h3>
+      <h3>6. Activity &amp; Fitness Data</h3>
+      <p>Step counts, active calories burned, and workout history synced from Google Health Connect or Apple Health (if you grant access), plus intermittent fasting sessions and history you log in the app.</p>
+
+      <h3>7. Referral Program Data</h3>
+      <p>If you use the referral program, we store your referral code and how many times it has been redeemed, so we can grant the bonus AI scans to you and the people you refer.</p>
+
+      <h3>8. Push Notification Token</h3>
+      <p>If you enable notifications, we store a device push token (via Firebase Cloud Messaging) used to deliver meal, water, weight, streak, and referral-reward notifications. You can disable notifications in the app or your device settings at any time.</p>
+
+      <h3>9. App Usage &amp; Analytics</h3>
       <p>We collect anonymized usage analytics to improve the app experience. This includes feature usage patterns, crash reports, and general performance metrics through Firebase Analytics and Firebase Crashlytics.</p>
 
       <h2>Data Storage &amp; Security</h2>
@@ -166,6 +175,8 @@
         <li><strong>Cloud Firestore</strong> — Stores your nutrition, weight, water, and profile data in Google's secure cloud infrastructure.</li>
         <li><strong>Firebase Storage</strong> — Stores uploaded images such as food photos for AI scanning.</li>
         <li><strong>Firebase Analytics &amp; Crashlytics</strong> — Collects anonymized performance and crash data.</li>
+        <li><strong>Firebase Cloud Messaging</strong> — Delivers push notifications to your device.</li>
+        <li><strong>OpenAI</strong> — Processes food photos, descriptions, and web-search-assisted lookups you submit to the AI scanner to generate nutrition estimates. Images and text are sent to OpenAI's API for this purpose only; OpenAI does not use API data to train its models.</li>
       </ul>
       <p>All data is transmitted over encrypted connections (TLS/SSL). We use industry-standard security practices to protect your information.</p>
 
@@ -176,7 +187,8 @@
         <li>AI-powered food recognition and nutritional analysis.</li>
         <li>Generating personalized statistics, insights, and deficit calculations.</li>
         <li>Syncing your data across devices via your account.</li>
-        <li>Sending smart meal and water reminders (if enabled).</li>
+        <li>Sending smart meal, water, weight, streak, and referral-reward notifications (if enabled).</li>
+        <li>Operating the referral program and granting bonus AI scans.</li>
         <li>Improving the app through anonymized analytics.</li>
         <li>Processing in-app purchases via RevenueCat.</li>
       </ul>
@@ -197,10 +209,10 @@
       <p>You can delete your data at any time:</p>
       <ul>
         <li><strong>Delete specific data</strong> — Remove individual meal entries, weight logs, or water records directly in the app.</li>
-        <li><strong>Delete your account</strong> — Go to Settings &rarr; Account &rarr; Delete Account. This permanently removes all your data from our servers.</li>
+        <li><strong>Delete your account</strong> — Go to Settings &rarr; Account &rarr; Delete Account (re-authentication required). This immediately and permanently removes your account and data from our active servers.</li>
         <li><strong>Request via email</strong> — Contact <a href="mailto:caltracker.track@gmail.com">caltracker.track@gmail.com</a> to request data deletion.</li>
       </ul>
-      <p>After account deletion, your data is removed within 30 days. Backup copies may be retained for up to 90 days. Anonymized analytics data may be retained for up to 14 months.</p>
+      <p>Account deletion takes effect immediately and cannot be undone. Backup copies may be retained for up to 90 days. Anonymized analytics data may be retained for up to 14 months.</p>
 
       <h2>Children's Privacy</h2>
       <p>CalTracker is not intended for children under the age of 13 (or under 16 in the EU/EEA). We do not knowingly collect personal data from children. If you believe a child has provided us with personal data, please contact us immediately and we will take steps to remove that information.</p>
@@ -217,7 +229,9 @@
       <p>CalTracker integrates with the following third-party services. Each has its own privacy policy:</p>
       <ul>
         <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
-        <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase (Analytics, Crashlytics, Auth, Firestore, Storage)</a></li>
+        <li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple (Sign in with Apple, App Store, Apple Health)</a></li>
+        <li><a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase (Analytics, Crashlytics, Auth, Firestore, Storage, Cloud Messaging)</a></li>
+        <li><a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">OpenAI (AI Food Recognition)</a></li>
         <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Analytics (Website)</a></li>
         <li><a href="https://www.tiktok.com/legal/page/eea/privacy-policy/en" target="_blank" rel="noopener noreferrer">TikTok (Advertising Pixel — website only)</a></li>
         <li><a href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">RevenueCat (In-App Purchases)</a></li>

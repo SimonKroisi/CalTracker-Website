@@ -49,21 +49,17 @@ CalTracker offers **5 different ways** to log your meals — so you can always p
 ### 📸 AI Photo Scanner
 - Take a photo of your meal or pick from gallery
 - AI identifies the food and estimates calories + macros automatically
-- Choose from **7 different AI models** with varying speed and accuracy
+- Two AI model tiers: **Basic** (Free & Plus) and **Pro** (Pro only) — Pro is differentiated by daily call quota, not just raw quality
 - Editable food description before analysis for better results
-- **Web Search** mode (Pro only) for better brand/product recognition
+- **Web Search** mode for better brand/product recognition — available on **every tier** (spends one normal AI call, not a separate quota)
 - Supports batch analysis of complex meals with multiple items
+- Works while offline: a scan started without a connection is queued locally and auto-submitted once you're back online
 
 **AI Models Available:**
-| Model | Speed | Accuracy | Access |
-|-------|-------|----------|--------|
-| GPT-4o-mini | Very Fast | Good | All users |
-| GPT-4.1-mini | Fast | Good | All users |
-| GPT-4o | Moderate | Very Good | Pro only |
-| GPT-4.1 | Moderate | Very Good | Pro only |
-| GPT-4.5-preview | Slow | Excellent | Pro (2/day) |
-| o1 (Reasoning) | Slow | Excellent | Pro (2/day) |
-| o3-mini (Reasoning) | Moderate | Good | Pro only |
+| Model Tier | Underlying Model | Access |
+|-------|-------|--------|
+| Basic | GPT-5.4-mini | Free, Plus, Pro |
+| Pro | GPT-5.4 | Plus, Pro (marketed as a Pro-only upgrade; Plus already has code-level access to it) |
 
 **Interactive Demo Idea:** Show a phone mockup where a photo of food appears, then a shimmer/pulse loading animation plays, and nutrition results pop in with detected food items. Include a model selector dropdown that highlights different tiers.
 
@@ -214,11 +210,11 @@ CalTracker helps you set personalized goals whether you want to **lose weight (A
 ## 6. AI-Powered Features
 
 ### 🤖 Smart Food Recognition
-- Powered by **OpenAI vision models** (GPT-4o, GPT-4.1, etc.)
+- Powered by **OpenAI vision models** (GPT-5.4-mini / GPT-5.4)
 - Take a photo → AI identifies food → auto-fills nutrition info
-- **7 AI models** to choose from (speed vs. accuracy trade-off)
+- **Basic vs. Pro model tier** — Pro unlocks the stronger model plus a higher daily quota
 - Editable description for better accuracy
-- Web search mode for branded products (Pro exclusive)
+- Web search mode for branded products, available on every tier
 
 ### 🧠 AI Quick Analysis
 - Fast nutrition estimation from food descriptions
@@ -385,13 +381,13 @@ CalTracker has no offline food database, but core logging and history work witho
 - ✅ View history & statistics
 - ✅ Full dashboard display
 
-**Features requiring internet:**
-- ❌ AI food scanner (cloud processing)
+**Features requiring internet (to complete, not necessarily to start):**
+- ⏳ AI food scanner & AI web food search — if you're offline, the scan is queued locally and processed automatically once you reconnect, instead of failing outright
 - ❌ New (uncached) barcode lookups — pulls from the online OpenFoodFacts database
 - ❌ Database search — no offline food database
 - ❌ Cloud sync
 
-**Auto-recovery:** When connection is restored, the app automatically syncs all pending changes.
+**Auto-recovery:** When connection is restored, the app automatically syncs all pending changes and submits any queued AI scans.
 
 **Interactive Demo Idea:** An animation showing a phone with a WiFi icon. WiFi turns off (icon goes red/crossed-out) — the phone continues tracking normally (adding meals, logging weight). WiFi reconnects (icon goes green) — a cloud sync animation shows data uploading with a checkmark.
 
@@ -423,26 +419,31 @@ CalTracker has no offline food database, but core logging and history work witho
 ### 🆓 Free
 - **Price:** Free forever
 - **AI Calls:** 20 lifetime total
-- **AI Models:** GPT-4o-mini only
+- **AI Model:** Basic (GPT-5.4-mini)
 - **Cloud Sync:** 1x manual sync per week
 - **Daily Evaluation:** 1 per day (basic score only)
-- All core tracking features included (calories, macros, water, weight, history)
+- **Web Search** mode for AI scanner included (every tier gets this)
+- All core tracking features included (calories, macros, water, weight, history, activity/steps)
 
 ### ⭐ Plus — €2.49/month or €19.99/year
-- **AI Calls:** 5 per day
-- **AI Models:** GPT-4o-mini + GPT-4.1-mini
+- **AI Calls:** 10 per day
+- **AI Model:** Basic (GPT-5.4-mini)
 - **Cloud Sync:** Auto-sync + unlimited manual sync
 - **Daily Evaluation:** 3 per day (with detailed insights)
 - Strengths, improvements, and goal advice included
+- **Intermittent Fasting** (setup, timer, history, reminders)
 
 ### 👑 Pro — €7.99/month or €59.99/year
 - **AI Calls:** 25 per day
-- **AI Models:** All 7 models (including GPT-4.5-preview, o1, o3-mini)
-- **Web Search** mode for AI scanner (better brand recognition)
+- **AI Model:** Pro (GPT-5.4)
 - **Cloud Sync:** Auto-sync + unlimited manual sync
 - **Daily Evaluation:** 10 per day (full detailed analysis)
 - Food swap tips, category breakdowns, food quality scoring
+- **Intermittent Fasting** (setup, timer, history, reminders)
+- **Micronutrient tracking & estimation** (Pro exclusive)
 - Priority access to new features
+
+> Note: Web Search is available to every tier at the code level (it just spends one normal AI call). Fasting is currently usable by every tier at the code level too, even though it's marketed as a Plus/Pro perk — see internal `FEATURES.md` in the app repo for the up-to-date enforcement status before treating either as a hard paywall gate.
 
 ### 💰 Yearly Savings
 - Plus yearly: ~33% savings vs. monthly
@@ -617,10 +618,13 @@ CalTracker has no offline food database, but core logging and history work witho
 - Cloud sync with Firebase
 - CSV data export
 - RevenueCat subscription management
+- Referral program (share a code, both sides get bonus AI scans)
 
 ### ✨ Premium Highlights
-- 7 AI vision models for food scanning
-- Web search for brand recognition (Pro)
+- Pro AI model for food scanning (Pro)
+- Web search for brand recognition (every tier)
+- Intermittent fasting tracking (Plus & Pro)
+- Micronutrient tracking & estimation (Pro)
 - Detailed daily evaluation with food swap tips (Pro)
 - Unlimited cloud sync (Plus & Pro)
 - Up to 25 AI calls per day (Pro)
