@@ -1709,9 +1709,42 @@
   <!-- Download / Conversion Tracking (TikTok Pixel + GA4) -->
   <script>
     (function () {
+      // Reicht die Kampagnen-Herkunft (utm_source/medium/campaign aus der
+      // Ad-Klick-URL, z.B. von TikToks URL-Suffix) als Play-Install-Referrer
+      // an den Play-Store-Link weiter. Google Play liefert diesen Referrer
+      // beim ersten App-Start an Firebase zurück, das ihn automatisch in
+      // firstUserSource/firstUserMedium/firstUserCampaignName aufschlüsselt —
+      // dieselben Felder, die admin_dashboard schon unter "Neue Nutzer nach
+      // Quelle (GA4)" anzeigt. Ohne das landet jeder Android-Install als
+      // organisch/"google-play", egal welche Anzeige den Klick ausgelöst hat.
+      // iOS hat keine vergleichbare Referrer-Mechanik (Apple erlaubt das aus
+      // Datenschutzgründen nicht ohne SKAdNetwork-Setup), daher betrifft das
+      // nur die Play-Store-Links.
+      function appendPlayReferrer(href) {
+        var params = new URLSearchParams(window.location.search);
+        var ttclid = params.get('ttclid'); // TikToks eigener Klick-Identifier
+        // Fällt auf 'tiktok' zurück, wenn nur ttclid ankommt ohne utm_source
+        // (z.B. weil in TikTok Ads nur Auto-Tracking statt eines eigenen
+        // URL-Suffix aktiv ist) — sonst würde Firebase die Quelle verwerfen.
+        var utmSource = params.get('utm_source') || (ttclid ? 'tiktok' : null);
+        if (!utmSource) return href; // kein Kampagnen-Kontext -> Link unverändert lassen
+
+        var referrerParts = [];
+        if (utmSource) referrerParts.push('utm_source=' + utmSource);
+        referrerParts.push('utm_medium=' + (params.get('utm_medium') || 'cpc'));
+        if (params.get('utm_campaign')) referrerParts.push('utm_campaign=' + params.get('utm_campaign'));
+        if (ttclid) referrerParts.push('ttclid=' + ttclid);
+
+        var separator = href.indexOf('?') === -1 ? '?' : '&';
+        return href + separator + 'referrer=' + encodeURIComponent(referrerParts.join('&'));
+      }
+
       // Alle Google-Play- und App-Store-Links auf der Seite
       var storeLinks = document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]');
       storeLinks.forEach(function (link) {
+        if (link.href.indexOf('play.google.com') !== -1) {
+          link.href = appendPlayReferrer(link.href);
+        }
         link.addEventListener('click', function () {
           var isIOS = link.href.indexOf('apps.apple.com') !== -1;
           var platform = isIOS ? 'ios_app_store' : 'android_google_play';
