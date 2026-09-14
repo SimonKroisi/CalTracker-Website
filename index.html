@@ -308,6 +308,8 @@
 
     .phone-frame img { width: 100%; display: block; border-radius: 32px; }
 
+    .hero-fanart { width: 100%; max-width: 560px; height: auto; display: block; }
+
     /* ==================== STATS BAR ==================== */
     .stats-bar {
       padding: 40px; background: var(--bg-soft);
@@ -820,6 +822,7 @@
       .showcase-phone { width: 180px; }
       .footer-content { grid-template-columns: 1fr; gap: 30px; }
       .phone-frame { width: 240px; }
+      .hero-fanart { max-width: 420px; }
     }
 
     @media (max-width: 480px) {
@@ -833,6 +836,7 @@
       .showcase-phone img { border-radius: 20px; }
       .phone-frame { width: 200px; border-radius: 26px; }
       .phone-frame img { border-radius: 26px; }
+      .hero-fanart { max-width: 320px; }
       .cal-demo { flex-direction: column; }
       .score-demo { flex-direction: column; }
       .steps-demo { flex-direction: column; }
@@ -860,7 +864,8 @@
           "https://caltracker.eu/2_AI-Food-Tracker.png",
           "https://caltracker.eu/3_Statistics.png",
           "https://caltracker.eu/4_AI-Food-Rater.png",
-          "https://caltracker.eu/5_Meal_History.png"
+          "https://caltracker.eu/5_Meal_History.png",
+          "https://caltracker.eu/6_Weight_History.png"
         ],
         "downloadUrl": [
           "https://play.google.com/store/apps/details?id=com.trackerapp.caltracker",
@@ -980,9 +985,7 @@
         </div>
       </div>
       <div class="hero-phone">
-        <div class="phone-frame">
-          <img src="1_Homescreen.png" alt="CalTracker AI calorie counter app home screen showing daily calories and macros" loading="eager">
-        </div>
+        <img class="hero-fanart" src="hero-fanart.png" alt="CalTracker app screens: AI food scanner detecting a meal, home dashboard with calories and macros, and progress screen with steps and weight" loading="eager" width="1360" height="1060">
       </div>
     </div>
   </section>
@@ -1024,6 +1027,10 @@
       <div class="showcase-item">
         <div class="showcase-phone"><img src="5_Meal_History.png" alt="Meal history log of tracked calories and macros" loading="lazy"></div>
         <div class="showcase-label">Meal History</div>
+      </div>
+      <div class="showcase-item">
+        <div class="showcase-phone"><img src="6_Weight_History.png" alt="Weight history chart with BMI gauge and goal trend" loading="lazy"></div>
+        <div class="showcase-label">Weight Tracking</div>
       </div>
     </div>
   </section>
