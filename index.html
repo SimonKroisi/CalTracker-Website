@@ -241,7 +241,7 @@
 
     .hero-inner {
       max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1fr 1.1fr;
       gap: 60px; align-items: center;
     }
 
@@ -308,7 +308,13 @@
 
     .phone-frame img { width: 100%; display: block; border-radius: 32px; }
 
-    .hero-fanart { width: 100%; max-width: 560px; height: auto; display: block; }
+
+    @media (min-width: 1025px) {
+      .hero-phone .fan-stage {
+        flex: none; width: 118%; max-width: none; translate: 12% 0;
+        --side-x: 68%; --side-r: 10deg; --spread-x: 10%; --spread-r: 3deg;
+      }
+    }
 
     /* ==================== STATS BAR ==================== */
     .stats-bar {
@@ -795,6 +801,7 @@
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
       .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .fan-stage { max-width: 560px; }
       .hero-subtitle { margin-left: auto; margin-right: auto; }
       .hero-actions { justify-content: center; }
       .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -822,7 +829,7 @@
       .showcase-phone { width: 180px; }
       .footer-content { grid-template-columns: 1fr; gap: 30px; }
       .phone-frame { width: 240px; }
-      .hero-fanart { max-width: 420px; }
+      .fan-stage { max-width: 480px; }
     }
 
     @media (max-width: 480px) {
@@ -836,13 +843,17 @@
       .showcase-phone img { border-radius: 20px; }
       .phone-frame { width: 200px; border-radius: 26px; }
       .phone-frame img { border-radius: 26px; }
-      .hero-fanart { max-width: 320px; }
+      .fan-stage {
+        flex: none; width: 118%; max-width: none; margin: 0; aspect-ratio: 1 / 1.2;
+        --cw: 54%; --sw: 45%; --st: 19%; --side-x: 74%; --spread-x: 10%; --spread-r: 4deg;
+      }
       .cal-demo { flex-direction: column; }
       .score-demo { flex-direction: column; }
       .steps-demo { flex-direction: column; }
       .water-demo { flex-direction: column; align-items: stretch; }
     }
   </style>
+  <link rel="stylesheet" href="hero-fan.css">
 
   <!-- Structured data (Schema.org) -->
   <script type="application/ld+json">
@@ -975,7 +986,7 @@
         <p class="hero-subtitle">Snap a photo of your meal and let AI do the rest. Track calories, macros, weight, steps, and get daily AI evaluations — all in one clean app.</p>
         <div class="hero-actions">
           <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="hero-store-btn">
-            <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path fill="#00A0FF" d="M3.2 1.6v20.8L13.6 12z"/><path fill="#00D26A" d="M3.2 1.6 13.6 12l3.2-2.63z"/><path fill="#FF3A44" d="M3.2 22.4l13.6-7.77L13.6 12z"/><path fill="#FFC700" d="M16.8 9.37 21.4 12l-4.6 2.63L13.6 12z"/></svg>
             <span class="hero-store-text"><small>Get it on</small><strong>Google Play</strong></span>
           </a>
           <a href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" target="_blank" rel="noopener noreferrer" class="hero-store-btn">
@@ -985,7 +996,15 @@
         </div>
       </div>
       <div class="hero-phone">
-        <img class="hero-fanart" src="hero-fanart.png" alt="CalTracker app screens: AI food scanner detecting a meal, home dashboard with calories and macros, and progress screen with steps and weight" loading="eager" width="1360" height="1060">
+        <div class="fan-stage" data-fan>
+          <div class="fan-tilt">
+            <figure class="fan-phone fan-side fan-left"><div class="fan-float"><img src="hero-phone-scan.webp" alt="CalTracker AI food scanner detecting the foods in a meal photo" width="640" height="1312" loading="eager"></div></figure>
+            <figure class="fan-phone fan-side fan-right"><div class="fan-float"><img src="hero-phone-progress.webp" alt="CalTracker progress screen with calories burned, steps, workouts and weight" width="640" height="1312" loading="eager"></div></figure>
+            <figure class="fan-phone fan-center"><div class="fan-float"><img src="hero-phone-home.webp" alt="CalTracker AI calorie counter home screen showing daily calories and macros" width="640" height="1312" loading="eager" fetchpriority="high"></div></figure>
+          </div>
+        </div>
+        <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.currentScript.previousElementSibling.classList.add('fan-ready');</script>
+        <script src="hero-fan.js" defer></script>
       </div>
     </div>
   </section>
@@ -1009,27 +1028,27 @@
     </div>
     <div class="showcase-scroll animate-on-scroll">
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="1_Homescreen.png" alt="CalTracker home screen with calorie and macro dashboard" loading="lazy"></div>
+        <div class="showcase-phone"><img src="1_Homescreen.png?v=1.4" alt="CalTracker home screen with calorie and macro dashboard" loading="lazy"></div>
         <div class="showcase-label">Home Dashboard</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="2_AI-Food-Tracker.png" alt="AI food scanner recognising a meal and estimating calories" loading="lazy"></div>
+        <div class="showcase-phone"><img src="2_AI-Food-Tracker.png?v=1.4" alt="AI food scanner recognising a meal and estimating calories" loading="lazy"></div>
         <div class="showcase-label">AI Food Scanner</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="3_Statistics.png" alt="Weekly calorie and macro statistics and progress charts" loading="lazy"></div>
+        <div class="showcase-phone"><img src="3_Statistics.png?v=1.4" alt="Weekly calorie and macro statistics and progress charts" loading="lazy"></div>
         <div class="showcase-label">Statistics</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="4_AI-Food-Rater.png" alt="AI daily meal evaluation and nutrition score" loading="lazy"></div>
+        <div class="showcase-phone"><img src="4_AI-Food-Rater.png?v=1.4" alt="AI daily meal evaluation and nutrition score" loading="lazy"></div>
         <div class="showcase-label">AI Meal Rating</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="5_Meal_History.png" alt="Meal history log of tracked calories and macros" loading="lazy"></div>
+        <div class="showcase-phone"><img src="5_Meal_History.png?v=1.4" alt="Meal history log of tracked calories and macros" loading="lazy"></div>
         <div class="showcase-label">Meal History</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="6_Weight_History.png" alt="Weight history chart with BMI gauge and goal trend" loading="lazy"></div>
+        <div class="showcase-phone"><img src="6_Weight_History.png?v=1.4" alt="Weight history chart with BMI gauge and goal trend" loading="lazy"></div>
         <div class="showcase-label">Weight Tracking</div>
       </div>
     </div>
@@ -1341,7 +1360,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="2_AI-Food-Tracker.png" alt="AI food scanner estimating calories from a food photo" loading="lazy"></div>
+        <div class="phone-frame"><img src="2_AI-Food-Tracker.png?v=1.4" alt="AI food scanner estimating calories from a food photo" loading="lazy"></div>
       </div>
     </div>
 
@@ -1358,7 +1377,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="3_Statistics.png" alt="Calorie and macro statistics and progress tracking" loading="lazy"></div>
+        <div class="phone-frame"><img src="3_Statistics.png?v=1.4" alt="Calorie and macro statistics and progress tracking" loading="lazy"></div>
       </div>
     </div>
 
@@ -1375,7 +1394,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="4_AI-Food-Rater.png" alt="AI meal evaluation giving a daily nutrition score" loading="lazy"></div>
+        <div class="phone-frame"><img src="4_AI-Food-Rater.png?v=1.4" alt="AI meal evaluation giving a daily nutrition score" loading="lazy"></div>
       </div>
     </div>
 
@@ -1392,7 +1411,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="5_Meal_History.png" alt="Meal history showing previously tracked meals and calories" loading="lazy"></div>
+        <div class="phone-frame"><img src="5_Meal_History.png?v=1.4" alt="Meal history showing previously tracked meals and calories" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1604,7 +1623,7 @@
     </div>
     <div class="platform-buttons animate-on-scroll">
       <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="platform-btn">
-        <svg viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24a11.463 11.463 0 00-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48A10.78 10.78 0 003 16h18a10.78 10.78 0 00-3.4-6.52zM7 13.5a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path fill="#00A0FF" d="M3.2 1.6v20.8L13.6 12z"/><path fill="#00D26A" d="M3.2 1.6 13.6 12l3.2-2.63z"/><path fill="#FF3A44" d="M3.2 22.4l13.6-7.77L13.6 12z"/><path fill="#FFC700" d="M16.8 9.37 21.4 12l-4.6 2.63L13.6 12z"/></svg>
         <div class="platform-btn-text"><small>Download on</small><strong>Google Play</strong></div>
       </a>
       <a href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" target="_blank" rel="noopener noreferrer" class="platform-btn">

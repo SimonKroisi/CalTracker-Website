@@ -1,0 +1,73 @@
+/* Hero phone fan: three phones that fan out, tilt with the pointer and spread on hover/tap.
+   --f = fanned (0/1), --s = spread (0/1), --l = lifted toward the viewer (0/1).
+   Base rule uses :where() so each page's own .fan-stage sizing overrides it regardless of load order. */
+:where(.fan-stage) {
+  --cw: 48%; --sw: 41%; --ct: 1.5%; --st: 20%;
+  --side-x: 80%; --side-r: 12deg; --spread-x: 16%; --spread-r: 5deg;
+  --f: 1; --s: 0;
+  position: relative; width: 100%; max-width: 640px; aspect-ratio: 1 / 1.08;
+  margin: 0 auto; perspective: 1600px;
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.fan-stage.fan-ready { --f: 0; }
+.fan-stage.fan-ready.is-fanned { --f: 1; }
+.fan-stage.is-spread { --s: 1; }
+@media (hover: hover) { .fan-stage:hover { --s: 1; } }
+
+.fan-tilt {
+  position: absolute; inset: 0;
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+/* Depth (translateZ) decides stacking inside the preserve-3d context, so a hovered side
+   phone glides in front of the center one instead of popping via z-index. */
+.fan-phone {
+  --x: 0%; --r: 0deg; --dir: 0; --l: 0; --z: 0px;
+  position: absolute; left: 50%; margin: 0;
+  transform-origin: 50% 100%;
+  transform:
+    translate(
+      calc(-50% + var(--x) * var(--f) + var(--dir) * var(--spread-x) * var(--s)),
+      calc(6% * (1 - var(--f)) - 3% * var(--l))
+    )
+    translateZ(calc(var(--z) + 90px * var(--l)))
+    rotate(calc(var(--r) * var(--f) + var(--dir) * var(--spread-r) * var(--s) - var(--dir) * 6deg * var(--l)))
+    scale(calc(0.92 + 0.08 * var(--f)));
+  opacity: var(--f);
+  transition: transform 1.1s cubic-bezier(0.2, 1.12, 0.35, 1), opacity 0.6s ease;
+}
+/* Keep depths >= 0: anything behind the .fan-tilt plane (negative Z) stops receiving hover. */
+.fan-center { --z: 40px; width: var(--cw); top: var(--ct); z-index: 3; }
+.fan-side { width: var(--sw); top: var(--st); z-index: 1; transition-delay: 0.18s; }
+.fan-left { --x: calc(var(--side-x) * -1); --r: calc(var(--side-r) * -1); --dir: -1; }
+.fan-right { --x: var(--side-x); --r: var(--side-r); --dir: 1; }
+
+.fan-stage.is-settled .fan-phone {
+  transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fan-stage.is-settled .fan-phone:hover { --l: 1; }
+}
+
+.fan-float { transform-origin: 50% 100%; animation: fanBreathe 10s ease-in-out infinite; }
+.fan-left .fan-float { animation-delay: -3.3s; }
+.fan-right .fan-float { animation-delay: -6.6s; }
+@keyframes fanBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.005); }
+}
+
+.fan-phone img {
+  width: 100%; height: auto; display: block;
+  filter: drop-shadow(0 22px 28px rgba(0, 0, 0, 0.2));
+  -webkit-user-drag: none;
+}
+[data-theme="dark"] .fan-phone img { filter: drop-shadow(0 22px 36px rgba(0, 0, 0, 0.65)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fan-phone, .fan-tilt, .fan-stage.is-settled .fan-phone { transition: none; }
+  .fan-float { animation: none; }
+}
