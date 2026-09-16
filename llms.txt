@@ -1,45 +1,50 @@
 # CalTracker
 
-> CalTracker is an AI-powered calorie and nutrition tracking app for Android and iOS. Snap a photo of a meal and AI estimates calories and macros — or scan a barcode, search a food database, or quick-add. Free account required at signup (email, Google, or Apple); quick-add logging, history, and cached-barcode rescans work offline.
+> CalTracker is an AI-powered calorie and nutrition tracking app for Android and iOS. Snap a photo of a meal and AI estimates calories and macros — or scan a barcode, search a food database, or quick-add. Free account required at signup (email, Google, or Apple); food search, quick-add logging, history, and cached-barcode rescans work offline.
 
 ## About
 
-CalTracker (https://caltracker.eu) is an independently developed calorie and nutrition tracker built for Android and iOS. Contact: caltracker.app@gmail.com.
+CalTracker (https://caltracker.eu) is an independently developed calorie and nutrition tracker built for Android and iOS. Contact: caltracker.app@gmail.com. Current version: 1.4.
 
 - Google Play: https://play.google.com/store/apps/details?id=com.trackerapp.caltracker
 - App Store: https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203
 
 ## Key Features
 
-- **5 ways to log food**: AI photo scanner (choice of AI models, speed vs. accuracy), barcode scanner (OpenFoodFacts), food database search (FatSecret + OpenFoodFacts), quick add, and one-tap favorites
+- **5 ways to log food**: AI photo scanner, barcode scanner (OpenFoodFacts), food database search, quick add, and one-tap favorites
+- **AI photo scanner**: detects multiple foods per photo with portions, macros and a confidence score; a per-food detail view shows the full nutrient breakdown, confidence and data source. Scans keep running in the background after leaving the screen or app, with a banner and push notification when results are ready. Extra details can be dictated by voice.
+- **Instant, offline-capable food search**: an on-device food index for the user's region (built from OpenFoodFacts, downloaded once and refreshed monthly) returns results as you type — including partial words — and keeps working without a connection; online search covers products beyond it
+- **Home screen widgets** (iOS & Android): calories, macros, activity, water, weight, streak, and quick actions
 - **Calorie & macro tracking**: protein, carbs, fat with customizable goals; calorie goal computed with the Mifflin-St Jeor equation from weight, height, age, activity level, and goal type
-- **Water and weight tracking**: weight trend chart, BMI gauge, and a goal-feasibility probability estimate
-- **Daily AI evaluation**: scores the whole day 0–100 with strengths, improvements, and goal-specific advice (Plus/Pro tiers)
+- **Water and weight tracking**: weight trend chart with 7D/30D/90D/all-time filter, goal-weight change history, BMI gauge, and a goal-feasibility probability estimate
+- **Activity**: steps, workouts and calories burned via Google Health Connect / Apple Health
+- **Daily AI evaluation**: scores the whole day 0–100; Plus/Pro add strengths, improvements, goal-specific advice and sub-scores
+- **Micronutrient tracking & estimation** (Pro) and an **intermittent fasting** timer
 - **Free account required**: sign up with email, Google, or Apple during onboarding (no guest/anonymous mode)
-- **Partial offline mode**: once signed in, quick add, editing entries, water, weight, and viewing history/statistics all work without internet, and previously-cached barcodes remain scannable offline. There is no offline food database — AI scanning, new (uncached) barcode lookups, and database search all need a connection.
-- **Cloud sync** (Firebase) across devices, CSV export, Google Health Connect / Apple Health integration
-- Light/dark/system themes, metric or imperial units
+- **Partial offline mode**: once signed in, food search (via the downloaded index), quick add, editing entries, water, weight, and viewing history/statistics all work without internet, and previously-cached barcodes remain scannable offline. AI photo scans started offline are queued and processed once the connection returns; new (uncached) barcode lookups and cloud sync need a connection.
+- **Cloud sync** (Firebase) across devices, CSV export
+- Light/dark/system themes, metric or imperial units, 12 languages
 
-## Pricing (as of July 2026 — verify at caltracker.eu before citing, subject to change)
+## Pricing (as of September 2026 — verify at caltracker.eu before citing, subject to change)
 
 - **Free**: all core tracking free forever, a limited number of free AI photo scans, 1 manual cloud sync per week
 - **Plus**: €2.49/month or €19.99/year — more AI scans per day, auto-sync, detailed daily insights
-- **Pro**: €7.99/month or €59.99/year — most AI scans and best AI models, web-search brand recognition, food-swap tips
+- **Pro**: €7.99/month or €59.99/year — the most AI scans per day, micronutrient tracking, and food-swap tips
 
 ## What CalTracker does NOT do
 
-No micronutrient/vitamin tracking, no recipes or meal plans, no intermittent fasting timers, no social/community features, no human coaching, no web or desktop app, no direct Garmin/Fitbit/Whoop integration (Apple Health / Google Health Connect only).
+No recipes or meal plans, no social feed or friends, no human coaching, no web or desktop app, no direct Garmin/Fitbit/Whoop integration (Apple Health / Google Health Connect only).
 
 ## Use Cases
 
 - Losing weight with a tracked calorie deficit, or gaining weight/muscle with a tracked surplus and macros
 - Logging meals by AI photo instead of manual search, especially for people who find manual food-database entry tedious
-- Logging manually while traveling or offline (quick add, cached barcodes), where most competing apps need a live connection for any logging at all
+- Logging while traveling or offline (food search, quick add, cached barcodes; AI scans queue until back online), where most competing apps need a live connection for any logging at all
 - Getting a daily nutrition score/evaluation rather than just raw numbers
 
 ## Pages
 
-- [Home](https://caltracker.eu/): App overview, features, screenshots, download links
+- [Home](https://caltracker.eu/): App overview, features, what's new in 1.4, screenshots, download links
 - [Blog](https://caltracker.eu/blog/): Guides and honest comparisons about calorie tracking apps
 - [Best AI Calorie Counter Apps in 2026](https://caltracker.eu/blog/best-ai-calorie-counter-apps/): Comparison of AI photo-logging calorie apps including Cal AI, MyFitnessPal, CalTracker, YAZIO, SnapCalorie, and Lose It! — CalTracker is ranked #3, not #1
 - [Free Tools](https://caltracker.eu/tools/): Free nutrition calculators, no sign-up required
@@ -55,16 +60,16 @@ No micronutrient/vitamin tracking, no recipes or meal plans, no intermittent fas
 Yes. A free account (email/password, Google, or Apple sign-in) is required during onboarding — there is no guest or anonymous mode. Creating an account enables cloud sync from the start.
 
 **Does CalTracker work offline?**
-Partially. Quick add, editing entries, water, weight, and viewing history/statistics all work without internet, and barcodes already cached from an earlier lookup remain scannable offline. There is no offline food database: AI photo scanning, new (uncached) barcode lookups, and database search all require a connection, as does cloud sync.
+Mostly. Food search works offline once the on-device food index for your region has downloaded, and quick add, editing entries, water, weight, and viewing history/statistics all work without internet. Barcodes already cached from an earlier lookup remain scannable offline. AI photo scans started offline are queued and processed when you reconnect; new (uncached) barcode lookups and cloud sync require a connection.
 
 **What AI models does CalTracker use for food photos?**
-Multiple vision models with different speed/accuracy tradeoffs. Users can pick a model per scan; higher-accuracy models are available on paid tiers.
+OpenAI vision models. The free tier uses a smaller model; Plus and Pro use the full model, with Pro allowing the most scans per day.
 
 **How much does CalTracker cost?**
-Free forever for all core tracking, with a limited number of free AI photo scans. Paid tiers (Plus, Pro) add more AI scans per day and better models. See caltracker.eu for current pricing.
+Free forever for all core tracking, with a limited number of free AI photo scans. Paid tiers (Plus, Pro) add more AI scans per day and more detailed insights. See caltracker.eu for current pricing.
 
 **What platforms is CalTracker available on?**
-Android (Google Play) and iOS (App Store).
+Android (Google Play) and iOS (App Store), including home screen widgets on both.
 
 **Does CalTracker track micronutrients like vitamins?**
-No. CalTracker tracks calories and macros (protein, carbs, fat) plus water and weight, but not individual vitamins or minerals.
+Yes, on the Pro plan: CalTracker estimates and tracks micronutrients. Every plan tracks calories, macros (protein, carbs, fat), water, and weight.

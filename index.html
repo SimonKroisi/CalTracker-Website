@@ -241,7 +241,7 @@
 
     .hero-inner {
       max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.1fr;
+      display: grid; grid-template-columns: 1fr 1fr;
       gap: 60px; align-items: center;
     }
 
@@ -311,7 +311,7 @@
 
     @media (min-width: 1025px) {
       .hero-phone .fan-stage {
-        flex: none; width: 118%; max-width: none; translate: 12% 0;
+        flex: none; width: 100%; max-width: 400px; translate: 5% 0;
         --side-x: 68%; --side-r: 10deg; --spread-x: 10%; --spread-r: 3deg;
       }
     }
@@ -704,6 +704,24 @@
     .showcase-row-img { display: flex; justify-content: center; }
     .showcase-row-img .phone-frame { width: 260px; }
 
+    /* ==================== NEW IN 1.4 ==================== */
+    .new-section { background: var(--bg); padding-bottom: 40px; }
+    .new-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .new-card {
+      background: var(--bg-soft); border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg); padding: 28px 26px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .new-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .new-icon {
+      width: 44px; height: 44px; border-radius: 12px; margin-bottom: 18px;
+      background: var(--text); color: var(--bg);
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .new-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .new-card h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .new-card p { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
+
     /* ==================== PRICING ==================== */
     .pricing-section { background: var(--bg-soft); }
 
@@ -801,7 +819,7 @@
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
       .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-      .fan-stage { max-width: 560px; }
+      .fan-stage { max-width: 340px; }
       .hero-subtitle { margin-left: auto; margin-right: auto; }
       .hero-actions { justify-content: center; }
       .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -810,6 +828,7 @@
       .showcase-row { grid-template-columns: 1fr; gap: 40px; text-align: center; }
       .showcase-row.reverse { direction: ltr; }
       .showcase-row-text ul { align-items: center; }
+      .new-grid { grid-template-columns: repeat(2, 1fr); }
       .testimonials-grid { grid-template-columns: 1fr 1fr; }
       .footer-content { grid-template-columns: 1fr 1fr; }
     }
@@ -823,13 +842,14 @@
       .fcard.span-2, .fcard.span-full { grid-column: 1; }
       .pricing-cards { grid-template-columns: 1fr; max-width: 400px; }
       .steps-container { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .new-grid { grid-template-columns: 1fr; max-width: 480px; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .stats-container { grid-template-columns: repeat(2, 1fr); }
       .showcase-scroll { gap: 24px; }
       .showcase-phone { width: 180px; }
       .footer-content { grid-template-columns: 1fr; gap: 30px; }
       .phone-frame { width: 240px; }
-      .fan-stage { max-width: 480px; }
+      .fan-stage { max-width: 300px; }
     }
 
     @media (max-width: 480px) {
@@ -844,7 +864,7 @@
       .phone-frame { width: 200px; border-radius: 26px; }
       .phone-frame img { border-radius: 26px; }
       .fan-stage {
-        flex: none; width: 118%; max-width: none; margin: 0; aspect-ratio: 1 / 1.2;
+        flex: none; width: 90%; max-width: none; margin: 0 auto; aspect-ratio: 1 / 1.2;
         --cw: 54%; --sw: 45%; --st: 19%; --side-x: 74%; --spread-x: 10%; --spread-r: 4deg;
       }
       .cal-demo { flex-direction: column; }
@@ -982,8 +1002,8 @@
     <div class="hero-inner">
       <div class="hero-text">
         <div class="hero-badge"><span class="dot"></span>Available on Android &amp; iOS</div>
-        <h1 class="hero-title">Track calories<br>with <span class="accent">AI power.</span></h1>
-        <p class="hero-subtitle">Snap a photo of your meal and let AI do the rest. Track calories, macros, weight, steps, and get daily AI evaluations — all in one clean app.</p>
+        <h1 class="hero-title">Track calories.<br>Skip the <span class="accent">math.</span></h1>
+        <p class="hero-subtitle">Snap a photo of your meal and get calories, macros, weight and steps — no manual logging, no guesswork, all in one clean app.</p>
         <div class="hero-actions">
           <a href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" target="_blank" rel="noopener noreferrer" class="hero-store-btn">
             <svg viewBox="0 0 24 24"><path fill="#00A0FF" d="M3.2 1.6v20.8L13.6 12z"/><path fill="#00D26A" d="M3.2 1.6 13.6 12l3.2-2.63z"/><path fill="#FF3A44" d="M3.2 22.4l13.6-7.77L13.6 12z"/><path fill="#FFC700" d="M16.8 9.37 21.4 12l-4.6 2.63L13.6 12z"/></svg>
@@ -1014,7 +1034,7 @@
     <div class="stats-container animate-on-scroll">
       <div class="stat-item"><div class="stat-number">5</div><div class="stat-label">Ways to log food</div></div>
       <div class="stat-item"><div class="stat-number">AI</div><div class="stat-label">Photo scanning</div></div>
-      <div class="stat-item"><div class="stat-number">Offline</div><div class="stat-label">Quick add &amp; history</div></div>
+      <div class="stat-item"><div class="stat-number">Offline</div><div class="stat-label">Search, quick add &amp; history</div></div>
       <div class="stat-item"><div class="stat-number">Free</div><div class="stat-label">Daily AI usage</div></div>
     </div>
   </div>
@@ -1338,7 +1358,46 @@
   </section>
   -->
 
-  <section class="features-section" id="features"></section>
+  <!-- NEW IN 1.4 -->
+  <section class="new-section" id="features">
+    <div class="section-header animate-on-scroll">
+      <div class="section-tag">New in 1.4</div>
+      <h2 class="section-title">Fresh in the latest update</h2>
+      <p class="section-subtitle">Faster logging, smarter scans and more ways to keep an eye on your progress.</p>
+    </div>
+    <div class="new-grid animate-on-scroll">
+      <article class="new-card">
+        <div class="new-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></div>
+        <h3>Home screen widgets</h3>
+        <p>Calories, macros, activity, water, weight, streak and quick actions right on your home screen — on iOS and Android.</p>
+      </article>
+      <article class="new-card">
+        <div class="new-icon"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+        <h3>Scans run in the background</h3>
+        <p>Snap your meal and put the phone away. The AI finishes the analysis in the background and notifies you when it's ready.</p>
+      </article>
+      <article class="new-card">
+        <div class="new-icon"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="18" x2="12" y2="22"/></svg></div>
+        <h3>Add details by voice</h3>
+        <p>Dictate extras like “half portion, no sauce” straight into the AI scanner for more accurate results.</p>
+      </article>
+      <article class="new-card">
+        <div class="new-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+        <h3>Nutrition details per food</h3>
+        <p>Tap any detected item to see its full nutrient breakdown, how confident the AI is and where the values come from.</p>
+      </article>
+      <article class="new-card">
+        <div class="new-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></div>
+        <h3>Instant search, even offline</h3>
+        <p>Results appear as you type from an on-device food index for your region — and keep working without a connection.</p>
+      </article>
+      <article class="new-card">
+        <div class="new-icon"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg></div>
+        <h3>Weight trends your way</h3>
+        <p>Filter your weight chart by 7 days, 30 days, 90 days or all time, and see every goal-weight change on the date you made it.</p>
+      </article>
+    </div>
+  </section>
 
   <!-- FEATURE SHOWCASE WITH SCREENSHOTS -->
   <section class="feature-showcase">
@@ -1357,6 +1416,7 @@
           <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Shows confidence percentage per item</li>
           <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Full macro breakdown (P / C / F)</li>
           <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Select or deselect items before logging</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Keeps analyzing in the background</li>
         </ul>
       </div>
       <div class="showcase-row-img">
@@ -1372,7 +1432,7 @@
         <ul>
           <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Calories burned from steps + workouts</li>
           <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Step counter with daily goal</li>
-          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Weight chart with trend line</li>
+          <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Weight trend by 7D, 30D, 90D or all time</li>
           <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Health Connect & Apple Health sync</li>
         </ul>
       </div>
