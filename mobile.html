@@ -218,7 +218,10 @@
     }
     .phone-frame img { width: 100%; display: block; border-radius: 28px; }
 
-    .hero .hero-phone { align-self: stretch; overflow-x: clip; }
+    .hero .hero-phone {
+      align-self: stretch; overflow-x: clip;
+      width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+    }
     .fan-stage {
       width: 100%; max-width: 300px; margin: 0 auto; aspect-ratio: 1 / 1.2;
       --cw: 50%; --sw: 42%; --st: 19%; --side-x: 74%; --spread-x: 10%; --spread-r: 4deg;

@@ -236,7 +236,7 @@
     .hero {
       min-height: 100vh; display: flex; align-items: center;
       justify-content: center; padding: 120px 40px 60px;
-      position: relative;
+      position: relative; overflow: hidden;
     }
 
     .hero-inner {
@@ -852,6 +852,7 @@
       .footer-content { grid-template-columns: 1fr; gap: 30px; }
       .phone-frame { width: 240px; }
       .fan-stage { max-width: 300px; }
+      .hero-phone { margin-left: -20px; margin-right: -20px; }
     }
 
     @media (max-width: 480px) {
@@ -865,6 +866,7 @@
       .showcase-phone img { border-radius: 20px; }
       .phone-frame { width: 200px; border-radius: 26px; }
       .phone-frame img { border-radius: 26px; }
+      .hero-phone { margin-left: -16px; margin-right: -16px; }
       .fan-stage {
         flex: none; width: 90%; max-width: none; margin: 0 auto; aspect-ratio: 1 / 1.2;
         --cw: 54%; --sw: 45%; --st: 19%; --side-x: 74%; --spread-x: 10%; --spread-r: 4deg;
