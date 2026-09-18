@@ -53,6 +53,7 @@ No recipes or meal plans, no social feed or friends, no human coaching, no web o
 - [Terms of Service](https://caltracker.eu/terms-of-service.html)
 - [Delete Account](https://caltracker.eu/delete-account.html)
 - [Data Deletion](https://caltracker.eu/data-deletion.html)
+- [Impressum](https://caltracker.eu/impressum.html)
 
 ## FAQ
 
