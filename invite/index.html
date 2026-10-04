@@ -83,6 +83,7 @@
       </a>
     </div>
 
+    <p class="hint" id="copyHint" hidden>Tapping the App Store button copies the invite link, so the app can fill in the code for you after installing.</p>
     <p class="hint">Already have CalTracker? Scan the QR code again with your phone's camera, or enter the code under <strong>Profile → Friends</strong>.</p>
   </main>
 
@@ -97,6 +98,17 @@
         var play = document.getElementById('playLink');
         var referrer = 'ref=' + ref + '&utm_source=invite&utm_medium=friend';
         play.href = play.href + '&referrer=' + encodeURIComponent(referrer);
+        // iOS has no install referrer: copy the invite link on the App Store tap
+        // instead; the app reads it in the onboarding referral step.
+        var apple = document.getElementById('appleLink');
+        document.getElementById('copyHint').hidden = false;
+        apple.addEventListener('click', function () {
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText('https://caltracker.eu/invite/?ref=' + ref).catch(function () {});
+            }
+          } catch (e) {}
+        });
         document.getElementById('codeCard').hidden = false;
         var btn = document.getElementById('copy');
         btn.addEventListener('click', function () {
