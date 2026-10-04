@@ -91,6 +91,12 @@
       var ref = (new URLSearchParams(window.location.search).get('ref') || '').trim().toUpperCase();
       if (/^[A-Z0-9]{8}$/.test(ref)) {
         document.getElementById('code').textContent = ref;
+        // Carry the code through the Play install: Google hands the referrer
+        // string to the app on first launch, which prefills the code. utm_*
+        // also lets Firebase attribute the install to friend invites.
+        var play = document.getElementById('playLink');
+        var referrer = 'ref=' + ref + '&utm_source=invite&utm_medium=friend';
+        play.href = play.href + '&referrer=' + encodeURIComponent(referrer);
         document.getElementById('codeCard').hidden = false;
         var btn = document.getElementById('copy');
         btn.addEventListener('click', function () {
