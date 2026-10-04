@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["59CXLP32HY.com.trackerapp.caltracker"],
+        "components": [
+          { "/": "/invite/*", "comment": "Friend invite links / QR cards (caltracker.eu/invite/?ref=CODE)" }
+        ]
+      }
+    ]
+  }
+}

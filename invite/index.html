@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>You're invited to CalTracker</title>
+  <meta name="description" content="A friend invited you to CalTracker, the AI calorie counter. Install the app and use their code to get 50 free AI scans.">
+  <!-- Landing page for friend QR cards / invite links. With the app installed
+       the OS opens the app directly (Universal Links / App Links, see
+       /.well-known/); this page is what everyone else sees. Not for search. -->
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://caltracker.eu/">
+  <link rel="icon" type="image/png" href="../caltracker_icon.png">
+  <link rel="apple-touch-icon" href="../caltracker_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff; --soft: #f7f8fa; --text: #1a1a1a; --muted: #6b7280; --border: #e5e7eb;
+      --btn-bg: #1a1a1a; --btn-text: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111111; --soft: #1a1a1a; --text: #f5f5f5; --muted: #9ca3af; --border: #2a2a2a;
+        --btn-bg: #f5f5f5; --btn-text: #111111;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; min-height: 100dvh;
+      display: flex; align-items: center; justify-content: center;
+      padding: max(24px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
+      -webkit-font-smoothing: antialiased;
+    }
+    main { width: 100%; max-width: 420px; text-align: center; }
+    .logo { width: 72px; height: 72px; border-radius: 18px; margin-bottom: 24px; }
+    h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; }
+    p.lead { color: var(--muted); font-size: 1rem; line-height: 1.55; margin-bottom: 28px; }
+    .code-card {
+      background: var(--soft); border: 1px solid var(--border); border-radius: 20px;
+      padding: 20px; margin-bottom: 28px;
+    }
+    .code-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .code { font-size: 1.9rem; font-weight: 700; letter-spacing: 0.22em; padding-left: 0.22em; margin-bottom: 14px; font-variant-numeric: tabular-nums; }
+    .copy {
+      font: inherit; font-size: 0.875rem; font-weight: 600; color: var(--text);
+      background: transparent; border: 1px solid var(--text); border-radius: 999px;
+      padding: 8px 18px; cursor: pointer; transition: opacity .2s;
+    }
+    .copy:active { opacity: .6; }
+    .stores { display: flex; flex-direction: column; gap: 12px; }
+    .store {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: var(--btn-bg); color: var(--btn-text); text-decoration: none;
+      border-radius: 999px; padding: 15px 20px; font-weight: 600; font-size: 1rem;
+      transition: transform .15s;
+    }
+    .store:active { transform: scale(0.98); }
+    .store svg { width: 20px; height: 20px; fill: currentColor; }
+    .hint { color: var(--muted); font-size: 0.8125rem; line-height: 1.5; margin-top: 22px; }
+    .hint a { color: inherit; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="logo" src="../caltracker_icon.png" alt="CalTracker" width="72" height="72">
+    <h1>A friend invited you to CalTracker</h1>
+    <p class="lead">Install the app, then enter the code below when you sign up — you both get <strong>50 free AI scans</strong>.</p>
+
+    <div class="code-card" id="codeCard" hidden>
+      <div class="code-label">Your friend's code</div>
+      <div class="code" id="code"></div>
+      <button class="copy" id="copy" type="button">Copy code</button>
+    </div>
+
+    <div class="stores">
+      <a class="store" id="playLink" href="https://play.google.com/store/apps/details?id=com.trackerapp.caltracker" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M3.2 1.6v20.8L13.6 12zM14.7 13.1l2.8 2.8-12.6 7.2zM14.7 10.9L4.9.9l12.6 7.2zM18.6 9.4 21.8 11.2c.5.3.5 1.3 0 1.6l-3.2 1.8-3.1-2.6z"/></svg>
+        Get it on Google Play
+      </a>
+      <a class="store" id="appleLink" href="https://apps.apple.com/us/app/caltracker-ai-calorie-counter/id6760666203" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+
+    <p class="hint">Already have CalTracker? Scan the QR code again with your phone's camera, or enter the code under <strong>Profile → Friends</strong>.</p>
+  </main>
+
+  <script>
+    (function () {
+      var ref = (new URLSearchParams(window.location.search).get('ref') || '').trim().toUpperCase();
+      if (/^[A-Z0-9]{8}$/.test(ref)) {
+        document.getElementById('code').textContent = ref;
+        document.getElementById('codeCard').hidden = false;
+        var btn = document.getElementById('copy');
+        btn.addEventListener('click', function () {
+          var done = function () {
+            btn.textContent = 'Copied';
+            setTimeout(function () { btn.textContent = 'Copy code'; }, 1800);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(ref).then(done, function () {});
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -33,10 +33,13 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # Upload entire repository — inkl. .well-known/ (apple-app-site-association,
+      # assetlinks.json für die App-Links). upload-pages-artifact@v3 nimmt
+      # versteckte Ordner noch mit; ab v4 würde es .well-known/ weglassen und
+      # die Universal/App Links still brechen — nicht ohne Gegenmaßnahme upgraden.
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
           path: '.'
       - name: Deploy to GitHub Pages
         id: deployment

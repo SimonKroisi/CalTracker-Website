@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.trackerapp.caltracker",
+      "sha256_cert_fingerprints": [
+        "93:89:79:E3:A7:87:B1:28:1E:AA:CA:21:B6:FD:B8:42:70:D0:DB:37:CF:67:8D:3D:DB:3D:7E:CB:00:79:E6:56",
+        "EB:81:0D:54:FB:4D:C1:F5:F4:D2:E2:37:12:E0:F9:EF:38:51:0C:44:B7:12:CB:AF:6F:0D:C0:4D:3C:4D:4E:4D"
+      ]
+    }
+  }
+]
