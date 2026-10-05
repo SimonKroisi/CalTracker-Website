@@ -24,3 +24,4 @@
 - 2026-07-12 — LAUNCH: /blog/best-ai-calorie-counter-apps/ (flagship roundup)
 - 2026-07-12 — LAUNCH: /blog/ index + /tools/ index; homepage + mobile footer now link to both
 - 2026-07-12 — sitemap.xml: added blog index, tools index, calculator, first post
+- 2026-10-05 — CLEANUP: removed index_backup.html + index_backup_v1.html (duplicate-content risk) and JVM crash logs; deploy workflow now strips seo/, .claude/, CALTRACKER_FEATURES.md so they are no longer served publicly

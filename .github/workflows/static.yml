@@ -33,10 +33,16 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      # Upload entire repository — inkl. .well-known/ (apple-app-site-association,
-      # assetlinks.json für die App-Links). upload-pages-artifact@v3 nimmt
-      # versteckte Ordner noch mit; ab v4 würde es .well-known/ weglassen und
-      # die Universal/App Links still brechen — nicht ohne Gegenmaßnahme upgraden.
+      # Internal working files (SEO research, agent skills, full feature doc)
+      # stay in the repo but must not be served on caltracker.eu.
+      # .well-known/ must NOT be stripped (App/Universal Links).
+      - name: Strip non-public files
+        run: rm -rf seo .claude CALTRACKER_FEATURES.md .gitignore
+      # Upload repository minus the files stripped above — inkl. .well-known/
+      # (apple-app-site-association, assetlinks.json für die App-Links).
+      # upload-pages-artifact@v3 nimmt versteckte Ordner noch mit; ab v4 würde
+      # es .well-known/ weglassen und die Universal/App Links still brechen —
+      # nicht ohne Gegenmaßnahme upgraden.
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
