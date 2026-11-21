@@ -8,7 +8,7 @@ Quellen liegen bewusst NICHT im Repo (GitHub Pages liefert alles aus, was drin l
 
 Aufruf (Pillow genuegt, kein cwebp/ImageMagick noetig):
   python scripts/optimize-images.py icon   <icon-1024.png>
-  python scripts/optimize-images.py phones <ordner>
+  python scripts/optimize-images.py phones <ordner> [--hero]   # --hero erzeugt zusaetzlich hero-phone-*.webp (Faecher)
 """
 import sys
 from pathlib import Path
@@ -61,7 +61,7 @@ def icon(src):
         print(f"{p.relative_to(ROOT)}  {p.stat().st_size / 1024:.1f} KB")
 
 
-def phones(folder):
+def phones(folder, hero=False):
     folder = Path(folder)
     IMG.mkdir(exist_ok=True)
     for name, widths in PHONES.items():
@@ -70,13 +70,17 @@ def phones(folder):
             out = IMG / f"phone-{name}-{w}.webp"
             resize(im, w).save(out, quality=82, method=6, alpha_quality=90)
             print(f"{out.relative_to(ROOT)}  {out.stat().st_size / 1024:.1f} KB")
-    for name, w in HERO.items():
+    for name, w in (HERO.items() if hero else ()):
         out = ROOT / f"hero-phone-{'progress' if name == 'activity' else name}.webp"
         resize(Image.open(folder / f"phone-{name}.png").convert("RGBA"), w).save(out, quality=82, method=6, alpha_quality=90)
         print(f"{out.relative_to(ROOT)}  {out.stat().st_size / 1024:.1f} KB")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3 or sys.argv[1] not in ("icon", "phones"):
+    args = [a for a in sys.argv[1:] if a != "--hero"]
+    if len(args) != 2 or args[0] not in ("icon", "phones"):
         sys.exit(__doc__)
-    {"icon": icon, "phones": phones}[sys.argv[1]](sys.argv[2])
+    if args[0] == "icon":
+        icon(args[1])
+    else:
+        phones(args[1], hero="--hero" in sys.argv)
