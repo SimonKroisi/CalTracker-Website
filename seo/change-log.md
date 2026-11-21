@@ -3,6 +3,8 @@
 > One dated line per title/meta change, page launch, or structural change. Newest first.
 > Purpose: attribute ranking movement to specific changes (rule 1: never two title/meta changes on the same page within 7 days).
 
+- 2026-11-21 — STRUCTURAL (site performance pass; no title/meta text changed): (1) mobile.html retired — the homepage was only reachable on phones via a JS user-agent redirect to a separately maintained copy; index.html is responsive (no overflow 320–768 px), so the redirect and the `rel=alternate media` link are removed and mobile.html is now a 0 s meta-refresh/`location.replace` stub to `/` with canonical `/` (old URLs/bookmarks keep working, query and hash are preserved). (2) og:image/twitter:image now `img/og-card.png` (1200×630) instead of the square icon, twitter:card → summary_large_image site-wide. (3) Inter self-hosted (/fonts/), Google Fonts links removed. (4) Screenshots/icon as right-sized WebP/PNG in /img/; app screenshots replaced with the Oct 2026 UI. Measured with Lighthouse mobile before/after — see commit messages.
+
 - 2026-07-15 — LAUNCH (2 comparison posts, same ezscreenshots-modeled batch, per Simon "write a couple more"):
   - /blog/cal-ai-vs-myfitnesspal/ (Comparison; targets "cal ai vs myfitnesspal", T3 easy). Hook: MFP acquired Cal AI (March 2026). Backlog row → published.
   - /blog/myfitnesspal-vs-yazio/ (Comparison; targets "myfitnesspal vs yazio", T3 easy). CalTracker appears only in a clearly-marked "where CalTracker fits" box (neither app is us), per seo-write-comparison rule 8. Backlog row → published.

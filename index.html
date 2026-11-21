@@ -50,9 +50,7 @@
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
 
-  <!-- Canonical + mobile alternate (separate-URL config per Google guidelines) -->
   <link rel="canonical" href="https://caltracker.eu/">
-  <link rel="alternate" media="only screen and (max-width: 640px)" href="https://caltracker.eu/mobile.html">
 
   <!-- Open Graph -->
   <meta property="og:title" content="CalTracker – AI Calorie Counter & Macro Tracker App">
@@ -78,17 +76,6 @@
 
   <!-- Fonts -->
   <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-
-  <!-- Device Detection -->
-  <script>
-    (function() {
-      const ua = navigator.userAgent.toLowerCase();
-      const isMobile = /android|webos|iphone|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua);
-      if (isMobile && !window.location.href.includes('mobile.html')) {
-        window.location.href = 'mobile.html' + window.location.search + window.location.hash;
-      }
-    })();
-  </script>
 
   <style>
     /* Inter, self-hosted (SIL OFL, see fonts/OFL.txt). Variable font, latin subset: covers German/English incl. umlauts and the euro sign. */
