@@ -1,0 +1,29 @@
+<!doctype html>
+<!--
+  Quelle der Social-Card img/og-card.png (1200x630, og:image / twitter:image).
+  Neu rendern (Chrome/Edge, keine weiteren Tools; Pfad zu chrome.exe ggf. anpassen):
+    chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 \
+      --screenshot=img/og-card.png file:///<repo>/scripts/og-card.html
+  Danach auf 256 Farben palettisieren (Pillow: Image.open(..).convert("RGB").quantize(256).save(.., optimize=True)).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Inter'; font-weight: 100 900; src: url(../fonts/inter-latin-wght-normal.woff2) format('woff2'); }
+  html, body { margin: 0; width: 1200px; height: 630px; background: #111; }
+  body { position: relative; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  .claim { position: absolute; left: 88px; top: 150px; font-size: 104px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em; }
+  .claim span { color: #8a8a8a; }
+  .sub { position: absolute; left: 92px; bottom: 76px; font-size: 32px; font-weight: 500; color: #a3a3a3; letter-spacing: -0.01em; }
+  .sub b { color: #fff; font-weight: 700; }
+  .tile { position: absolute; right: 88px; top: 165px; width: 300px; height: 300px; border-radius: 68px; background: #fff; display: grid; place-items: center; }
+  .tile img { width: 224px; height: 224px; display: block; }
+</style>
+</head>
+<body>
+  <div class="claim">Snap a photo.<br><span>Get calories.</span></div>
+  <div class="tile"><img src="../caltracker_icon.png" alt=""></div>
+  <div class="sub"><b>CalTracker</b> &nbsp;·&nbsp; AI calorie counter &amp; macro tracker</div>
+</body>
+</html>
