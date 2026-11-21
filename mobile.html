@@ -217,10 +217,9 @@
       margin-top: 28px; animation: fadeUp 0.9s ease;
     }
     .phone-frame {
-      width: 220px; border-radius: 28px; overflow: hidden;
-      box-shadow: var(--shadow-lg); background: var(--bg-soft); margin: 0 auto;
-    }
-    .phone-frame img { width: 100%; height: auto; display: block; border-radius: 28px; }
+      width: 220px; margin: 0 auto; }
+    .phone-frame img { width: 100%; height: auto; display: block; filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.16)); }
+    [data-theme="dark"] .phone-frame img { filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.6)); }
 
     .hero .hero-phone {
       align-self: stretch; overflow-x: clip;
@@ -271,10 +270,9 @@
       gap: 14px; flex-shrink: 0; scroll-snap-align: center;
     }
     .showcase-phone {
-      width: 180px; border-radius: 24px; overflow: hidden;
-      box-shadow: var(--shadow-md); background: var(--bg);
-    }
-    .showcase-phone img { width: 100%; height: auto; display: block; border-radius: 24px; }
+      width: 180px; }
+    .showcase-phone img { width: 100%; height: auto; display: block; filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.16)); }
+    [data-theme="dark"] .showcase-phone img { filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.6)); }
     .showcase-label { font-size: 0.85rem; font-weight: 700; letter-spacing: -0.01em; }
 
     /* ==================== FEATURE SHOWCASE (screenshot rows) ==================== */
@@ -547,9 +545,9 @@
     <div class="hero-phone">
       <div class="fan-stage" data-fan>
         <div class="fan-tilt">
-          <figure class="fan-phone fan-side fan-left"><div class="fan-float"><img src="hero-phone-scan.webp" alt="CalTracker AI food scanner detecting the foods in a meal photo" width="640" height="1312" loading="eager"></div></figure>
-          <figure class="fan-phone fan-side fan-right"><div class="fan-float"><img src="hero-phone-progress.webp" alt="CalTracker progress screen with calories burned, steps, workouts and weight" width="640" height="1312" loading="eager"></div></figure>
-          <figure class="fan-phone fan-center"><div class="fan-float"><img src="hero-phone-home.webp" alt="CalTracker AI calorie counter home screen showing daily calories and macros" width="640" height="1312" loading="eager"></div></figure>
+          <figure class="fan-phone fan-side fan-left"><div class="fan-float"><img src="hero-phone-scan.webp" alt="CalTracker AI food scanner detecting the foods in a meal photo" width="640" height="1324" loading="eager"></div></figure>
+          <figure class="fan-phone fan-side fan-right"><div class="fan-float"><img src="hero-phone-progress.webp" alt="CalTracker progress screen with calories burned, steps, workouts and weight" width="640" height="1324" loading="eager"></div></figure>
+          <figure class="fan-phone fan-center"><div class="fan-float"><img src="hero-phone-home.webp" alt="CalTracker AI calorie counter home screen showing daily calories and macros" width="640" height="1324" loading="eager"></div></figure>
         </div>
       </div>
       <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.currentScript.previousElementSibling.classList.add('fan-ready');</script>
@@ -586,27 +584,27 @@
     </div>
     <div class="showcase-scroll animate-on-scroll">
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="img/phone-home-780.webp" srcset="img/phone-home-390.webp 390w, img/phone-home-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="CalTracker home screen with calorie and macro dashboard" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="showcase-phone"><img src="img/phone-home-780.webp" srcset="img/phone-home-390.webp 390w, img/phone-home-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="CalTracker home screen with calorie and macro dashboard" width="780" height="1613" loading="lazy" decoding="async"></div>
         <div class="showcase-label">Home Dashboard</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="img/phone-scan-780.webp" srcset="img/phone-scan-390.webp 390w, img/phone-scan-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="AI food scanner recognising a meal and estimating calories" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="showcase-phone"><img src="img/phone-scan-780.webp" srcset="img/phone-scan-390.webp 390w, img/phone-scan-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="AI food scanner recognising a meal and estimating calories" width="780" height="1613" loading="lazy" decoding="async"></div>
         <div class="showcase-label">AI Food Scanner</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="img/phone-activity-780.webp" srcset="img/phone-activity-390.webp 390w, img/phone-activity-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="Weekly calorie and macro statistics and progress charts" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="showcase-phone"><img src="img/phone-activity-780.webp" srcset="img/phone-activity-390.webp 390w, img/phone-activity-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="CalTracker progress screen with calories burned, steps goal, workouts and weight" width="780" height="1613" loading="lazy" decoding="async"></div>
         <div class="showcase-label">Statistics</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="img/phone-eval-780.webp" srcset="img/phone-eval-390.webp 390w, img/phone-eval-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="AI daily meal evaluation and nutrition score" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="showcase-phone"><img src="img/phone-eval-780.webp" srcset="img/phone-eval-390.webp 390w, img/phone-eval-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="AI daily meal evaluation and nutrition score" width="780" height="1613" loading="lazy" decoding="async"></div>
         <div class="showcase-label">AI Meal Rating</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="img/phone-history-780.webp" srcset="img/phone-history-390.webp 390w, img/phone-history-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="Meal history log of tracked calories and macros" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="showcase-phone"><img src="img/phone-history-780.webp" srcset="img/phone-history-390.webp 390w, img/phone-history-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="History calendar with daily calorie rings and monthly averages" width="780" height="1613" loading="lazy" decoding="async"></div>
         <div class="showcase-label">Meal History</div>
       </div>
       <div class="showcase-item">
-        <div class="showcase-phone"><img src="img/phone-weight-780.webp" srcset="img/phone-weight-390.webp 390w, img/phone-weight-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="Weight history chart with BMI gauge and goal trend" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="showcase-phone"><img src="img/phone-weight-780.webp" srcset="img/phone-weight-390.webp 390w, img/phone-weight-780.webp 780w" sizes="(max-width: 640px) 160px, 220px" alt="Weight history chart with BMI gauge and goal trend" width="780" height="1613" loading="lazy" decoding="async"></div>
         <div class="showcase-label">Weight Tracking</div>
       </div>
     </div>
@@ -673,7 +671,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="img/phone-scan-780.webp" srcset="img/phone-scan-390.webp 390w, img/phone-scan-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="AI food scanner estimating calories from a food photo" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="phone-frame"><img src="img/phone-scan-780.webp" srcset="img/phone-scan-390.webp 390w, img/phone-scan-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="AI food scanner estimating calories from a food photo" width="780" height="1613" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
@@ -689,7 +687,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="img/phone-activity-780.webp" srcset="img/phone-activity-390.webp 390w, img/phone-activity-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="Calorie and macro statistics and progress tracking" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="phone-frame"><img src="img/phone-activity-780.webp" srcset="img/phone-activity-390.webp 390w, img/phone-activity-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="Progress screen with daily activity, steps and body metrics" width="780" height="1613" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
@@ -705,7 +703,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="img/phone-eval-780.webp" srcset="img/phone-eval-390.webp 390w, img/phone-eval-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="AI meal evaluation giving a daily nutrition score" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="phone-frame"><img src="img/phone-eval-780.webp" srcset="img/phone-eval-390.webp 390w, img/phone-eval-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="AI meal evaluation giving a daily nutrition score" width="780" height="1613" loading="lazy" decoding="async"></div>
       </div>
     </div>
 
@@ -721,7 +719,7 @@
         </ul>
       </div>
       <div class="showcase-row-img">
-        <div class="phone-frame"><img src="img/phone-history-780.webp" srcset="img/phone-history-390.webp 390w, img/phone-history-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="Meal history showing previously tracked meals and calories" width="780" height="1478" loading="lazy" decoding="async"></div>
+        <div class="phone-frame"><img src="img/phone-history-780.webp" srcset="img/phone-history-390.webp 390w, img/phone-history-780.webp 780w" sizes="(max-width: 640px) 240px, 280px" alt="Monthly history calendar showing which days hit the calorie goal" width="780" height="1613" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
